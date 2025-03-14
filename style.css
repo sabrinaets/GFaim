@@ -1,0 +1,98 @@
+*{
+    background-color: rgba(20, 20, 20, 0.854);
+    margin:0;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+nav{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin:0px 20px;
+}
+nav a{
+    text-decoration: none;
+    padding:12px 20px;
+    border-radius: 40px;
+    font-weight: bold;
+    color:white;
+    display:inline-block;
+    margin:20px 0px; 
+}
+nav a:hover{
+    text-decoration: underline;
+    transition-duration: 0,5s;
+   
+}
+.carre{
+    background-color: white;
+    padding:40px;
+    width:85%;
+    justify-self: center;
+    border-radius: 50px;
+    height:500px;
+    margin-top: 40px;
+    display:flex;
+    justify-content: space-between;
+
+}
+.carretext{
+    display:flex;
+    flex-direction: column;
+    background-color: white;
+    width:50%;
+    margin-top:50px;
+    
+}
+.carre img{
+    margin-right:40px;
+    background-image: linear-gradient(black,gray);
+    border-radius: 40px;
+}
+.carre h1{
+    background-color: transparent;
+    font-size: 60px;
+}
+.carre h2{
+    background-color: transparent;
+    font-size: 50px;
+}
+.carre p{
+    background-color: transparent;
+}
+.carre a{
+    background-color: rgb(230, 156, 46);
+    text-decoration: none;
+    color:white;
+    padding:12px 20px;
+    border-radius: 20px;
+    width:90px;
+    margin-top :50px;
+    margin-left: 30px;
+}
+.autrescomptes{
+    margin-top:30px;
+}
+.roles{
+    display:flex;
+    justify-self: center;
+    margin:40px;
+    width:70%;
+}
+.roles div{
+    display:flex;
+    flex-direction: column;
+    background-color: white;
+    justify-content: center;
+    width:50%;
+    align-items: center;
+}
+.roles div h3,p{
+    background-color: transparent;
+}
+footer{
+    background-color:white;
+    margin-top:100px;
+    height:80px;
+    display:flex;
+    text-align: bottom;
+}
