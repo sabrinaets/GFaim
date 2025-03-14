@@ -85,14 +85,17 @@ nav a:hover{
     justify-content: center;
     width:50%;
     align-items: center;
+    text-align: center;
 }
 .roles div h3,p{
     background-color: transparent;
+    padding:20px;
 }
 footer{
     background-color:white;
     margin-top:100px;
     height:80px;
     display:flex;
-    text-align: bottom;
+    justify-content: space-between;
+    align-items: end;
 }
