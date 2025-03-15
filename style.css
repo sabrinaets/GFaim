@@ -1,7 +1,10 @@
 *{
-    background-color: rgba(20, 20, 20, 0.854);
+    
     margin:0;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body{
+    background-color: rgba(12, 12, 12, 0.961);
 }
 nav{
     display:flex;
@@ -66,7 +69,7 @@ nav a:hover{
     padding:12px 20px;
     border-radius: 20px;
     width:90px;
-    margin-top :50px;
+    margin-top :20px;
     margin-left: 30px;
 }
 .autrescomptes{
@@ -98,4 +101,44 @@ footer{
     display:flex;
     justify-content: space-between;
     align-items: end;
+}
+
+
+/*Page connexion*/
+.connexion{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.566),rgba(0, 0, 0, 0.333)),url("images/imgConnexion.avif");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100vh;
+}
+.formConnexion{
+    display:flex;
+    flex-direction: column;
+    width:40%;
+    float:right;
+    height:100%;
+    background-color: white;
+}
+.formConnexion h2{
+    background-color: transparent;
+    display:flex;
+    justify-content: center;
+    padding:20px;
+}
+#connecter{
+    background-color: transparent;
+    padding:20px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+#connecter input{
+    width:80%;
+    padding:8px;
+    border-radius: 4px;
+    margin:6px;
+    border:2px solid rgb(9, 10, 10);
+    
 }
