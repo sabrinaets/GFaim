@@ -20,5 +20,9 @@ DROP TABLE Restaurant;
 DELETE FROM Role;
 DROP TABLE Role;
 
+-- Supression des données et de la table StatutCommande
+DELETE FROM StatutCommande;
+DROP TABLE StatutCommande;
+
 -- Supression de la base de données Gfaim
 DROP DATABASE Gfaim;
