@@ -1,5 +1,5 @@
+/* Default Settings*/
 *{
-    
     margin:0;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -25,7 +25,22 @@ nav a{
     display:inline-block;
 }
 nav a:hover{
-    text-decoration: underline;
+    color: var(--monOrange) ;
+}
+.boutonRight {
+    background-color: var(--bleuLogo);
+    color:  white !important;
+}
+.boutonRight:hover{
+    background-color: rgb(7, 134, 238);
+    transition: background-color 0.3s, transform 0.2s;
+}
+#logo {
+    cursor: pointer;
+}
+#logo img {
+    width: 160px;
+    height: auto;
 }
 .carre{
     background-color: white;
@@ -168,4 +183,66 @@ footer{
 }
 .motOrange{
     color:var(--monOrange);
+}
+
+
+/* Page coursesDispo */
+.contenu {
+    width: 80%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 20px;
+    text-align: center;
+}
+h1 {
+    color: var(--bleuLogo);
+    margin-bottom: 20px;
+}
+.liste-commandes {
+    list-style: none;
+    padding: 0;
+}
+.commande {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    margin: 10px 0;
+    background: white;
+    border: 2px solid var(--monOrange);
+    border-radius: 15px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+.commande span {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+}
+.restaurant {
+    color: var(--bleuLogo);
+}
+.adresse {
+    color: black;
+}
+.commande-details {
+    color: var(--monOrange);
+}
+.boutonAccepte {
+    background-color: rgb(50, 205, 50);
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.2s;
+}
+.boutonAccepte:hover {
+    background-color: var(--bleuLogo);
+    transform: scale(1.05);
 }
