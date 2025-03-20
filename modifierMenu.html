@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - GFaim</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a id="logo" href="index.html" title="Gfaim"><img src="images/logo.png" width="100px" alt="accueil"></a>
+            <div>
+                <a href="coursesDispo.html">Courses disponibles<span></span></a>
+                <a href="coursesALivrer.html">Mes courses<span></span></a>
+                <a class="boutonRight" href="modifierMenu.html">Menu<span></span></a>
+            </div>
+        </nav>
+    </header>
+    <main class="contenu">
+        <h1>Voici les articles dans votre menu</h1>
+        <button class="boutonAjouter" onclick="window.location.href='ajouterArticle.html'">Ajouter</button>
+        <ul class="liste-commandes">
+            <li class="article">
+                <span class="nomArticle">Rondelle d'oignon</span><br>
+                <span class="description">Des oignons frais pané servi avec notre mayo épicée signature</span><br>
+                <span class="prix">3.99$</span><br>
+                <button class="boutonModifier" onclick="window.location.href='modifierArticle.html'">Modifier</button>
+                <button class="boutonSupprimer" onclick="window.location.href='coursesALivrer.html'">Supprimer</button>
+            </li>
+            <li class="article">
+                <span class="nomArticle">Cola</span><br>
+                <span class="description">Un cola sans trademark</span><br>
+                <span class="prix">0.99$</span><br>
+                <button class="boutonModifier" onclick="window.location.href='modifierArticle.html'">Modifier</button>
+                <button class="boutonSupprimer" onclick="window.location.href='coursesALivrer.html'">Supprimer</button>
+            </li>
+            <li class="article">
+                <span class="nomArticle">Cheeseburger</span><br>
+                <span class="description">Cheeseburger servi sur pain au sésame et fait avec du boeuf 100% canadien</span><br>
+                <span class="prix">8.99$</span><br>
+                <button class="boutonModifier" onclick="window.location.href='modifierArticle.html'">Modifier</button>
+                <button class="boutonSupprimer" onclick="window.location.href='coursesALivrer.html'">Supprimer</button>
+            </li>
+            <li class="article">
+                <span class="nomArticle">Frite familliale</span><br>
+                <span class="description">Des frites maisons servi avec notre mayo épicée signature</span><br>
+                <span class="prix">6.99$</span><br>
+                <button class="boutonModifier" onclick="window.location.href='modifierArticle.html'">Modifier</button>
+                <button class="boutonSupprimer" onclick="window.location.href='coursesALivrer.html'">Supprimer</button>
+            </li>
+            <li class="article">
+                <span class="nomArticle">Hamburger fromage & bacon</span><br>
+                <span class="description">Hamburger servi sur pain au sésame et fait avec du boeuf et bacon 100% canadien</span><br>
+                <span class="prix">10.99$</span><br>
+                <button class="boutonModifier" onclick="window.location.href='modifierArticle.html'">Modifier</button>
+                <button class="boutonSupprimer" onclick="window.location.href='coursesALivrer.html'">Supprimer</button>
+            </li>
+            <li class="article">
+                <span class="nomArticle">Hot-dog steamé</span><br>
+                <span class="description">Un bon hot-dog classique cuit à la vapeur</span><br>
+                <span class="prix">1.49$</span><br>
+                <button class="boutonModifier" onclick="window.location.href='modifierArticle.html'">Modifier</button>
+                <button class="boutonSupprimer" onclick="window.location.href='coursesALivrer.html'">Supprimer</button>
+            </li>
+        </ul>
+    </main>
+    <footer>
+        <p>@2025 tous droits reservés GFaim</p>
+    </footer>
+</body>
+</body>
+</html>

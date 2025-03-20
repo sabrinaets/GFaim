@@ -50,6 +50,7 @@ CREATE TABLE Menu (
     nom VARCHAR(50) NOT NULL,
     description TEXT NOT NULL,
     prix DECIMAL(5, 2) NOT NULL,
+    image VARCHAR(100) NOT NULL,
     FOREIGN KEY (idRestaurant) REFERENCES Restaurant(idRestaurant) ON DELETE CASCADE
 );
 
