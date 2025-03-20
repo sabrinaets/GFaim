@@ -2,7 +2,7 @@
 <?php 
 function afficherMenu($controleur)
 {
-    $menu = "<nav>
+    $menu = "
         <div>
           ";
 
@@ -10,26 +10,36 @@ function afficherMenu($controleur)
 
     if ($typeActeur === "visiteur") {
         $menu .= "<a href='?action=seConnecter'>Se connecter</a>";
+        $menu .= "<a href='?action=seInscrire'>Créer un compte</a>";
     } else {
         // Vérifier si l'utilisateur est connecté
         if (isset($_SESSION['utilisateurConnecte']) && $_SESSION['utilisateurConnecte'] instanceof User) {
             $utilisateurConnecte = $_SESSION['utilisateurConnecte'];
             $nom = htmlspecialchars($utilisateurConnecte->getUserName());
-            $menu .= "<li style='color:red'>" . $nom . " connecté </li>";
+            $menu .= "<span>" . $nom . " connecté </span>";
             if(htmlspecialchars($utilisateurConnecte->getRole()->getRoleName()) === "Admin"){
-                $menu .= "<li><a href='?action=gestionApi'>Gestion de l'API</a></li>";
-                $menu .= "<li><a href='?action=creerCompte'>Créer compte</a></li>";
+                $menu .= "<a href='?action=gestionApi'>Gestion de l'API</a>";
+                $menu .= "<a href='?action=creerCompte'>Créer compte</a>";
             }
             else if(htmlspecialchars($utilisateurConnecte->getRole()->getRoleName()) === "Client"){
-
+                $menu .= "<a href='?action=voirCommandesClient'>Voir mes commandes</a>";
+                $menu .= "<a href='?action=voirPanier'>panier</a>"; //icone panier
+            }
+            else if(htmlspecialchars($utilisateurConnecte->getRole()->getRoleName()) === "Livreur"){
+                $menu .= "<a href='?action=voirCommandesDispo'>Commandes disponibles</a>";
+                $menu .= "<a href='?action=voirCommandesLivreur'>Mes commandes</a>";
+            }
+            else if(htmlspecialchars($utilisateurConnecte->getRole()->getRoleName()) === "Restaurateur"){
+                $menu .= "<a href='?action=voirStats'>Voir mes statistiques</a>";
+                $menu .= "<a href='?action=voirCommandesResto'>Voir mes commandes</a>"; 
             }
         }
-        $menu .= "<li><a href='?action=seDeconnecter'>Se déconnecter</a></li>";
+        $menu .= "<a href='?action=seDeconnecter'>Se déconnecter</a>";
 
     }
 
     $menu .= "</div>
-      </nav>";
+     ";
 
     echo $menu;
 }

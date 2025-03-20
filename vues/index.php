@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,13 +10,19 @@
 <body>
     <header>
         <nav>
-            <a id="logo" href="index.html" title="Gfaim"><img src="images/logo.png" width="80%" alt="accueil"></a>
+
+        <?php
+      include("vues/fonctions/entete.php");
+    include("vues/fonctions/fonctions.php");
+     afficherMenu($controleur);
+?>
+            <!--<a id="logo" href="index.html" title="Gfaim"><img src="images/logo.png" width="80%" alt="accueil"></a>
             <div>
                 <a href="mesCommandes.html">Mes commandes</a>
                 <a href="connexion.html">Connexion</a>
                 <a href="inscription.html">Inscription</a>
-            </div>
-        </nav>
+            </div>-->
+</nav>
     </header>
     <main class="main">
         <div class="carre">
@@ -58,3 +65,4 @@
     
 </body>
 </html>
+
