@@ -25,7 +25,7 @@ nav a{
     display:inline-block;
 }
 nav a:hover{
-    color: var(--monOrange) ;
+    color: var(--bleuLogo) ;
 }
 .boutonRight {
     background-color: var(--bleuLogo);
@@ -51,6 +51,7 @@ nav a:hover{
     height:500px;
     margin-top: 40px;
     display:flex;
+    flex-wrap: wrap;
     justify-content: space-between;
 
 }
@@ -61,11 +62,51 @@ nav a:hover{
     width:50%;
     margin-top:50px;
     
+    
+}
+.carreMenu{
+    background-color: white;
+    padding:40px;
+    width:85%;
+    justify-self: center;
+    border-radius: 50px;
+    margin-top: 40px;
+    display:flex;
+    justify-content: space-between;
+
+}
+.menuResto{
+    text-align: center;
+    width: 100%; ;
+}
+.menu-item{
+    margin-top:20px;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 20px;
+}
+.carreMenu a{
+    background-color: var(--monOrange);
+    text-decoration: none;
+    color:white;
+    padding:12px 20px;
+    border-radius: 20px;
+    width:90px;
+    margin-top :20px;
+    margin-left: 30px;
+    transition:0.3s;
+}
+.carreMenu a:hover{
+    background-color: var(--bleuLogo);
 }
 .carre img{
     margin-right:40px;
     background-image: linear-gradient(black,gray);
     border-radius: 40px;
+    width:35%;
+    max-width:500px;
+    min-width:300px;
+    height:100%;
 }
 .carre h1{
     background-color: transparent;
@@ -115,12 +156,14 @@ nav a:hover{
     padding:20px;
 }
 footer{
-    background-color:white;
+   
     margin-top:100px;
     height:80px;
     display:flex;
-    justify-content: space-between;
+    justify-content: right;
     align-items: end;
+    color:white;
+    border-top:1px solid rgb(50, 49, 49);
 }
 
 
@@ -245,4 +288,49 @@ h1 {
 .boutonAccepte:hover {
     background-color: var(--bleuLogo);
     transform: scale(1.05);
+}
+
+/* Page commande à livrer */
+.commandeALivrer {
+    color: var(--monOrange);
+}
+.commandeALivrerNomResto {
+    color: var(--monOrange);
+}
+.commandeALivrerDetails {
+    color: var(--bleuLogo);
+}
+.commandeALivrerBoutonAccepte {
+    background-color: black;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    transition: background-color 0.5s, transform 0.2s;
+}
+.commandeALivrerBoutonAccepte:hover {
+    background-color: red;
+    transform: scale(1.05);
+}
+.livraison {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    margin: 10px 0;
+    background: white;
+    border: 2px solid var(--bleuLogo);
+    border-radius: 15px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+.livraison span {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
 }
