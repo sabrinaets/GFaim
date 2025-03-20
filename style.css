@@ -6,6 +6,8 @@
 :root{
     --bleuLogo:rgb(87, 173, 244);
     --monOrange:rgb(230, 156, 46);
+    --modifierOrange:rgb(248, 136, 9);
+    --supprimerRouge:rgb(255, 0, 0);
 }
 body{
     background-color: rgba(12, 12, 12, 0.961);
@@ -467,7 +469,7 @@ h1 {
 }
 
 .boutonModifier {
-    background-color: rgb(248, 136, 9);
+    background-color: var(--modifierOrange);
     color: white;
     font-size: 15px;
     font-weight: bold;
@@ -489,7 +491,7 @@ h1 {
 }
 
 .boutonSupprimer {
-    background-color: rgb(255, 0, 0);
+    background-color: var(--supprimerRouge);
     color: white;
     font-size: 15px;
     font-weight: bold;
