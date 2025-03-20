@@ -9,9 +9,9 @@
 <body>
     <header>
         <nav>
-            <a id="logo" href="index.html" title="Gfaim"><img src="images/logo.png" width="100px" alt="accueil"></a>
+            <a id="logo" href='?action=Accueil' title="Gfaim"><img src="images/logo.png" width="100px" alt="accueil"></a>
             <div>
-                <a href="connexion.html">Vous avez déja un compte? <span class="motOrange">Se connecter</span></a>
+                <a href='?action=seConnecter'>Vous avez déja un compte? <span class="motOrange">Se connecter</span></a>
             </div>
         </nav>
     </header>

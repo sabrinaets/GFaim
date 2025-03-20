@@ -10,7 +10,7 @@ function afficherMenu($controleur)
 
     if ($typeActeur === "visiteur") {
         $menu .= "<a href='?action=seConnecter'>Se connecter</a>";
-        $menu .= "<a href='?action=seInscrire'>Créer un compte</a>";
+        $menu .= "<a href='?action=creerCompte'>Créer un compte</a>";
     } else {
         // Vérifier si l'utilisateur est connecté
         if (isset($_SESSION['utilisateurConnecte']) && $_SESSION['utilisateurConnecte'] instanceof User) {
