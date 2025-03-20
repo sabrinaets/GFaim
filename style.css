@@ -243,14 +243,14 @@ footer{
 }
 
 /*Page connexion et des different formulaires*/
-.connexion,.inscription,.ajouter{
+.connexion,.inscription,.ajouter,.modifier{
     background-image: linear-gradient(rgba(0, 0, 0, 0.566),rgba(0, 0, 0, 0.333)),url("images/imgConnexion.avif");
     background-size: cover;
     background-position: center;
     width: 100%;
     height: 100vh;
 }
-.formConnexion,.formInscription,.formAjouterArticle{
+.formConnexion,.formInscription,.formAjouterArticle,.formModifierArticle{
     display:flex;
     flex-direction: column;
     width:40%;
@@ -258,13 +258,13 @@ footer{
     height:100%;
     background-color: white;
 }
-.formConnexion h2,.formInscription h2, .formAjouterArticle h2{
+.formConnexion h2,.formInscription h2, .formAjouterArticle h2,.formModifierArticle h2{
     background-color: transparent;
     display:flex;
     justify-content: center;
     padding-top:20px;
 }
-#connecter,#inscrire,#ajouterArticle{
+#connecter,#inscrire,#ajouterArticle,#modifierArticle{
     background-color: transparent;
     padding:20px;
     display:flex;
@@ -304,14 +304,28 @@ footer{
     border:2px solid rgb(9, 10, 10);
 
 }
-.formConnexion input[type="submit"],.formInscription input[type="submit"],.formAjouterArticle input[type="submit"]{
+#modifierArticle input{
+    width:80%;
+    padding:4px;
+    border-radius: 4px;
+    margin:10px;
+    border:2px solid rgb(9, 10, 10);
+}
+#modifierArticle textarea{
+    width:80%;
+    padding:4px;
+    border-radius: 4px;
+    margin:10px;
+    border:2px solid rgb(9, 10, 10);
+}
+.formConnexion input[type="submit"],.formInscription input[type="submit"],.formAjouterArticle input[type="submit"],.formModifierArticle input[type="submit"]{
   font-size:15px;
   align-self:center; 
   background-color:var(--monOrange);
   color:white;
   cursor: pointer;
 }
-.formConnexion input[type="submit"]:hover,.formInscription input[type="submit"]:hover,.formAjouterArticle input[type="submit"]:hover{
+.formConnexion input[type="submit"]:hover,.formInscription input[type="submit"]:hover,.formAjouterArticle input[type="submit"]:hover,.formModifierArticle input[type="submit"]:hover{
     margin-top:10px;
     background-color: var(--bleuLogo);
 }
