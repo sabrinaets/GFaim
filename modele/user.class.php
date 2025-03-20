@@ -2,8 +2,7 @@
 class User
 {
     private ?int $id;
-    private string $firstName;
-    private string $lastName;
+    private string $username;
     private string $email;
     private string $password;
     private ?string $phone;
@@ -13,8 +12,7 @@ class User
        // Constructor
        public function __construct(
         ?int $id,
-        string $firstName,
-        string $lastName,
+        string $username,
         string $email,
         string $password,
         ?string $phone,
@@ -22,8 +20,7 @@ class User
         Role $role
     ) {
         $this->id = $id;
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
+        $this->username=$username;
         $this->email = $email;
         $this->password = $password;
         $this->phone = $phone;
@@ -43,25 +40,14 @@ class User
     }
 
     // Getters and Setters for $firstName
-    public function getFirstName(): string
+    public function getUserName(): string
     {
-        return $this->firstName;
+        return $this->username;
     }
 
-    public function setFirstName(string $firstName): void
+    public function setUserName(string $username): void
     {
-        $this->firstName = $firstName;
-    }
-
-    // Getters and Setters for $lastName
-    public function getLastName(): string
-    {
-        return $this->lastName;
-    }
-
-    public function setLastName(string $lastName): void
-    {
-        $this->lastName = $lastName;
+        $this->username = $username;
     }
 
     // Getters and Setters for $email
@@ -138,8 +124,7 @@ class User
         return sprintf(
             "[User #%d] %s %s - %s (%s, %s)",
             $this->id,
-            $this->firstName,
-            $this->lastName,
+            $this->username,
             $this->email,
             $this->phone ?? "No phone",
             $this->role->getRoleName()
