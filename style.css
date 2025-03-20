@@ -64,41 +64,6 @@ nav a:hover{
     
     
 }
-.carreMenu{
-    background-color: white;
-    padding:40px;
-    width:85%;
-    justify-self: center;
-    border-radius: 50px;
-    margin-top: 40px;
-    display:flex;
-    justify-content: space-between;
-
-}
-.menuResto{
-    text-align: center;
-    width: 100%; ;
-}
-.menu-item{
-    margin-top:20px;
-    border: 1px solid black;
-    border-radius: 20px;
-    padding: 20px;
-}
-.carreMenu a{
-    background-color: var(--monOrange);
-    text-decoration: none;
-    color:white;
-    padding:12px 20px;
-    border-radius: 20px;
-    width:90px;
-    margin-top :20px;
-    margin-left: 30px;
-    transition:0.3s;
-}
-.carreMenu a:hover{
-    background-color: var(--bleuLogo);
-}
 .carre img{
     margin-right:40px;
     background-image: linear-gradient(black,gray);
@@ -166,6 +131,116 @@ footer{
     border-top:1px solid rgb(50, 49, 49);
 }
 
+/* css de la page des restaurants */
+.carreResto{
+    background-color: white;
+    padding:20px;
+    width:85%;
+    justify-self: center;
+    border-radius: 20px;
+    margin-top: 40px;
+    display:flex;
+    justify-content: space-between;
+
+}
+.texteResto{
+    display:flex;
+    flex-direction: column;
+    background-color: white;
+    width:50%;
+}
+.carreResto a{
+    background-color: var(--monOrange);
+    text-decoration: none;
+    color:white;
+    padding:12px 20px;
+    border-radius: 20px;
+    width:90px;
+    height: fit-content;
+    margin-top :20px;
+    margin-left: 30px;
+    transition:0.3s;
+}
+.carreResto a:hover{
+    background-color: var(--bleuLogo);
+}
+/* css du menu */
+.carreMenu{
+    background-color: white;
+    padding:40px;
+    width:85%;
+    justify-self: center;
+    border-radius: 50px;
+    margin-top: 40px;
+    display:flex;
+    justify-content: space-between;
+
+}
+.menuResto{
+    width: 100%; ;
+    text-align: center;
+}
+#menu {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Deux colonnes de largeur égale */
+    gap: 20px; /* Espacement entre les éléments */
+    width: 100%; /* Largeur max du menu */
+    margin: 0 auto; /* Centrer le menu sur la page */
+}
+.menu-item{
+    background-color: rgb(224, 223, 223);
+    display:flex;
+    justify-content: space-between;
+    margin-top:20px;
+    border-radius: 5px;
+    padding: 20px;
+}
+.item-info{
+    display:flex;
+    flex-direction: column;
+    width:75%;
+    margin-top:50px;
+    align-items: center;
+    
+}
+.carreMenu a{
+    background-color: var(--monOrange);
+    text-decoration: none;
+    color:white;
+    padding:12px 20px;
+    border-radius: 20px;
+    width:90px;
+    transition:0.3s;
+}
+.carreMenu a:hover{
+    background-color: var(--bleuLogo);
+}
+
+/* css de la page de commande client */
+.bouttonscommandes {
+    background-color: rgb(21, 92, 21);
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.2s;
+}
+.bouttonscommandes:hover {
+    background-color: var(--bleuLogo);
+    transform: scale(1.05);
+}
+
+.liste-commandes-client {
+    list-style: none;
+    padding: 0;
+}
 
 /*Page connexion*/
 .connexion,.inscription{
