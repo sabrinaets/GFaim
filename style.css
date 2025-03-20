@@ -368,13 +368,13 @@ footer{
     height:100%;
     background-color: white;
 }
-.formConnexion h2,.formInscription h2, .formAjouterArticle h2,.formModifierArticle h2{
+.formConnexion h2,.formInscription h2, .formAjouterArticle h2,.formModifierArticle h2,.formAjouterPromotion h2{
     background-color: transparent;
     display:flex;
     justify-content: center;
     padding-top:20px;
 }
-#connecter,#inscrire,#ajouterArticle,#modifierArticle{
+#connecter,#inscrire,#ajouterArticle,#modifierArticle,#ajouterPromotion{
     background-color: transparent;
     padding:20px;
     display:flex;
@@ -428,14 +428,22 @@ footer{
     margin:10px;
     border:2px solid rgb(9, 10, 10);
 }
-.formConnexion input[type="submit"],.formInscription input[type="submit"],.formAjouterArticle input[type="submit"],.formModifierArticle input[type="submit"]{
+#ajouterPromotion input{
+    width:80%;
+    padding:4px;
+    border-radius: 4px;
+    align-self: center;
+    margin:10px;
+    border:2px solid rgb(9, 10, 10);
+}
+.formConnexion input[type="submit"],.formInscription input[type="submit"],.formAjouterArticle input[type="submit"],.formModifierArticle input[type="submit"],.formAjouterPromotion input[type="submit"]{
   font-size:15px;
   align-self:center; 
   background-color:var(--monOrange);
   color:white;
   cursor: pointer;
 }
-.formConnexion input[type="submit"]:hover,.formInscription input[type="submit"]:hover,.formAjouterArticle input[type="submit"]:hover,.formModifierArticle input[type="submit"]:hover{
+.formConnexion input[type="submit"]:hover,.formInscription input[type="submit"]:hover,.formAjouterArticle input[type="submit"]:hover,.formModifierArticle input[type="submit"]:hover,.formAjouterPromotion input[type="submit"]:hover{
     margin-top:10px;
     background-color: var(--bleuLogo);
 }

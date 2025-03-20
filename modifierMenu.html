@@ -64,6 +64,24 @@
                 <button class="boutonSupprimer">Supprimer</button>
             </li>
         </ul>
+        <div class="formAjouterPromotion">
+            <h2>Ajouter une promotion</h2>
+            <form id="ajouterPromotion" action="post">
+                <input type="hidden" id="editProductId" />
+                <input
+                  type="text"
+                  id="nomPromotion"
+                  placeholder="Nom de la promotion"
+                  required
+                />
+                <input
+                  type="number"
+                  id="pourcentagePromotion"
+                  placeholder="Pourcentage"
+                  step="0.01"
+                  required
+                />
+                <input  style="font-size:17px; padding:7px; margin-top:15px; border:none; width:40%; border-radius:20px" type="submit" value="Ajouter">
     </main>
     <footer>
         <p>@2025 tous droits reservés GFaim</p>
