@@ -289,3 +289,48 @@ h1 {
     background-color: var(--bleuLogo);
     transform: scale(1.05);
 }
+
+/* Page commande à livrer */
+.commandeALivrer {
+    color: var(--monOrange);
+}
+.commandeALivrerNomResto {
+    color: var(--monOrange);
+}
+.commandeALivrerDetails {
+    color: var(--bleuLogo);
+}
+.commandeALivrerBoutonAccepte {
+    background-color: black;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    transition: background-color 0.5s, transform 0.2s;
+}
+.commandeALivrerBoutonAccepte:hover {
+    background-color: red;
+    transform: scale(1.05);
+}
+.livraison {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    margin: 10px 0;
+    background: white;
+    border: 2px solid var(--bleuLogo);
+    border-radius: 15px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+.livraison span {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+}
