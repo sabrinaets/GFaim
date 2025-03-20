@@ -6,6 +6,8 @@
 :root{
     --bleuLogo:rgb(87, 173, 244);
     --monOrange:rgb(230, 156, 46);
+    --modifierOrange:rgb(248, 136, 9);
+    --supprimerRouge:rgb(255, 0, 0);
 }
 body{
     background-color: rgba(12, 12, 12, 0.961);
@@ -172,6 +174,7 @@ footer{
     justify-self: center;
     border-radius: 50px;
     margin-top: 40px;
+    margin: 0 auto;
     display:flex;
     justify-content: space-between;
 
@@ -215,6 +218,113 @@ footer{
 .carreMenu a:hover{
     background-color: var(--bleuLogo);
 }
+/* css du panier */
+#main-menu {
+    display: flex;
+    justify-content: space-between; /* Sépare le menu et le panier */
+    align-items: flex-start; /* Aligne les éléments en haut */
+    position: relative;
+}
+.panier {
+    width: 15%; /* Le panier prend 25% de l'écran */
+    background: white;
+    padding: 20px;
+    border-left: 2px solid #ddd; /* Séparation visuelle */
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh; /* Occupe toute la hauteur de l'écran */
+    overflow-y: auto; /* Permet le défilement si trop d'éléments */
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1); /* Ombre pour l'effet flottant */
+    z-index: 10; /* Assure qu'il passe au-dessus du menu */
+}
+.panier-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+.panier-item a {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.panier-item a:hover {
+    background-color: rgb(248, 135, 6);
+    transform: scale(1.05);
+}
+
+.commander-panier{
+    background-color: rgb(5, 73, 3);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.2s;
+}
+.commander-panier:hover {
+    transform: scale(1.05);
+}
+/* Cacher le panier en le déplaçant hors écran */
+.panier.hidden {
+    transform: translateX(100%);
+}
+
+/* Style du bouton d'ouverture/fermeture */
+#toggle-panier {
+    position: fixed;
+    top: 13%;
+    left: 1%;
+    background: #ff9800;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main {
+        flex-direction: column;
+    }
+
+    .panier {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        bottom: 0;
+        top: auto;
+        border-left: none;
+        border-top: 2px solid #ddd;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .panier.hidden {
+        transform: translateY(100%);
+    }
+
+    #toggle-panier {
+        left: 10px;
+        top: -40px;
+    }
+}
+
 
 /* css de la page de commande client */
 .bouttonscommandes {
@@ -258,13 +368,13 @@ footer{
     height:100%;
     background-color: white;
 }
-.formConnexion h2,.formInscription h2, .formAjouterArticle h2,.formModifierArticle h2{
+.formConnexion h2,.formInscription h2, .formAjouterArticle h2,.formModifierArticle h2,.formAjouterPromotion h2{
     background-color: transparent;
     display:flex;
     justify-content: center;
     padding-top:20px;
 }
-#connecter,#inscrire,#ajouterArticle,#modifierArticle{
+#connecter,#inscrire,#ajouterArticle,#modifierArticle,#ajouterPromotion{
     background-color: transparent;
     padding:20px;
     display:flex;
@@ -318,14 +428,22 @@ footer{
     margin:10px;
     border:2px solid rgb(9, 10, 10);
 }
-.formConnexion input[type="submit"],.formInscription input[type="submit"],.formAjouterArticle input[type="submit"],.formModifierArticle input[type="submit"]{
+#ajouterPromotion input{
+    width:80%;
+    padding:4px;
+    border-radius: 4px;
+    align-self: center;
+    margin:10px;
+    border:2px solid rgb(9, 10, 10);
+}
+.formConnexion input[type="submit"],.formInscription input[type="submit"],.formAjouterArticle input[type="submit"],.formModifierArticle input[type="submit"],.formAjouterPromotion input[type="submit"]{
   font-size:15px;
   align-self:center; 
   background-color:var(--monOrange);
   color:white;
   cursor: pointer;
 }
-.formConnexion input[type="submit"]:hover,.formInscription input[type="submit"]:hover,.formAjouterArticle input[type="submit"]:hover,.formModifierArticle input[type="submit"]:hover{
+.formConnexion input[type="submit"]:hover,.formInscription input[type="submit"]:hover,.formAjouterArticle input[type="submit"]:hover,.formModifierArticle input[type="submit"]:hover,.formAjouterPromotion input[type="submit"]:hover{
     margin-top:10px;
     background-color: var(--bleuLogo);
 }
@@ -467,7 +585,7 @@ h1 {
 }
 
 .boutonModifier {
-    background-color: rgb(248, 136, 9);
+    background-color: var(--modifierOrange);
     color: white;
     font-size: 15px;
     font-weight: bold;
@@ -489,7 +607,7 @@ h1 {
 }
 
 .boutonSupprimer {
-    background-color: rgb(255, 0, 0);
+    background-color: var(--supprimerRouge);
     color: white;
     font-size: 15px;
     font-weight: bold;
