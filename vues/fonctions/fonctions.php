@@ -27,7 +27,7 @@ function afficherMenu($controleur)
                 $menu .= "<a href='?action=voirPanier'>panier</a>"; //icone panier
             }
             else if(htmlspecialchars($utilisateurConnecte->getRole()->getRoleName()) === "Livreur"){
-                $menu .= "<a href='?action=voirCommandesDispo'>Commandes disponibles</a>";
+                $menu .= "<a href='?action=voirCommandesDispoLivreur'>Commandes disponibles</a>";
                 $menu .= "<a href='?action=voirCommandesLivreur'>Mes commandes</a>";
             }
             else if(htmlspecialchars($utilisateurConnecte->getRole()->getRoleName()) === "Restaurateur"){

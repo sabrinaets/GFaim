@@ -9,6 +9,7 @@ include_once("controleurs/controleurSeInscrire.class.php");
 include_once("controleurs/controleurGestionAPI.class.php");
 include_once("controleurs/controleurVoirRestos.php");
 include_once("controleurs/controleurVoirMenu.php");
+include_once("controleurs/controleurVoirCommandesDispoLivreur.php");
 
 class ManufactureControleur
 {
