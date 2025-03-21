@@ -7,7 +7,8 @@ include_once("controleurs/controleurSeConnecter.class.php");
 include_once("controleurs/controleurSeDeconnecter.class.php");
 include_once("controleurs/controleurSeInscrire.class.php");
 include_once("controleurs/controleurGestionAPI.class.php");
-
+include_once("controleurs/controleurVoirRestos.php");
+include_once("controleurs/controleurVoirMenu.php");
 
 class ManufactureControleur
 {
@@ -29,6 +30,12 @@ class ManufactureControleur
 		} elseif ($action == "gestionApi") {
 			$controleur = new GestionAPI();
 		} 
+		elseif ($action=="voirRestos"){
+			$controleur = new voirRestos();
+		}
+		elseif ($action=="voirMenu"){
+			$controleur = new voirMenu();
+		}
 		elseif ($action == "accueil") {
 			$controleur = new AccueilDefaut();
 		} else {

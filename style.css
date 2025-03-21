@@ -221,8 +221,8 @@ footer{
 /* css du panier */
 #main-menu {
     display: flex;
-    justify-content: space-between; /* Sépare le menu et le panier */
-    align-items: flex-start; /* Aligne les éléments en haut */
+    /*justify-content: space-between;  Sépare le menu et le panier */
+    /*align-items: flex-start;  Aligne les éléments en haut */
     position: relative;
 }
 .panier {
@@ -287,11 +287,10 @@ footer{
     transform: translateX(100%);
 }
 
-/* Style du bouton d'ouverture/fermeture */
+/* Style du bouton d'ouverture/fermeture F*/
 #toggle-panier {
     position: fixed;
-    top: 13%;
-    left: 1%;
+    justify-self: right;
     background: #ff9800;
     color: white;
     border: none;

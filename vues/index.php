@@ -31,7 +31,7 @@
                 <h1>Rapide.</span></h1>
                 <h2>Facile.</h2>
                 <p>Votre faim, notre mission : avec GFaim, obtenir des repas délicieux et variés n'a jamais été aussi facile.</p>
-                <a href="lesRestos.html">Commander</a>
+                <a href="?action=voirRestos">Commander</a>
             </div>
             <img src="images/imageBurger.jpg" alt="burger">
             
