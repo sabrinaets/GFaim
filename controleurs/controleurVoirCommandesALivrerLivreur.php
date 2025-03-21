@@ -14,7 +14,7 @@
 		public function executerAction():string
 		{
 		
-			return "confirmation.php";
+			return "coursesALivrer.php";
 		}
 
 		
