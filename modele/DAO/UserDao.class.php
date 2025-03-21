@@ -221,7 +221,7 @@ class UserDAO implements DAO {
             return new User(
                 $enr['idUtilisateur'],
                 $enr['username'],
-                new Role($enr['RoleID'], $enr['RoleName']),
+                new Role($enr['idRole'], $enr['roleName']),
                 $enr['codepostal'],
                 $enr['phone'],
                 $enr['email'],
