@@ -40,10 +40,10 @@ class SeInscrire extends Controleur
                         $idRole = 4;
                         break;
                     case "restaurateur":
-                        $idRole=2;
+                        $idRole=4;
                         break;
                     case "client":
-                        $idRole=3;
+                        $idRole=2;
                         break;
                     case "admin":    
                         $idRole=1;
