@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion - GFaim</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <header>
         <nav>
-            <a id="logo" href="index.html" title="Gfaim"><img src="images/logo.png" width="100px" alt="accueil"></a>
-            <div>
-                <a class="boutonRight" href="coursesDispo.html">Courses disponibles<span></span></a>
-                <a href="coursesALivrer.html">Mes courses<span></span></a>
-            </div>
+            <?php
+                include("vues/fonctions/entete.php");
+                include("vues/fonctions/fonctions.php");
+                afficherMenu($controleur);
+            ?>
         </nav>
     </header>
     <main class="contenu">
