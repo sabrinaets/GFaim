@@ -4,17 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion - GFaim</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <nav>
-            <a id="logo" href="index.html" title="Gfaim"><img src="images/logo.png" width="100px" alt="accueil"></a>
-            <div>
-                <a href="coursesDispo.html">Commandes disponibles<span></span></a>
-                <a class="boutonRight" href="coursesALivrer.html">Mes commandes<span></span></a>
-                <a href="modifierMenu.html">Menu<span></span></a>
-            </div>
+        <?php
+                include("vues/fonctions/entete.php");
+                include("vues/fonctions/fonctions.php");
+                afficherMenu($controleur);
+            ?>
         </nav>
     </header>
     <main class="contenu">

@@ -27,7 +27,7 @@
                 <input type="hidden" name="restaurant" value="Pizzeria Bella">
                 <input type="hidden" name="adresse" value="12 rue de Paris - Jean Dupont">
                 <input type="hidden" name="commande" value="1x Margherita, 1x Coca">
-                <button class="boutonAccepte" type="submit">Accepter</button>
+                <a href="?action=ajouterCommandeLivreur"class="boutonAccepte" type="submit">Accepter</a>
             </form>
         </li>
         </ul>

@@ -59,13 +59,14 @@ CREATE TABLE Menu (
 -- listeItems: JSON contenant les items commandés
 CREATE TABLE Commande (
     idCommande INT AUTO_INCREMENT PRIMARY KEY,
-    idUtilisateur INT NOT NULL,
+    idClient INT NOT NULL,
     idRestaurant INT,
+    idLivreur INT,
     dateCommande DATETIME NOT NULL,
     prixTotal DECIMAL(5, 2) NOT NULL,
     listeItems TEXT NOT NULL,
     idStatut INT NOT NULL,
-    FOREIGN KEY (idUtilisateur) REFERENCES Utilisateur(idUtilisateur) ON DELETE CASCADE,
+    FOREIGN KEY (idClient) REFERENCES Utilisateur(idUtilisateur) ON DELETE CASCADE,
     FOREIGN KEY (idRestaurant) REFERENCES Restaurant(idRestaurant) ON DELETE SET NULL,
     FOREIGN KEY (idStatut) REFERENCES StatutCommande(idStatut) ON DELETE RESTRICT
 );

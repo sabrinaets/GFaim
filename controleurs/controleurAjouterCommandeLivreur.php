@@ -9,6 +9,8 @@
 		
 		public function executerAction():string
 		{	
+			$commande = array();
+			
 			if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				$commande = [
 					"restaurant" => $_POST["restaurant"],

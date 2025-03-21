@@ -1,6 +1,8 @@
 <?php
 include_once("controleurs/controleur_classe_abstraite.php");
 include_once("modele/DAO/UserDAO.class.php");
+include_once("modele/user.class.php");
+include_once("modele/role.class.php");
 
 class SeConnecter extends Controleur
 {
@@ -42,7 +44,20 @@ class SeConnecter extends Controleur
             $this->acteur = "utilisateur";
             $_SESSION['utilisateurConnecte'] = $unUtilisateur;
 
-            return "index.php";
+
+            $role = $unUtilisateur->getRole();
+            switch($role->getId()){
+                case 3:
+                    return "commandeApreparer.php";
+                    break;
+                case 4:
+                    return "coursesDispo.php";
+                    break;
+                default:
+                    return "index.php";
+                    break;        
+            }
+           
         }
 
         if (isset($_GET['message'])) {

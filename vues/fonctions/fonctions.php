@@ -28,9 +28,9 @@ function afficherMenu($controleur)
             }
             else if(htmlspecialchars($utilisateurConnecte->getRole()->getRoleName()) === "Livreur"){
                 $menu .= "<a href='?action=voirCommandesDispoLivreur'>Commandes disponibles</a>";
-                $menu .= "<a href='?action=voirCommandesLivreur'>Mes commandes</a>";
+                $menu .= "<a href='?action=voirCommandeALivrerLivreur'>Commandes à livrer</a>";
             }
-            else if(htmlspecialchars($utilisateurConnecte->getRole()->getRoleName()) === "Restaurateur"){
+            else if(htmlspecialchars($utilisateurConnecte->getRole()->getRoleName()) === "Restaurant"){
                 $menu .= "<a href='?action=voirStats'>Voir mes statistiques</a>";
                 $menu .= "<a href='?action=voirCommandesResto'>Voir mes commandes</a>"; 
             }
