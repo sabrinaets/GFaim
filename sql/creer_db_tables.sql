@@ -21,14 +21,13 @@ CREATE TABLE StatutCommande (
 -- idRole: 1 = Admin, 2 = Client, 3 = Restaurant, 4 = Livreur
 CREATE TABLE Utilisateur (
     idUtilisateur INT AUTO_INCREMENT PRIMARY KEY,
-    nom VARCHAR(50) NOT NULL,
-    prenom VARCHAR(50) NOT NULL,
+    username VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL,
-    motDePasse VARCHAR(100) NOT NULL,
+    password VARCHAR(100) NOT NULL,
     phone VARCHAR(15) NOT NULL,
-    idRole INT NOT NULL,
-    dateInscription DATETIME NOT NULL,
-    FOREIGN KEY (idRole) REFERENCES Role(idRole) ON DELETE RESTRICT
+    codepostal VARCHAR(10) NOT NULL,
+    roleId INT NOT NULL,
+    FOREIGN KEY (roleId) REFERENCES Role(idRole) ON DELETE RESTRICT
 );
 
 

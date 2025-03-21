@@ -70,13 +70,12 @@ class UserDAO implements DAO {
         foreach ($requete as $enr) {
             $users[] = new User(
                 $enr['UserID'],
-                $enr['FirstName'],
-                $enr['LastName'],
-                $enr['Email'],
-                $enr['Password'],
-                $enr['Phone'],
-                $enr['Address'],
-                new Role($enr['RoleID'], $enr['RoleName'])
+                $enr['username'],
+                new Role($enr['RoleID'], $enr['role']),
+                $enr['codepostal'],
+                $enr['phone'],
+                $enr['email'],
+                $enr['password'],
             );
         }
 
@@ -103,7 +102,7 @@ class UserDAO implements DAO {
         $email = $user->getEmail();
         $password = $user->getPassword();
         $phone = $user->getPhone();
-        $address = $user->getAddress();
+        $codepostal = $user->getCodePostal();
         $roleId = $user->getRole()->getId()??3; // Par défaut, "Client"
     
         if (strlen($password) < 60) { // Les mots de passe hachés avec bcrypt ont une longueur de 60 caractères
@@ -111,17 +110,16 @@ class UserDAO implements DAO {
         }
 
         $requete = $connexion->prepare(
-            "INSERT INTO User (FirstName, LastName, Email, Password, Phone, Address, RoleID) 
-             VALUES (:firstName, :lastName, :email, :password, :phone, :address, :roleId)"
+            "INSERT INTO Utilisateur (username, email,password,phone,codepostal,roleId ) 
+             VALUES (:username,:email, :password, :phone, :codepostal, :roleId)"
         );
 
         // Liaison des paramètres
-        $requete->bindParam(':firstName', $firstName, PDO::PARAM_STR);
-        $requete->bindParam(':lastName', $lastName, PDO::PARAM_STR);
+        $requete->bindParam(':username', $username, PDO::PARAM_STR);
         $requete->bindParam(':email', $email, PDO::PARAM_STR);
         $requete->bindParam(':password', $password, PDO::PARAM_STR);
         $requete->bindParam(':phone', $phone, PDO::PARAM_STR);
-        $requete->bindParam(':address', $address, PDO::PARAM_STR);
+        $requete->bindParam(':codepostal', $codepostal, PDO::PARAM_STR);
         $requete->bindParam(':roleId', $roleId, PDO::PARAM_INT);
 
         $success = $requete->execute();
@@ -150,7 +148,7 @@ class UserDAO implements DAO {
         $email = $user->getEmail();
         $password = $user->getPassword();
         $phone = $user->getPhone();
-        $address = $user->getAddress();
+        $codepostal = $user->getCodePostal();
         $roleId = $user->getRole()->getId();
     
         // Vérifier si le mot de passe est déjà haché
@@ -172,7 +170,7 @@ class UserDAO implements DAO {
         $requete->bindParam(':email', $email, PDO::PARAM_STR);
         $requete->bindParam(':password', $password, PDO::PARAM_STR);
         $requete->bindParam(':phone', $phone, PDO::PARAM_STR);
-        $requete->bindParam(':address', $address, PDO::PARAM_STR);
+        $requete->bindParam(':codepostal', $codepostal, PDO::PARAM_STR);
         $requete->bindParam(':roleId', $roleId, PDO::PARAM_INT);
     
         return $requete->execute();

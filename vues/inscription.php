@@ -18,16 +18,13 @@
     <section class="inscription" style="background-image: linear-gradient(rgba(0, 0, 0, 0.566),rgba(0, 0, 0, 0.333)), url('images/imageLivreur.jpg');">
         <div class="formInscription">
             <h2>Inscription</h2>
-            <form id="inscrire"action="post">
+            <form id="inscrire"method="post" action="?action=creerCompte">
                 
                 
-                <input type="name" required placeholder="Nom">
-                
-               
-                <input type="firstname" required placeholder="Prénom">
+                <input name="userName"type="name" required placeholder="Nom d'utilisateur">
                 
                 
-                <input list="roles" name="roles"placeholder="Rôle">
+                <input list="roles" name="role"placeholder="Rôle">
                 <datalist id="roles">
                   <option value="Client">
                   <option value="Livreur">
@@ -35,16 +32,16 @@
                   </datalist>
 
                   
-                  <input type="codepostal" required placeholder="Code postal (ex. ABC123)">
+                <input name="codepostal"type="codepostal" required placeholder="Code postal (ex. ABC123)">
                 
-                <input type="phone" required placeholder="Numéro de téléphone: (ex. XXX-XXX-XXXX)">
+                <input name="phone"type="phone" required placeholder="Numéro de téléphone: (ex. XXX-XXX-XXXX)">
 
                 
-                <input type="email" required placeholder="Adresse courriel: (ex. nom@gmail.com)">
+                <input name="email" type="email" required placeholder="Adresse courriel: (ex. nom@gmail.com)">
                 
                 
                 
-                <input type="password" required placeholder="Choisissez votre mot de passe">
+                <input name="password"type="password" required placeholder="Choisissez votre mot de passe">
                 <input  style="font-size:17px; padding:7px; margin-top:15px; border:none; width:40%; border-radius:20px" type="submit" value="M'inscrire">
             </form>
         </div>

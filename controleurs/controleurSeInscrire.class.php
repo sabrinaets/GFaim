@@ -30,7 +30,7 @@ class SeInscrire extends Controleur
     public function executerAction(): string
     {
         // Vérifiez si le formulaire de création de compte est soumis
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["firstName"])) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["userName"])) {
             // Déterminer le rôle en fonction des permissions
             if ($this->isAdmin() && isset($_POST['role'])) {
                 // Si l'utilisateur est admin, utiliser le rôle fourni dans le formulaire
@@ -43,13 +43,13 @@ class SeInscrire extends Controleur
             // Création de l'utilisateur
             $nouvelUtilisateur = new User(
                 null,
-                $_POST['firstName'],
-                $_POST['lastName'],
+                $_POST['userName'],
+                $role,
+                $_POST['codepostal'],
+                $_POST['phone'],
                 $_POST['email'],
                 $_POST['password'],
-                $_POST['phone'] ?? null,
-                $_POST['address'] ?? null,
-                $role
+
             );
 
             // Hacher le mot de passe avant l'insertion

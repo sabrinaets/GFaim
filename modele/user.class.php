@@ -6,25 +6,27 @@ class User
     private string $email;
     private string $password;
     private ?string $phone;
-    private ?string $address;
+    private ?string $codepostal;
     private Role $role;
 
        // Constructor
        public function __construct(
         ?int $id,
         string $username,
+        Role $role,
+        string $codepostal,
+        ?string $phone,
         string $email,
         string $password,
-        ?string $phone,
-        ?string $address,
-        Role $role
+  
+        
     ) {
         $this->id = $id;
         $this->username=$username;
         $this->email = $email;
         $this->password = $password;
         $this->phone = $phone;
-        $this->address = $address;
+        $this->codepostal=$codepostal;
         $this->role = $role;
     }
 
@@ -84,14 +86,12 @@ class User
     }
 
     // Getters and Setters for $address
-    public function getAddress(): ?string
-    {
-        return $this->address;
+    public function setCodePostal(string $codePostal){
+        $this->codepostal=$codePostal;
     }
 
-    public function setAddress(?string $address): void
-    {
-        $this->address = $address;
+    public function getCodePostal():string{
+        return $this->codepostal;
     }
 
     // Getters and Setters for $role
@@ -122,10 +122,11 @@ class User
     public function __toString(): string
     {
         return sprintf(
-            "[User #%d] %s %s - %s (%s, %s)",
+            "[User #%d] %s - %s - %s - %s - %s-  %s)",
             $this->id,
             $this->username,
             $this->email,
+            $this->codepostal,
             $this->phone ?? "No phone",
             $this->role->getRoleName()
         );
