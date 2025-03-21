@@ -210,7 +210,7 @@ class UserDAO implements DAO {
         $requete = $connexion->prepare(
             "SELECT u.*, r.roleName 
              FROM Utilisateur u 
-             JOIN Role r ON u.roleId = r.roleId 
+             JOIN Role r ON u.roleId = r.idRole 
              WHERE u.Email = :email"
         );
         $requete->bindParam(':email', $email, PDO::PARAM_STR);
