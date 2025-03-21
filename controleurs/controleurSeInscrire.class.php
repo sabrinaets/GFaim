@@ -36,20 +36,20 @@ class SeInscrire extends Controleur
             if (isset($_POST['role'])) {
                 // Si l'utilisateur est admin, utiliser le rôle fourni dans le formulaire
                 switch($_POST['role']){
-                    case "livreur":
+                    case "Livreur":
                         $idRole = 4;
                         break;
-                    case "restaurateur":
+                    case "Restaurateur":
                         $idRole=4;
                         break;
-                    case "client":
+                    case "Client":
                         $idRole=2;
                         break;
                     case "admin":    
                         $idRole=1;
                         break;
                 }
-                $role = new Role($idRole, $_POST['role'] ?? "Client");
+                $role = new Role($idRole, $_POST['role']);
             } else {
                 // Sinon, attribuer le rôle "Client" par défaut
                 $role = new Role(3, "Client");
