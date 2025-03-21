@@ -219,22 +219,20 @@ footer{
     background-color: var(--bleuLogo);
 }
 /* css du panier */
-#main-menu {
-    display: flex;
-    /*justify-content: space-between;  Sépare le menu et le panier */
-    /*align-items: flex-start;  Aligne les éléments en haut */
-    position: relative;
+#toggle-panier{
+    cursor: pointer;
 }
 .panier {
-    width: 15%; /* Le panier prend 25% de l'écran */
+    width: 25%; /* Le panier prend 25% de l'écran */
     background: white;
     padding: 20px;
-    border-left: 2px solid #ddd; /* Séparation visuelle */
-    border-radius: 20px 0 0 20px; /* Arrondi à gauche */
+    border-left: 2px solid #141414; /* Séparation visuelle */
+    border-bottom: 2px solid #141414; /* Séparation visuelle */
+    border-radius:5px;
     position: fixed;
     top: 0;
     right: 0;
-    height: 100vh; /* Occupe toute la hauteur de l'écran */
+    height: 90%; /* Occupe toute la hauteur de l'écran */
     overflow-y: auto; /* Permet le défilement si trop d'éléments */
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1); /* Ombre pour l'effet flottant */
     z-index: 10; /* Assure qu'il passe au-dessus du menu */
@@ -248,17 +246,17 @@ footer{
     border-bottom: 1px solid #ddd;
 }
 .panier-item a {
+    display: inline-block; 
     background-color: rgb(0, 0, 0);
     color: white;
     font-size: 12px;
     font-weight: bold;
-    padding: 10px;
-    border: none;
-    border-radius: 10px;
+    padding: 10px 15px;
+    border-radius: 50px;
     cursor: pointer;
-    display: inline-block;
-    text-align: center;
-    transition: background-color 0.3s, transform 0.2s;
+    width: auto;
+    flex-shrink: 0;
+    align-self: center;
 }
 
 .panier-item a:hover {
@@ -267,13 +265,13 @@ footer{
 }
 
 .commander-panier{
-    background-color: rgb(5, 73, 3);
+    background-color: rgb(175, 173, 173);
     color: white;
     font-size: 12px;
     font-weight: bold;
     padding: 10px;
     border: none;
-    border-radius: 10px;
+    border-radius: 7px;
     cursor: pointer;
     display: inline-block;
     text-align: center;
@@ -281,22 +279,17 @@ footer{
 }
 .commander-panier:hover {
     transform: scale(1.05);
+    background-color: var(--monOrange);
 }
 /* Cacher le panier en le déplaçant hors écran */
 .panier.hidden {
     transform: translateX(100%);
 }
 
-/* Style du bouton d'ouverture/fermeture F*/
-#toggle-panier {
-    position: fixed;
-    justify-self: right;
-    background: #ff9800;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 5px;
+.total{
+    display:flex;
+    justify-content: space-between;
+    padding-top:25px;
 }
 
 /* Responsive */
@@ -320,10 +313,6 @@ footer{
         transform: translateY(100%);
     }
 
-    #toggle-panier {
-        left: 10px;
-        top: -40px;
-    }
 }
 
 

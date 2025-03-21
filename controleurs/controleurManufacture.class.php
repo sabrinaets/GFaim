@@ -13,6 +13,7 @@ include_once("controleurs/controleurVoirCommandesDispoLivreur.php");
 include_once("controleurs/controleurVoirCommandesALivrerLivreur.php");
 include_once("controleurs/controleurAjouterCommandeLivreur.php");
 include_once("controleurs/controleurVoirCommandesResto.php");
+include_once("controleurs/controleurVoirCommandesClient.php");
 
 class ManufactureControleur
 {
@@ -49,6 +50,9 @@ class ManufactureControleur
 			$controleur = new VoirCommandesALivrerLivreur();
 		} elseif($action=="voirCommandesResto"){
 			$controleur = new voirCommandesResto();
+		}
+		elseif($action = "voirCommandesClient"){
+			$controleur = new voirCommandesClient();
 		}
 		else {
 			$controleur = new AccueilDefaut();

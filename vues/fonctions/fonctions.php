@@ -23,8 +23,8 @@ function afficherMenu($controleur)
                 
             }
             else if(htmlspecialchars($utilisateurConnecte->getRole()->getRoleName()) === "Client"){
+                $menu .= "<a id='toggle-panier'>Panier</a>"; //icone panier
                 $menu .= "<a href='?action=voirCommandesClient'>Voir mes commandes</a>";
-                $menu .= "<a href='?action=voirPanier'>panier</a>"; //icone panier
             }
             else if(htmlspecialchars($utilisateurConnecte->getRole()->getRoleName()) === "Livreur"){
                 $menu .= "<a href='?action=voirCommandesDispoLivreur'>Commandes disponibles</a>";

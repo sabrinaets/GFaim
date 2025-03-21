@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GFaim - livraison de repas</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
     <header>
@@ -18,34 +19,39 @@
     </header>
 
     <main class="main" id="main-menu">
-        <button id="toggle-panier">🛒 Fermer</button>
-        <div class="panier">
-            <h1>Mon panier</h1>
+        
+        <div class="panier hidden">
+            <h2>Mon panier</h2>
             <div class="panier-items">
                 <div class="panier-item">
-                    <div>
+                   
+                        <div>
                         <h3>Item 1</h3>
                         <p>Prix: 10$</p>
-                        <a>Retirer du panier</a>
-                    </div>
+                        </div>
+                        <a><i class="fa-solid fa-x"></i></a>
+                    
                 </div>
                 <div class="panier-item">
-                    <div>
+                    
+                        <div>
                         <h3>Item 1</h3>
                         <p>Prix: 10$</p>
-                        <a>Retirer du panier</a>
-                    </div>
+                        </div>
+                        <a><i class="fa-solid fa-x"></i></a>
+                    
                 </div>
                 <div class="panier-item">
-                    <div>
+                    
+                        <div>
                         <h3>Item 1</h3>
                         <p>Prix: 10$</p>
-                        <a>Retirer du panier</a>
-                    </div>
+                        </div>
+                        <a><i class="fa-solid fa-x"></i></a>
+                   
                 </div>
             </div>
             <div class="total">
-                <br>
                 <h2>Total: 30$</h2>
                 <a class="commander-panier">Commander</a>
             </div>
@@ -96,7 +102,7 @@
         document.getElementById("toggle-panier").addEventListener("click", function () {
             let panier = document.querySelector(".panier");
             panier.classList.toggle("hidden");
-            this.textContent = panier.classList.contains("hidden") ? "🛒 Ouvrir" : "🛒 Fermer";
+            this.textContent = panier.classList.contains("hidden") ? "Panier" : "Fermer panier";
         });
     </script>
     
