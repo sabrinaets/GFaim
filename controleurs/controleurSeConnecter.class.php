@@ -30,7 +30,7 @@ class SeConnecter extends Controleur
         }
 
         // Vérifier si les informations POST sont présentes
-        if (isset($_POST['email']) && isset($_POST['mot_passe'])) {
+        if (isset($_POST['email']) && isset($_POST['password'])) {
             $unUtilisateur = UserDAO::findByEmail($_POST['email']);
             
             // Vérification de l'existence de l'utilisateur

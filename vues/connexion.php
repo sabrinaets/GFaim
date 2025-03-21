@@ -18,14 +18,14 @@
     <section class="connexion">
         <div class="formConnexion">
             <h2>Connexion</h2>
-            <form id="connecter"action="post">
+            <form id="connecter"method="post" action="?action=seConnecter">
                 <label for="email" >Adresse courriel:</label>
                 <br>
-                <input type="email" required placeholder="nom@gmail.com">
+                <input type="email" name="email" required placeholder="nom@gmail.com">
                 <br>
                 <label for="password">Mot de passe: </label>
                 <br>
-                <input type="password" required placeholder="Entrez votre mot de passe">
+                <input type="password" name="password"required placeholder="Entrez votre mot de passe">
                 <input class="btnSeConnecter" style="font-size:17px; margin-top:40px; border:none; width:40%; border-radius:20px" type="submit" value="Se connecter">
             </form>
         </div>

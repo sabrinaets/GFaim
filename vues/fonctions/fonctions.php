@@ -16,7 +16,7 @@ function afficherMenu($controleur)
         if (isset($_SESSION['utilisateurConnecte']) && $_SESSION['utilisateurConnecte'] instanceof User) {
             $utilisateurConnecte = $_SESSION['utilisateurConnecte'];
             $nom = htmlspecialchars($utilisateurConnecte->getUserName());
-            $menu .= "<span>" . $nom . " connecté </span>";
+            $menu .= "<span style='color:white'>" . $nom . " connecté </span>";
             if(htmlspecialchars($utilisateurConnecte->getRole()->getRoleName()) === "Admin"){
                 $menu .= "<a href='?action=gestionApi'>Gestion de l'API</a>";
                 $menu .= "<a href='?action=creerCompte'>Créer compte</a>";
