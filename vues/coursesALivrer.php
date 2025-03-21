@@ -19,42 +19,25 @@
     <main class="contenu">
         <h1 class="commandeALivrer">Commandes à livrer</h1>
         <ul class="liste-commandes">
-            <li class="livraison">
-                <span class="commandeALivrerNomResto">🍉 Watermelon</span><br>
-                <span class="adresse">1 Rue du blablabla - Nicolas Bernier</span><br>
-                <span class="commandeALivrerDetails">1x Margherita, 1x Coca</span><br>
-                <button class="commandeALivrerBoutonAccepte" onclick="window.location.href='coursesALivrer.html'">Terminer</button>
-            </li>
-            <li class="livraison">
-                <span class="commandeALivrerNomResto">🍔 Mc Donald's</span><br>
-                <span class="adresse">42 Rue de la Montagne - Arnaud Jean</span><br>
-                <span class="commandeALivrerDetails">1x Cheeseburger, 1x Frites</span><br>
-                <button class="commandeALivrerBoutonAccepte" onclick="window.location.href='coursesALivrer.html'">Terminer</button>
-            </li>
-            <li class="livraison">
-                <span class="commandeALivrerNomResto">🍣 I am Pho</span><br>
-                <span class="adresse">99 boulevard Saint-Michel - Marc Lefevre</span><br>
-                <span class="commandeALivrerDetails">8x Sushi saumon, 1x Miso</span><br>
-                <button class="commandeALivrerBoutonAccepte" onclick="window.location.href='coursesALivrer.html'">Terminer</button>
-            </li>
-            <li class="livraison">
-                <span class="commandeALivrerNomResto">🍔 Shake Shack</span><br>
-                <span class="adresse">4068 Conroy Rd - Arnaud Jean</span><br>
-                <span class="commandeALivrerDetails">1x Burger</span><br>
-                <button class="commandeALivrerBoutonAccepte" onclick="window.location.href='coursesALivrer.html'">Terminer</button>
-            </li>
-            <li class="livraison">
-                <span class="commandeALivrerNomResto">🍕 Pizzeria Bella</span><br>
-                <span class="adresse">100 Je sais pas où - Jean Val-Jean</span><br>
-                <span class="commandeALivrerDetails">1x Rien</span><br>
-                <button class="commandeALivrerBoutonAccepte" onclick="window.location.href='coursesALivrer.html'">Terminer</button>
-            </li>
-            <li class="livraison">
-                <span class="commandeALivrerNomResto">🫒 Olive's Garden</span><br>
-                <span class="adresse">2341 Halleway Rd - Inoussa</span><br>
-                <span class="commandeALivrerDetails">2x Lasagne, 1x Jus Pomme</span><br>
-                <button class="commandeALivrerBoutonAccepte" onclick="window.location.href='coursesALivrer.html'">Terminer</button>
-            </li>
+            <?php
+            if (!empty($_SESSION["commandeALivrer"])) {
+                foreach ($_SESSION["commandeALivrer"] as $commande) {
+                    echo "<li class='livraison'>
+                            <span class='commandeALivrerNomResto'>🍽️ {$commande['restaurant']}</span><br>
+                            <span class='adresse'>{$commande['adresse']}</span><br>
+                            <span class='commandeALivrerDetails'>{$commande['details']}</span><br>
+                            <form action='terminerCommande.php' method='post'>
+                                <input type='hidden' name='restaurant' value='{$commande['restaurant']}'>
+                                <input type='hidden' name='adresse' value='{$commande['adresse']}'>
+                                <input type='hidden' name='details' value='{$commande['details']}'>
+                                <button class='commandeALivrerBoutonAccepte' type='submit'>Terminer</button>
+                            </form>
+                          </li>";
+                }
+            } else {
+                echo "<p>Aucune commande en attente</p>";
+            }
+            ?>
         </ul>
     </main>
     <footer>

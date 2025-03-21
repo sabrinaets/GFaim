@@ -9,15 +9,17 @@
 		
 		public function executerAction():string
 		{	
+			if ($_SERVER["REQUEST_METHOD"] == "POST") {
+				$commande = [
+					"restaurant" => $_POST["restaurant"],
+					"adresse" => $_POST["adresse"],
+					"details" => $_POST["commande"]
+				];
+			}
+
+			$_SESSION["commandeALivrer"][] = $commande;
+
 			return "coursesALivrer.php";
 		}
-
-
-
-		
-
-
-		
 	}	
-	
 ?>

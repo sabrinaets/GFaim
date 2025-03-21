@@ -19,42 +19,17 @@
     <main class="contenu">
         <h1>Commandes disponible</h1>
         <ul class="liste-commandes">
-            <li class="commande">
-                <span class="restaurant">🍕 Pizzeria Bella</span><br>
-                <span class="adresse">12 rue de Paris - Jean Dupont</span><br>
-                <span class="commande-details">1x Margherita, 1x Coca</span><br>
-                <button class="boutonAccepte" onclick="window.location.href='coursesALivrer.html'">Accepter</button>
-            </li>
-            <li class="commande">
-                <span class="restaurant">🍔 Mc Donald's</span><br>
-                <span class="adresse">5 avenue des Champs - Sophie Martin</span><br>
-                <span class="commande-details">1x Cheeseburger, 1x Frites</span><br>
-                <button class="boutonAccepte" onclick="window.location.href='coursesALivrer.html'">Accepter</button>
-            </li>
-            <li class="commande">
-                <span class="restaurant">🍣 I am Pho</span><br>
-                <span class="adresse">99 boulevard Saint-Michel - Marc Lefevre</span><br>
-                <span class="commande-details">8x Sushi saumon, 1x Miso</span><br>
-                <button class="boutonAccepte" onclick="window.location.href='coursesALivrer.html'">Accepter</button>
-            </li>
-            <li class="commande">
-                <span class="restaurant">🍔 Shake Shack</span><br>
-                <span class="adresse">4068 Conroy Rd - Arnaud Jean</span><br>
-                <span class="commande-details">1x Burger</span><br>
-                <button class="boutonAccepte" onclick="window.location.href='coursesALivrer.html'">Accepter</button>
-            </li>
-            <li class="commande">
-                <span class="restaurant">🍕 Pizzeria Bella</span><br>
-                <span class="adresse">100 Je sais pas où - Jean Val-Jean</span><br>
-                <span class="commande-details">1x Rien</span><br>
-                <button class="boutonAccepte" onclick="window.location.href='coursesALivrer.html'">Accepter</button>
-            </li>
-            <li class="commande">
-                <span class="restaurant">🫒 Olive's Garden</span><br>
-                <span class="adresse">2341 Halleway Rd - Inoussa</span><br>
-                <span class="commande-details">2x Lasagne, 1x Jus Pomme</span><br>
-                <button class="boutonAccepte" onclick="window.location.href='coursesALivrer.html'">Accepter</button>
-            </li>
+        <li class="commande">
+            <span class="restaurant">🍕 Pizzeria Bella</span><br>
+            <span class="adresse">12 rue de Paris - Jean Dupont</span><br>
+            <span class="commande-details">1x Margherita, 1x Coca</span><br>
+            <form action="ajouterCommandeLivreur.php" method="post">
+                <input type="hidden" name="restaurant" value="Pizzeria Bella">
+                <input type="hidden" name="adresse" value="12 rue de Paris - Jean Dupont">
+                <input type="hidden" name="commande" value="1x Margherita, 1x Coca">
+                <button class="boutonAccepte" type="submit">Accepter</button>
+            </form>
+        </li>
         </ul>
     </main>
     <footer>
