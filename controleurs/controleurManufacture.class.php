@@ -39,7 +39,10 @@ class ManufactureControleur
 			$controleur = new AjouterCommandeLivreur();
 		} else if ($action == "terminerCommandeLivreur") {
 			$controleur = new TerminerCommandeLivreur();
-		} else {
+		} else if ($action == "voirCommandesDispoLivreur") {
+			$controleur = new VoirCommandesDispoLivreur();
+		}
+		else {
 			$controleur = new AccueilDefaut();
 		}
 
