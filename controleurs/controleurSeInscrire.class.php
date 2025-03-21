@@ -29,12 +29,27 @@ class SeInscrire extends Controleur
     // ******************* Méthode executerAction
     public function executerAction(): string
     {
+        $idRole=2;
         // Vérifiez si le formulaire de création de compte est soumis
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["userName"])) {
             // Déterminer le rôle en fonction des permissions
-            if ($this->isAdmin() && isset($_POST['role'])) {
+            if (isset($_POST['role'])) {
                 // Si l'utilisateur est admin, utiliser le rôle fourni dans le formulaire
-                $role = new Role((int)$_POST['role'], $_POST['roleName'] ?? "Client");
+                switch($_POST['role']){
+                    case "livreur":
+                        $idRole = 4;
+                        break;
+                    case "restaurateur":
+                        $idRole=2;
+                        break;
+                    case "client":
+                        $idRole=3;
+                        break;
+                    case "admin":    
+                        $idRole=1;
+                        break;
+                }
+                $role = new Role($idRole, $_POST['role'] ?? "Client");
             } else {
                 // Sinon, attribuer le rôle "Client" par défaut
                 $role = new Role(3, "Client");
