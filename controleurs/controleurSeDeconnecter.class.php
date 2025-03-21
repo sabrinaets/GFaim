@@ -17,12 +17,13 @@
 			if ($this->acteur=="visiteur") {
 				array_push ($this->messagesErreur,"Vous êtes déjà déconnécté.");
 				return "index.php";
-			} elseif (ISSET($_POST['deconnexion'])) {
+			} elseif (isset($_GET['action']) && $_GET['action'] === "seDeconnecter") {
 				$this->acteur="visiteur";
 				unset($_SESSION['utilisateurConnecte']);
 				return "index.php";
 			} else {
-				return "deconnexion.php";				
+
+				return "index.php";				
 			}
 		}
 
