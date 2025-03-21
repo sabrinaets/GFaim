@@ -20,6 +20,7 @@ function afficherMenu($controleur)
             if(htmlspecialchars($utilisateurConnecte->getRole()->getRoleName()) === "Admin"){
                 $menu .= "<a href='?action=gestionApi'>Gestion de l'API</a>";
                 $menu .= "<a href='?action=creerCompte'>Créer compte</a>";
+                
             }
             else if(htmlspecialchars($utilisateurConnecte->getRole()->getRoleName()) === "Client"){
                 $menu .= "<a href='?action=voirCommandesClient'>Voir mes commandes</a>";
