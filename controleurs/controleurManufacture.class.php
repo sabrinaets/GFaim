@@ -29,15 +29,16 @@ class ManufactureControleur
 			$controleur = new SeInscrire();
 		} elseif ($action == "gestionApi") {
 			$controleur = new GestionAPI();
-		} 
-		elseif ($action=="voirRestos"){
+		} elseif ($action=="voirRestos"){
 			$controleur = new voirRestos();
-		}
-		elseif ($action=="voirMenu"){
+		} elseif ($action=="voirMenu"){
 			$controleur = new voirMenu();
-		}
-		elseif ($action == "accueil") {
+		} elseif ($action == "accueil") {
 			$controleur = new AccueilDefaut();
+		} else if ($action == "ajouterCommandeLivreur") {
+			$controleur = new AjouterCommandeLivreur();
+		} else if ($action == "terminerCommandeLivreur") {
+			$controleur = new TerminerCommandeLivreur();
 		} else {
 			$controleur = new AccueilDefaut();
 		}
