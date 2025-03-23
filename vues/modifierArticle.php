@@ -3,35 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajouter article - GFaim</title>
-    <link rel="stylesheet" href="../style.css">
+    <title>Modifier article - GFaim</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <nav>
-            <a id="logo" href="index.html" title="Gfaim"><img src="images/logo.png" width="100px" alt="accueil"></a>
-            <div>
-                <a href="coursesDispo.html">Commandes disponibles<span></span></a>
-                <a href="commandeAPreparer.html">Mes commandes<span></span></a>
-                <a href="modifierMenu.html">Menu<span></span></a>
-            </div>
+        <?php
+                include("vues/fonctions/entete.php");
+                include("vues/fonctions/fonctions.php");
+                afficherMenu($controleur);
+            ?>
         </nav>
     </header>
-    <section class="ajouter" style="background-image: linear-gradient(rgba(0, 0, 0, 0.566),rgba(0, 0, 0, 0.333)), url('images/imageLivreur.jpg');">
-        <div class="formAjouterArticle">
-            <h2>Ajouter un article</h2>
-            <form id="ajouterArticle" action="post">
+    <section class="modifier" style="background-image: linear-gradient(rgba(0, 0, 0, 0.566),rgba(0, 0, 0, 0.333)), url('images/imageLivreur.jpg');">
+        <div class="formModifierArticle">
+            <h2>Modifier l'article</h2>
+            <form id="modifierArticle" action="post">
                 <input type="hidden" id="editProductId" />
                 <input
                   type="text"
-                  id="ajouterNom"
+                  id="modifierNom"
                   class="form-control my-2"
                   placeholder="Nom de l'article"
                   required
                 />
                 <input
                   type="number"
-                  id="ajouterPrix"
+                  id="modifierPrix"
                   class="form-control my-2"
                   placeholder="Prix"
                   step="0.01"
@@ -39,17 +38,17 @@
                 />
                 <input
                   type="text"
-                  id="ajouterImage"
+                  id="modifierImage"
                   class="form-control my-2"
                   placeholder="URL de l'image"
                 />
                 <textarea
-                  id="ajouterDescription"
+                  id="modifierDescription"
                   class="form-control my-2"
                   placeholder="Description"
                   required
                 ></textarea>
-                <input  style="font-size:17px; padding:7px; margin-top:15px; border:none; width:40%; border-radius:20px" type="submit" value="Ajouter">
+                <input  style="font-size:17px; padding:7px; margin-top:15px; border:none; width:40%; border-radius:20px" type="submit" value="Modifier">
             </form>
         </div>
     </section>

@@ -31,8 +31,9 @@ function afficherMenu($controleur)
                 $menu .= "<a href='?action=voirCommandeALivrerLivreur'>Commandes à livrer</a>";
             }
             else if(htmlspecialchars($utilisateurConnecte->getRole()->getRoleName()) === "Restaurant"){
-                $menu .= "<a href='?action=voirStats'>Voir mes statistiques</a>";
+                $menu .= "<a href='?action=voirStats'>Statistiques</a>";
                 $menu .= "<a href='?action=voirCommandesResto'>Voir mes commandes</a>"; 
+                $menu .= "<a href='?action=voirMonMenu'>Voir mon menu</a>"; 
             }
         }
         $menu .= "<a href='?action=seDeconnecter'>Se déconnecter</a>";

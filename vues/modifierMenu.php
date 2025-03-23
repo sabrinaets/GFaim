@@ -9,58 +9,57 @@
 <body>
     <header>
         <nav>
-            <a id="logo" href="index.html" title="Gfaim"><img src="images/logo.png" width="100px" alt="accueil"></a>
-            <div>
-                <a href="coursesDispo.html">Commandes disponibles<span></span></a>
-                <a href="commandeAPreparer.html">Mes commandes<span></span></a>
-                <a class="boutonRight" href="modifierMenu.html">Menu<span></span></a>
-            </div>
+        <?php
+                include("vues/fonctions/entete.php");
+                include("vues/fonctions/fonctions.php");
+                afficherMenu($controleur);
+            ?>
         </nav>
     </header>
     <main class="contenu">
         <h1>Voici les articles dans votre menu</h1>
-        <button class="boutonAjouter" onclick="window.location.href='ajouterArticle.html'">Ajouter</button>
+        <a class="boutonAjouter"href="?action=ajouterProduit">Ajouter</a>
         <ul class="liste-commandes">
             <li class="article">
                 <span class="nomArticle">Rondelle d'oignon</span><br>
                 <span class="description">Des oignons frais pané servi avec notre mayo épicée signature</span><br>
                 <span class="prix">3.99$</span><br>
-                <button class="boutonModifier" onclick="window.location.href='modifierArticle.html'">Modifier</button>
+                <a class="boutonModifier" href="?action=editArticle">Modifier</a>
                 <button class="boutonSupprimer">Supprimer</button>
             </li>
             <li class="article">
                 <span class="nomArticle">Cola</span><br>
                 <span class="description">Un cola sans trademark</span><br>
                 <span class="prix">0.99$</span><br>
-                <button class="boutonModifier" onclick="window.location.href='modifierArticle.html'">Modifier</button>
+                <button class="boutonModifier" href="?action=editArticle">Modifier</button>
                 <button class="boutonSupprimer">Supprimer</button>
             </li>
             <li class="article">
                 <span class="nomArticle">Cheeseburger</span><br>
                 <span class="description">Cheeseburger servi sur pain au sésame et fait avec du boeuf 100% canadien</span><br>
                 <span class="prix">8.99$</span><br>
-                <button class="boutonModifier" onclick="window.location.href='modifierArticle.html'">Modifier</button>
+                <button class="boutonModifier" href="?action=editArticle">Modifier</button>
                 <button class="boutonSupprimer">Supprimer</button>
             </li>
             <li class="article">
                 <span class="nomArticle">Frite familliale</span><br>
                 <span class="description">Des frites maisons servi avec notre mayo épicée signature</span><br>
                 <span class="prix">6.99$</span><br>
-                <button class="boutonModifier" onclick="window.location.href='modifierArticle.html'">Modifier</button>
+                <button class="boutonModifier" href="?action=editArticle">Modifier</button>
                 <button class="boutonSupprimer">Supprimer</button>
             </li>
             <li class="article">
                 <span class="nomArticle">Hamburger fromage & bacon</span><br>
                 <span class="description">Hamburger servi sur pain au sésame et fait avec du boeuf et bacon 100% canadien</span><br>
                 <span class="prix">10.99$</span><br>
-                <button class="boutonModifier" onclick="window.location.href='modifierArticle.html'">Modifier</button>
+                <button class="boutonModifier" href="?action=editArticle">Modifier</button>
                 <button class="boutonSupprimer">Supprimer</button>
             </li>
             <li class="article">
                 <span class="nomArticle">Hot-dog steamé</span><br>
                 <span class="description">Un bon hot-dog classique cuit à la vapeur</span><br>
                 <span class="prix">1.49$</span><br>
-                <button class="boutonModifier" onclick="window.location.href='modifierArticle.html'">Modifier</button>
+                <button class="boutonModifier" href="?action=editArticle">Modifier</button>
                 <button class="boutonSupprimer">Supprimer</button>
             </li>
         </ul>
@@ -71,6 +70,7 @@
                 <input
                   type="text"
                   id="nomPromotion"
+                  name="evenement"
                   placeholder="Nom de la promotion"
                   required
                 />
@@ -78,6 +78,7 @@
                   type="number"
                   id="pourcentagePromotion"
                   placeholder="Pourcentage"
+                  name="rabais"
                   step="0.01"
                   required
                 />
