@@ -21,10 +21,10 @@
             <form id="inscrire"method="post" action="?action=creerCompte">
                 
                 
-                <input name="userName"type="name" required placeholder="Nom d'utilisateur">
+                <input name="userName"type="name" required placeholder="Nom d'utilisateur" maxlength=30>
                 
                 
-                <input list="roles" name="role"placeholder="Rôle">
+                <input list="roles" name="role"placeholder="Rôle" required>
                 <datalist id="roles">
                   <option value="Client">
                   <option value="Livreur">
@@ -32,9 +32,9 @@
                   </datalist>
 
                   
-                <input name="codepostal"type="codepostal" required placeholder="Code postal (ex. ABC123)">
+                <input minlength=6 maxlength=6 name="codepostal"type="codepostal" required placeholder="Code postal (ex. ABC123)">
                 
-                <input name="phone"type="phone" required placeholder="Numéro de téléphone: (ex. XXX-XXX-XXXX)">
+                <input maxlength=12 name="phone"type="phone" required placeholder="Numéro de téléphone: (ex. XXX-XXX-XXXX)">
 
                 
                 <input name="email" type="email" required placeholder="Adresse courriel: (ex. nom@gmail.com)">

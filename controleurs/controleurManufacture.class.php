@@ -17,6 +17,7 @@ include_once("controleurs/controleurVoirCommandesClient.php");
 include_once("controleurs/controleurVoirMonMenu.php");
 include_once("controleurs/controleurAjouterProduit.php");
 include_once("controleurs/controleurEditProduct.php");
+include_once("controleurs/controleurVoirStats.php");
 
 class ManufactureControleur
 {
@@ -65,6 +66,9 @@ class ManufactureControleur
 		}
 		elseif($action == "ajouterProduit"){
 			$controleur = new ajouterProduit();
+		}
+		elseif($action == "voirStats"){
+			$controleur = new voirStats();
 		}
 		else {
 			$controleur = new AccueilDefaut();

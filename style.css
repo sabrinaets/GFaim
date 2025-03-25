@@ -20,7 +20,7 @@ nav{
 }
 nav a{
     text-decoration: none;
-    padding:12px 20px;
+    padding:12px 15px;
     border-radius: 40px;
     font-weight: bold;
     color:white;
@@ -639,4 +639,3 @@ h1 {
     background-color: rgb(7, 134, 238);
     transform: scale(1.05);
 }
-
