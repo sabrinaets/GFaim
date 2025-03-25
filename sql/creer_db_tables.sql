@@ -43,7 +43,7 @@ CREATE TABLE Restaurant (
 
 -- Création de la table des menus
 -- idRestaurant: clé étrangère de la table Restaurant
-CREATE TABLE Menu (
+CREATE TABLE Item (
     idItem INT AUTO_INCREMENT PRIMARY KEY,
     idRestaurant INT NOT NULL,
     nom VARCHAR(50) NOT NULL,
@@ -62,13 +62,21 @@ CREATE TABLE Commande (
     idClient INT NOT NULL,
     idRestaurant INT,
     idLivreur INT,
-    dateCommande DATETIME NOT NULL,
     prixTotal DECIMAL(5, 2) NOT NULL,
-    listeItems TEXT NOT NULL,
     idStatut INT NOT NULL,
     FOREIGN KEY (idClient) REFERENCES Utilisateur(idUtilisateur) ON DELETE CASCADE,
+    FOREIGN KEY (idLivreur) REFERENCES Utilisateur(idUtilisateur) ON DELETE SET NULL,
     FOREIGN KEY (idRestaurant) REFERENCES Restaurant(idRestaurant) ON DELETE SET NULL,
     FOREIGN KEY (idStatut) REFERENCES StatutCommande(idStatut) ON DELETE RESTRICT
+);
+
+CREATE TABLE Commande_Item (
+    idCommande INT NOT NULL,
+    idItem INT NOT NULL,
+    quantite INT NOT NULL DEFAULT 1,
+    PRIMARY KEY (idCommande, idItem),
+    FOREIGN KEY (idCommande) REFERENCES Commande(idCommande) ON DELETE CASCADE,
+    FOREIGN KEY (idItem) REFERENCES Item(idItem) ON DELETE CASCADE
 );
 
 -- Insertion des rôles dans la table Role
