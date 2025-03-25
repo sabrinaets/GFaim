@@ -34,11 +34,12 @@ CREATE TABLE Utilisateur (
 -- Création de la table des restaurants
 CREATE TABLE Restaurant (
     idRestaurant INT AUTO_INCREMENT PRIMARY KEY,
+    idProprietaire INT NOT NULL,
     nom VARCHAR(50) NOT NULL,
     adresse VARCHAR(100) NOT NULL,
     telephone VARCHAR(20) NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    description TEXT NOT NULL
+    description TEXT NOT NULL,
+    FOREIGN KEY (idProprietaire) REFERENCES Utilisateur(idUtilisateur) ON DELETE CASCADE
 );
 
 -- Création de la table des menus
