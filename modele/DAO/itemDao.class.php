@@ -82,7 +82,7 @@ class ItemDao implements DAO {
      * Retourne tous les Items
      * @return array
      */
-    /*static public function findAllByProprietaire(int $idProprietaire): array {
+    static public function findAllByResto(int $idRestaurant): array {
         try {
             $connexion = ConnexionBD::getInstance();
         } catch (Exception $e) {
@@ -90,18 +90,18 @@ class ItemDao implements DAO {
         }
 
         $liste = [];
-        $requete = $connexion->prepare("SELECT * FROM Item WHERE idProprietaire = :idProprietaire");
-        $requete->bindParam(':idProprietaire', $idProprietaire, PDO::PARAM_INT);
+        $requete = $connexion->prepare("SELECT * FROM Item WHERE idRestaurant = :idRestaurant");
+        $requete->bindParam(':idRestaurant', $idRestaurant, PDO::PARAM_INT);
         $requete->execute();
 
         while ($enr = $requete->fetch()) {
             $Item = new Item(
                 $enr['idItem'],
-                $enr['idProprietaire'],
+                $enr['idRestaurant'],
                 $enr['nom'],
-                $enr['adresse'],
-                $enr['phone'],
-                $enr['description']
+                $enr['description'],
+                $enr['prix'],
+                $enr['image']
             );
             $liste[] = $Item;
         }
@@ -110,7 +110,9 @@ class ItemDao implements DAO {
         ConnexionBD::close();
 
         return $liste;
-    }*/
+    }
+
+    
 
     /**
      * Ajoute un Item
