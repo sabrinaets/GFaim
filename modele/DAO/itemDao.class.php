@@ -182,7 +182,7 @@ class ItemDao implements DAO {
     
         // Liaison des paramètres
         $requete->bindParam(':idItem', $idItem, PDO::PARAM_INT);
-        $requete->bindParam(':idRestaurant', $idProprietaire, PDO::PARAM_INT);
+        $requete->bindParam(':idRestaurant', $idRestaurant, PDO::PARAM_INT);
         $requete->bindParam(':nom', $nom, PDO::PARAM_STR);
         $requete->bindParam(':image', $image, PDO::PARAM_STR);
         $requete->bindParam(':prix', $prix, PDO::PARAM_STR);
