@@ -1,5 +1,5 @@
 <?php
-class Restaurant
+class Restaurant implements JsonSerializable
 {
     private ?int $idRestaurant;
     private int $idProprietaire;
@@ -25,6 +25,19 @@ class Restaurant
         $this->adresse = $adresse;
         $this->phone = $phone;
         $this->description=$description;
+    }
+
+        //Permettre d'avoir des instances de Item et de les envoyer
+    public function jsonSerialize(): array
+    {
+        return [
+            'idRestaurant' => $this->idRestaurant,
+            'idProprietaire'=>$this->idProprietaire,
+            'nom' => $this->nom,
+            'adresse' => $this->adresse,
+            'phone' => $this->phone, 
+            'description' => $this->description,
+        ];
     }
 
     /**
