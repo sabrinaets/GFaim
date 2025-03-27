@@ -28,10 +28,22 @@ if ($resource !== "product") {
     echo json_encode(["message" => "Ressource non trouvée"]);
     exit;
 }
-// FIN 5.
+function processDemande($requestMethod, $id) {
+    if ($requestMethod === "GET") {
+        $controller->processRequest();
+    } elseif ($requestMethod === "POST") {
+        $controller->processRequest();
+    } elseif ($requestMethod === "PUT") {
+        $controller->processRequest();
+    } elseif ($requestMethod === "DELETE") {
+        $controller->processRequest();
+    } else {
+        http_response_code(405);
+        echo json_encode(["message" => "Méthode non autorisée"]);
+    }
+}
 
-// 6.
-$controller = new RestControllerProduct($requestMethod, $id);
+/*$controller = new RestControllerProduct($requestMethod, $id);
 
 if ($requestMethod === "GET") {
     $controller->processRequest();
@@ -45,5 +57,24 @@ if ($requestMethod === "GET") {
     http_response_code(405);
     echo json_encode(["message" => "Méthode non autorisée"]);
 }
-// FIN 6.
+*/
+
+
+switch($ressource){
+    case "item":
+        $controller = new RestControllerItem($requestMethod, $id);
+        processDemande($requestMethod, $id);
+        break;
+    case "restaurant":
+        $controller = new RestControllerRestaurant($requestMethod, $id);
+        processDemande($requestMethod, $id);
+        break;
+    case "commande":
+        $controller = new RestControllerCommande($requestMethod, $id);
+        processDemande($requestMethod, $id);
+        break;
+    default:
+        http_response_code(404);
+        echo json_encode(["message" => "Ressource non trouvée"]);
+}
 ?>
