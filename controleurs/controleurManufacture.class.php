@@ -21,6 +21,7 @@ include_once("controleurs/controleurVoirMesRestos.php");
 include_once("controleurs/controleurAjouterResto.php");
 include_once("controleurs/controleurModifierResto.php");
 include_once("controleurs/controleurVoirStats.php");
+include_once("controleurs/controleurLocaliserClient.php");
 
 class ManufactureControleur
 {
@@ -81,6 +82,9 @@ class ManufactureControleur
 		}
 		elseif($action == "voirStats"){
 			$controleur = new voirStats();
+		}
+		elseif($action == "localiser"){
+			$controleur = new localiserClient();
 		}
 		else {
 			$controleur = new AccueilDefaut();

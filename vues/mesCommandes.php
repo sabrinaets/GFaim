@@ -6,6 +6,11 @@
     <title>Connexion - GFaim</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+    .commande a{
+        height:20px;
+    }
+    </style>
 </head>
 <body>
     <header>
@@ -24,22 +29,22 @@
                 <span class="restaurant">🍕 Pizzeria Bella<br><span class="adresse">12 rue de Paris - Jean Dupont</span></span><br>
                 <span class="nom-livreur">Jeremy Yameogo</span><br>
                 <span class="commande-details">1x Margherita, 1x Coca</span><br>
-                <button class="bouttonscommandes">Localiser</button>
-                <button class="bouttonscommandes" style="margin-left: 10px;background-color: rgb(190, 11, 11);">Annuler</button>
+                <a href="?action=localiser"class="bouttonscommandes">Localiser</a>
+                <a class="bouttonscommandes" style="margin-left: 10px;background-color: rgb(190, 11, 11);">Annuler</a>
             </li>
             <li class="commande">
                 <span class="restaurant">🍕 Pizzeria Bella<br><span class="adresse">12 rue de Paris - Jean Dupont</span></span><br>
                 <span class="nom-livreur">Jeremy Yameogo</span><br>
                 <span class="commande-details">1x Margherita, 1x Coca</span><br>
-                <button class="bouttonscommandes">Localiser</button>
-                <button class="bouttonscommandes" style="margin-left: 10px;background-color: rgb(190, 11, 11);">Annuler</button>
+                <a href="?action=localiser"class="bouttonscommandes">Localiser</a>
+                <a class="bouttonscommandes" style="margin-left: 10px;background-color: rgb(190, 11, 11);">Annuler</a>
             </li>
             <li class="commande">
                 <span class="restaurant">🍕 Pizzeria Bella<br><span class="adresse">12 rue de Paris - Jean Dupont</span></span><br>
                 <span class="nom-livreur">Jeremy Yameogo</span><br>
                 <span class="commande-details">1x Margherita, 1x Coca</span><br>
-                <button class="bouttonscommandes">Localiser</button>
-                <button class="bouttonscommandes" style="margin-left: 10px;background-color: rgb(190, 11, 11);">Annuler</button>
+                <a href="?action=localiser" class="bouttonscommandes">Localiser</a>
+                <a class="bouttonscommandes" style="margin-left: 10px;background-color: rgb(190, 11, 11);">Annuler</a>
             </li>
             
         </ul>
