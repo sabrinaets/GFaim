@@ -350,7 +350,7 @@ footer{
     width: 100%;
     height: 100vh;
 }
-.formConnexion,.formInscription,.formAjouterArticle,.formModifierArticle{
+.formConnexion,.formInscription,.formAjouterArticle,.formModifierArticle,.formAjouterResto,.formModifierResto{
     display:flex;
     flex-direction: column;
     width:40%;
@@ -358,13 +358,13 @@ footer{
     height:100%;
     background-color: white;
 }
-.formConnexion h2,.formInscription h2, .formAjouterArticle h2,.formModifierArticle h2,.formAjouterPromotion h2{
+.formConnexion h2,.formInscription h2, .formAjouterArticle h2,.formModifierArticle h2,.formAjouterPromotion h2,.formAjouterResto h2,.formModifierResto h2{
     background-color: transparent;
     display:flex;
     justify-content: center;
     padding-top:20px;
 }
-#connecter,#inscrire,#ajouterArticle,#modifierArticle,#ajouterPromotion{
+#connecter,#inscrire,#ajouterArticle,#modifierArticle,#ajouterPromotion,#ajouterResto,#modifierResto{
     background-color: transparent;
     padding:20px;
     display:flex;
@@ -388,7 +388,7 @@ footer{
     border:2px solid rgb(9, 10, 10);
 
 }
-#ajouterArticle input{
+#ajouterArticle input,#ajouterResto input,#modifierResto input{
     width:80%;
     padding:4px;
     border-radius: 4px;
@@ -396,7 +396,7 @@ footer{
     border:2px solid rgb(9, 10, 10);
 
 }
-#ajouterArticle textarea{
+#ajouterArticle textarea,#ajouterResto textarea,#modifierResto textarea{
     width:80%;
     padding:4px;
     border-radius: 4px;
@@ -426,14 +426,14 @@ footer{
     margin:10px;
     border:2px solid rgb(9, 10, 10);
 }
-.formConnexion input[type="submit"],.formInscription input[type="submit"],.formAjouterArticle input[type="submit"],.formModifierArticle input[type="submit"],.formAjouterPromotion input[type="submit"]{
+.formConnexion input[type="submit"],.formInscription input[type="submit"],.formAjouterArticle input[type="submit"],.formModifierArticle input[type="submit"],.formAjouterPromotion input[type="submit"],.formAjouterResto input[type="submit"],.formModifierResto input[type="submit"]{
   font-size:15px;
   align-self:center; 
   background-color:var(--monOrange);
   color:white;
   cursor: pointer;
 }
-.formConnexion input[type="submit"]:hover,.formInscription input[type="submit"]:hover,.formAjouterArticle input[type="submit"]:hover,.formModifierArticle input[type="submit"]:hover,.formAjouterPromotion input[type="submit"]:hover{
+.formConnexion input[type="submit"]:hover,.formInscription input[type="submit"]:hover,.formAjouterArticle input[type="submit"]:hover,.formModifierArticle input[type="submit"]:hover,.formAjouterPromotion input[type="submit"]:hover,.formAjouterResto input[type="submit"]:hover,.formModifierResto input[type="submit"]:hover{
     margin-top:10px;
     background-color: var(--bleuLogo);
 }
@@ -639,3 +639,4 @@ h1 {
     background-color: rgb(7, 134, 238);
     transform: scale(1.05);
 }
+

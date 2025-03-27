@@ -17,6 +17,9 @@ include_once("controleurs/controleurVoirCommandesClient.php");
 include_once("controleurs/controleurVoirMonMenu.php");
 include_once("controleurs/controleurAjouterProduit.php");
 include_once("controleurs/controleurEditProduct.php");
+include_once("controleurs/controleurVoirMesRestos.php");
+include_once("controleurs/controleurAjouterResto.php");
+include_once("controleurs/controleurModifierResto.php");
 include_once("controleurs/controleurVoirStats.php");
 
 class ManufactureControleur
@@ -66,6 +69,15 @@ class ManufactureControleur
 		}
 		elseif($action == "ajouterProduit"){
 			$controleur = new ajouterProduit();
+		}
+		elseif($action == "voirMesRestos"){
+			$controleur = new voirMesRestos();
+		}
+		elseif($action == "modifierResto"){
+			$controleur = new modifierResto();
+		}
+		elseif($action == "ajouterResto"){
+			$controleur = new ajouterResto();
 		}
 		elseif($action == "voirStats"){
 			$controleur = new voirStats();
