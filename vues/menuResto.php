@@ -98,13 +98,7 @@
     <footer>
         <p>@2025 tous droits reservés GFaim</p>
     </footer>
-    <script>
-        document.getElementById("toggle-panier").addEventListener("click", function () {
-            let panier = document.querySelector(".panier");
-            panier.classList.toggle("hidden");
-            this.textContent = panier.classList.contains("hidden") ? "Panier" : "Fermer panier";
-        });
-    </script>
+    <script src="vues/fonctions/fonctions.js"></script>
     
 </body>
 </html>
