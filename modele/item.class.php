@@ -1,7 +1,7 @@
 <?php
 
 class Item implements JsonSerializable{
-    private int $idItem;
+    private ?int $idItem;
     private int $idRestaurant;
     private string $nom;
     private ?string $description;
@@ -9,7 +9,7 @@ class Item implements JsonSerializable{
     private ?string $image;
 
     public function __construct(
-        int $idItem,
+        ?int $idItem,
         int $idRestaurant,
         string $nom,
         string $description,

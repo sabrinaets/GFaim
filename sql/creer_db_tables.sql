@@ -71,11 +71,11 @@ CREATE TABLE Commande (
     FOREIGN KEY (idStatut) REFERENCES StatutCommande(idStatut) ON DELETE RESTRICT
 );
 
-CREATE TABLE Commande_Item (
+CREATE TABLE CommandeItem (
+    idCommandeItem INT AUTO_INCREMENT PRIMARY KEY,
     idCommande INT NOT NULL,
     idItem INT NOT NULL,
     quantite INT NOT NULL DEFAULT 1,
-    PRIMARY KEY (idCommande, idItem),
     FOREIGN KEY (idCommande) REFERENCES Commande(idCommande) ON DELETE CASCADE,
     FOREIGN KEY (idItem) REFERENCES Item(idItem) ON DELETE CASCADE
 );

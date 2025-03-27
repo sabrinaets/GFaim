@@ -1,15 +1,18 @@
 <?php
-class Restaurant implements JsonSerializable
+class commandeItem implements JsonSerializable
 {
+    private ?int $idCommandeItem;
     private int $idCommande;
     private int $idItem;
     private int $quantite;
     
     public function __construct(
+        ?int $idCommandeItem,
         int $idCommande,
         int $idItem,
         int $quantite
     ){
+        $this->idCommandeItem = $idCommandeItem;
         $this->idCommande = $idCommande;
         $this->idItem = $idItem;
         $this->quantite = $quantite;
@@ -19,6 +22,7 @@ class Restaurant implements JsonSerializable
     public function jsonSerialize(): array
     {
         return [
+            'idCommandeItem' => $this->idCommandeItem,
             'idCommande' => $this->idCommande,
             'idItem'=>$this->idItem,
             'quantite' => $this->quantite,
@@ -89,11 +93,32 @@ class Restaurant implements JsonSerializable
     public function __toString(): string
     {
         return sprintf(
-            "[#%d] %s - %s - %s",
+            "[#%d] %s - %s - %s - %s",
+            $this->idCommandeItem,
             $this->idCommande,
             $this->idItem,
             $this->quantite
         );
+    }
+
+    /**
+     * Get the value of idCommandeItem
+     */ 
+    public function getIdCommandeItem()
+    {
+        return $this->idCommandeItem;
+    }
+
+    /**
+     * Set the value of idCommandeItem
+     *
+     * @return  self
+     */ 
+    public function setIdCommandeItem($idCommandeItem)
+    {
+        $this->idCommandeItem = $idCommandeItem;
+
+        return $this;
     }
 }
 ?>
