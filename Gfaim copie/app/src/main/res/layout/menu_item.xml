@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20px"
+    android:background="@drawable/roundedsquare"
+    android:backgroundTint="#8E8686"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/itemImage"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_margin="15px"
+        android:scaleType="centerCrop"
+        android:src="@drawable/imageburger"
+        android:background="@drawable/rounded_image"
+        android:clipToOutline="true" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/itemName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="250px"
+            android:text="Item 1"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/itemDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150px"
+            android:text="Description de l'item"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/itemPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="250px"
+            android:text="Prix: 10$"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/ajouter1AuPanier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="110px"
+            android:backgroundTint="@color/orangeGfaim"
+            android:text="Ajouter au panier"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20px"
+    android:layout_marginLeft="5px"
+    android:layout_marginRight="5px"
+    android:background="@drawable/roundedsquare"
+    android:backgroundTint="#FFFFFF"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/linearLayoutRestaurant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textViewResto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="start"
+                android:text="Nom du Restaurant"
+                android:textColor="#000000"
+                tools:gravity="center" />
+
+            <TextView
+                android:id="@+id/textViewAdresse2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="start"
+                android:text="Adresse"
+                android:textColor="@color/bleuGfaim"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:gravity="center" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textViewNomLivreur"
+            android:layout_width="159dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Nom livreur"
+            android:textColor="@color/orangeGfaim"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewCommande"
+            android:layout_width="112dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Items"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonLocaliser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5px"
+            android:layout_weight="1"
+            android:backgroundTint="#4CAF50"
+            android:text="Localiser"
+            app:layout_constraintTop_toBottomOf="@id/textViewCommande" />
+
+        <Button
+            android:id="@+id/buttonAnnuler"
+            android:layout_width="187dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5px"
+            android:backgroundTint="#C71919"
+            android:text="Annuler"
+            app:layout_constraintTop_toBottomOf="@id/buttonLocaliser" />
+    </LinearLayout>
+</LinearLayout>

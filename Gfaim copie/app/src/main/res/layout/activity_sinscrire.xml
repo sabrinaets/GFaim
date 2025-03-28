@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.SInscrireActivity"
+    android:background="#000000">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="417dp"
+        android:layout_height="63dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageView
+            android:id="@+id/imageViewLogo"
+            android:layout_width="61dp"
+            android:layout_height="64dp"
+            android:layout_marginLeft="20px"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/image" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="121dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/seDeconnecter"
+            android:layout_width="78dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="40px"
+            android:layout_weight="1"
+            android:text="Se connecter"
+            android:textColor="@color/orangeGfaim"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/panier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="40px"
+            android:layout_weight="1"
+            android:text="S'inscrire"
+            android:textColor="@color/orangeGfaim"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/roundedsquare"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.205">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewNom2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nom :"
+                    android:textColor="#FFFFFF" />
+
+                <EditText
+                    android:id="@+id/inputNom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FFFFFF" />
+
+                <TextView
+                    android:id="@+id/textViewPrenom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Prénom :"
+                    android:textColor="#FFFFFF" />
+
+                <EditText
+                    android:id="@+id/inputPrenom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FFFFFF" />
+
+                <TextView
+                    android:id="@+id/textViewRole"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Rôle :"
+                    android:textColor="#FFFFFF" />
+
+                <Spinner
+                    android:id="@+id/spinnerRole"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#808080"
+                    android:entries="@array/roles_array"/>
+
+                <TextView
+                    android:id="@+id/textViewCodePostal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Code Postal :"
+                    android:textColor="#FFFFFF" />
+
+                <EditText
+                    android:id="@+id/editTextTextPostalAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FFFFFF"
+                    android:inputType="textPostalAddress" />
+
+                <TextView
+                    android:id="@+id/textViewNumeroTel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Numéro de Téléphone :"
+                    android:textColor="#FFFFFF" />
+
+                <EditText
+                    android:id="@+id/editTextPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FFFFFF"
+                    android:inputType="phone" />
+
+                <TextView
+                    android:id="@+id/textViewAdresse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Adresse courriel :"
+                    android:textColor="#FFFFFF" />
+
+                <EditText
+                    android:id="@+id/editTextTextEmailAddress2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FFFFFF"
+                    android:inputType="textEmailAddress" />
+
+                <TextView
+                    android:id="@+id/TextViewMDP"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Mot de Passe :"
+                    android:textColor="#FFFFFF" />
+
+                <EditText
+                    android:id="@+id/editTextTextPassword2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FFFFFF"
+                    android:inputType="textPassword" />
+
+                <Button
+                    android:id="@+id/buttonSInscrire"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:backgroundTint="@color/orangeGfaim"
+                    android:text="S'inscrire" />
+            </LinearLayout>
+        </ScrollView>
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

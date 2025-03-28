@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Gfaim</string>
+
+    <string-array name="roles_array">
+        <item>Client</item>
+        <item>Livreur</item>
+        <item>Restaurateur</item>
+    </string-array>
+</resources>
