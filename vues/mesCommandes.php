@@ -24,7 +24,20 @@
     </header>
     <main class="contenu">
         <h1>Commandes en livraison</h1>
-        <ul class="liste-commandes-client">
+        
+        <?php
+            $lescommandes = $controleur->getTabMesCommandes();
+
+
+            if (empty($lescommandes)) {
+                echo "<h3>Aucune commande n'a été placée.</h3>";
+            } else {
+                afficherCommandesClient($lescommandes);
+            }
+
+
+        ?>
+            <ul class="liste-commandes-client">
             <li class="commande">
                 <span class="restaurant">🍕 Pizzeria Bella<br><span class="adresse">12 rue de Paris - Jean Dupont</span></span><br>
                 <span class="nom-livreur">Jeremy Yameogo</span><br>

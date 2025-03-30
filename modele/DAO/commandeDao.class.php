@@ -4,7 +4,7 @@ include_once(__DIR__ . "/DAO.interface.php");
 include_once(__DIR__ . "/../commande.class.php");
 
 class commandeDAO implements DAO{
-    static public function findById(int $id):?commande{
+    static public function findById(int $id):?Commande{
         try{
             $connexion = ConnexionBD::getInstance();
         }
@@ -167,4 +167,16 @@ class commandeDAO implements DAO{
         throw new Exception("Cette methode est indisponible pour la classe Commande");
         return [];
     }
+    static public function getCommandesParClient(PDO $pdo, int $idClient): array {
+        $stmt = $pdo->prepare("
+            SELECT c.*, r.nom AS nomRestaurant ,r.adresse AS adresseRestaurant
+            FROM commande c
+            JOIN restaurant r ON c.idRestaurant = r.idRestaurant
+            WHERE c.idClient = :idClient
+        ");
+        $stmt->execute(['idClient' => $idClient]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+   
+
 }

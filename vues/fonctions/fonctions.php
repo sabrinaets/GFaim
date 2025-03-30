@@ -45,4 +45,48 @@ function afficherMenu($controleur)
 
     echo $menu;
 }
+
+function afficherCommandesClient(array $tableau): void {
+   
+    echo '<ul class="liste-commandes-client">';
+    foreach ($tableau as $uneCommande) {
+        echo '<li class="commande">';    
+        echo '<span>Restaurant : ' . htmlspecialchars($uneCommande['nomRestaurant']) . '</span>';
+        echo '<span>Adresse : ' . htmlspecialchars($uneCommande['adresseRestaurant']) . '</span>';
+        echo '<p class="price"><small>Prix</small> ' . number_format($uneCommande['prixTotal'], 2) . '&thinsp;$</p>';
+
+
+        // Afficher les items de la commande
+        echo '<ul class="items-commande">';
+        $items = CommandeItemDao::findAllByCommande($uneCommande['idCommande']);
+        foreach ($items as $item) {
+            echo '<li>Item ID: ' . htmlspecialchars($item->getIdItem()) . ' (Quantité: ' . htmlspecialchars($item->getQuantite()) . ')</li>';
+        }
+        echo '</ul>';
+
+
+        echo '<a class="bouttonscommandes" href="?action=localiser&id=' . htmlspecialchars((string) $uneCommande['idCommande']) . '">Localiser</a>';
+        echo '<a class="bouttonscommandes" href="?action=annulerCommande&id=' . htmlspecialchars((string) $uneCommande['idCommande']) . '">Annuler</a>';
+        echo '</li>';
+    }
+    echo '</ul>';
+
+
+
+
+// Injecter les produits sous forme de JSON
+echo '<script id="php-products" type="application/json">';
+echo json_encode(array_map(fn($c) => [
+    'id' => $c->getIdCommande(),
+    'client' => $c->getIdClient(),
+    'restaurant' => $c->getIdRestaurant(),
+    'livreur' => $c->getIdLivreur(),
+    'prix' => $c->getPrixTotal(),
+    'statut'=>$c -> getIdStatut(),
+], $tableau));
+echo '</script>';
+}
+
+
+
 ?>
