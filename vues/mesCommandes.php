@@ -8,7 +8,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <style>
     .commande a{
+        width:60px;
+        margin:5px;
         height:20px;
+        text-decoration: none;
+        background-color: rgba(59, 100, 198, 0.92);
     }
     </style>
 </head>

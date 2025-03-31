@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion - GFaim</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .boutonAccepte{
+            background-color:rgba(24, 138, 45, 0.98);
+            text-decoration: none;
+            height:20px;
+            font-weight: 600;
+        }
+        .boutonAccepte:hover {
+    background-color: var(--bleuLogo);
+    transform: scale(1.05);
+}
+    </style>
 </head>
 <body>
     <header>

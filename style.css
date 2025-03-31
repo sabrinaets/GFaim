@@ -66,15 +66,7 @@ nav a:hover{
     
     
 }
-.carre img{
-    margin-right:40px;
-    background-image: linear-gradient(black,gray);
-    border-radius: 40px;
-    width:35%;
-    max-width:500px;
-    min-width:300px;
-    height:100%;
-}
+
 .carre h1{
     background-color: transparent;
     font-size: 60px;
@@ -484,25 +476,8 @@ h1 {
 .commande-details {
     color: var(--monOrange);
 }
-.boutonAccepte {
-    background-color: rgb(50, 205, 50);
-    color: white;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    display: inline-block;
-    width: 100px;
-    height: 40px;
-    text-align: center;
-    transition: background-color 0.3s, transform 0.2s;
-}
-.boutonAccepte:hover {
-    background-color: var(--bleuLogo);
-    transform: scale(1.05);
-}
+
+
 
 /* Page commande à livrer */
 .commandeALivrer {

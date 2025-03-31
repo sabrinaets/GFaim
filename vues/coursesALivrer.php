@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion - GFaim</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .boutonAnnuler{
+            background-color:rgba(24, 23, 23, 0.91);
+            text-decoration: none;
+            height:20px;
+            padding:15px 20px;
+            color:#fff;
+            font-weight: 600;
+            border-radius: 20px;
+            width:85px;
+        }
+        .boutonAnnuler:hover {
+    background-color: rgba(235, 9, 9, 0.91);
+    transform: scale(1.05);
+}
+    </style>
 </head>
 <body>
     <header>

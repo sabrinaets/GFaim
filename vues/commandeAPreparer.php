@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion - GFaim</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .boutonTerminer{
+    background-color: rgb(87, 173, 244);
+    padding:10px 15px;
+    border-radius: 25px;
+    text-decoration: none;
+    color:#fff;
+        }
+    .boutonTerminer:hover{
+        background-color: rgb(87, 147, 244);
+    }
+
+    </style>
 </head>
 <body>
     <header>

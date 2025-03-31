@@ -184,7 +184,7 @@ class commandeDAO implements DAO{
             FROM commande cmd
             JOIN restaurant r ON cmd.idRestaurant = r.idRestaurant
             JOIN utilisateur c ON cmd.idClient = c.idUtilisateur
-            WHERE cmd.idStatut = 1 AND cmd.idLivreur=null");
+            WHERE cmd.idStatut = 1 AND cmd.idLivreur IS NULL");
         $requete->execute();
         return $requete->fetchAll(PDO::FETCH_ASSOC);
     }

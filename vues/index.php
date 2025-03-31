@@ -7,6 +7,25 @@
     <title>GFaim - livraison de repas</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    
+    <style>
+    .carre img{
+    margin-right:50px;
+    background-image: linear-gradient(black,gray);
+    border-radius: 40px;
+ 
+
+
+    width: 420px; 
+    max-width: 500px;
+    min-width: 300px;
+    height: 510px;
+
+    min-height: 510px;
+    max-height:510;
+    
+}
+</style>
 </head>
 </head>
 <body>
