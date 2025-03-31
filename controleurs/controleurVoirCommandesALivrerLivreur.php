@@ -15,26 +15,22 @@
 		public function executerAction():string
 		{
 			$pdo = ConnexionBD::getInstance();
+			
+			if (!isset($_SESSION['idUtilisateur'])) {
+				die("Erreur : idUtilisateur non défini en session !");
+			}
+			
 			$idLivreur = $_SESSION['idUtilisateur'];
-
-			if (isset($_GET['action']) && $_GET['action'] === 'ajouterCommandeLivreur' && isset($_GET['id'])) {
-				$idCommande = intval($_GET['id']); 
-
-				commandeDAO::updateCommandeAcceptee($pdo,$idCommande,$idLivreur); // on update la commande.
-
-				
+			$this->tabCmdLivrer = commandeDAO::voirCommandesLivrer($pdo,$idLivreur);
+			return "coursesALivrer.php";
 			
 		}
-		$this->tabCmdLivrer == commandeDAO::voirCommandesLivrer($pdo,$idLivreur);
-		return "coursesALivrer.php";
-	}
-
-
-
+		
 		public function getTabCmdLivrer()
 		{
 				return $this->tabCmdLivrer;
 		}
-	}	
+	}
+	
 	
 ?>

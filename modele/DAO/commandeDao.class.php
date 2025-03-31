@@ -201,9 +201,9 @@ class commandeDAO implements DAO{
         $requete = $pdo -> prepare(
             "SELECT cmd.* ,r.nom AS nomRestaurant, c.codepostal as adresseClient, c.username AS nomClient 
             FROM commande cmd 
-            JOIN restaurant r ON cmd.idRestaurant = r.idRestaurant
-            JOIN utilisateur c ON cmd.idClient = c.idUtilisateur
-            WHERE idLivreur = :idLivreur AND cmd.idStatut=1"
+            LEFT JOIN restaurant r ON cmd.idRestaurant = r.idRestaurant
+            LEFT JOIN utilisateur c ON cmd.idClient = c.idUtilisateur
+            WHERE cmd.idLivreur = :idLivreur AND cmd.idStatut=1"
         );
         $requete->execute(['idLivreur'=>$idLivreur]);
         $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
