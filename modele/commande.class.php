@@ -1,5 +1,5 @@
 <?php
-
+namespace Modele;
 class Commande {
     private int $idCommande;
     private int $idClient;

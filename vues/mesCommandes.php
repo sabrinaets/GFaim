@@ -37,6 +37,7 @@
 
 
         ?>
+        <!--
             <ul class="liste-commandes-client">
             <li class="commande">
                 <span class="restaurant">🍕 Pizzeria Bella<br><span class="adresse">12 rue de Paris - Jean Dupont</span></span><br>
@@ -61,6 +62,7 @@
             </li>
             
         </ul>
+        -->
     </main>
     <footer>
         <p>@2025 tous droits reservés GFaim</p>
