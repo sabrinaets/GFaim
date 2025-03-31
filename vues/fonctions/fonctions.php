@@ -60,7 +60,7 @@ function afficherCommandesClient(array $tableau): void {
         echo '<ul class="items-commande">';
         $items = CommandeItemDao::findAllByCommande($uneCommande['idCommande']);
         foreach ($items as $item) {
-            echo '<li>Item ID: ' . htmlspecialchars($item->getIdItem()) . ' (Quantité: ' . htmlspecialchars($item->getQuantite()) . ')</li>';
+            echo '<li>' . htmlspecialchars($item->getNom()) . ' (Quantité: ' . htmlspecialchars($item->getQuantite()) . ')</li>';
         }
         echo '</ul>';
 
@@ -73,8 +73,9 @@ function afficherCommandesClient(array $tableau): void {
 
 
 
-
+//pas sure si cest necessaire?
 // Injecter les produits sous forme de JSON
+/*
 echo '<script id="php-products" type="application/json">';
 echo json_encode(array_map(fn($c) => [
     'id' => $c->getIdCommande(),
@@ -84,9 +85,48 @@ echo json_encode(array_map(fn($c) => [
     'prix' => $c->getPrixTotal(),
     'statut'=>$c -> getIdStatut(),
 ], $tableau));
-echo '</script>';
+echo '</script>';*/
 }
 
+function afficherCommandesDispo(array $tableau):void{
+    echo '<ul class="liste-commandes">';
+    foreach ($tableau as $uneCommande){
+        echo '<li class="commande">';
+        echo '<span class="restaurant">' . htmlspecialchars($uneCommande['nomRestaurant']).'</span>';
+        echo '<span class="adresse">'. htmlspecialchars($uneCommande['adresseClient']).' - '. htmlspecialchars($uneCommande['nomClient']).'</span>';
+    
+        // Afficher les items de la commande
+        echo '<ul class="commande-details">';
+        $items = CommandeItemDao::findAllByCommande($uneCommande['idCommande']);
+        foreach ($items as $item) {
+            echo '<li>' . htmlspecialchars($item->getNom()) . ' (Quantité: ' . htmlspecialchars($item->getQuantite()) . ')</li>'; //probleme possible ici
+        }
+        echo '</ul>';
+    
+        echo '<a class="boutonAccepte" href="?action=ajouterCommandeLivreur&id='.htmlspecialchars((string) $uneCommande['idCommande']).'">Accepter</a>';
+        echo '</li>';
+    }
+    echo '</ul>';
+}
 
+function afficherCommandesALivrer(array $tableau):void{
+    echo '<ul class="liste-commandes">';
+    foreach ($tableau as $uneCommande){
+        echo '<li class="commande">';
+        echo '<span class="restaurant">' . htmlspecialchars($uneCommande['nomRestaurant']).'</span>';
+        echo '<span class="adresse">'. htmlspecialchars($uneCommande['adresseClient']).' - '. htmlspecialchars($uneCommande['nomClient']).'</span>';
+    
+        // Afficher les items de la commande
+        echo '<ul class="commande-details">';
+        $items = CommandeItemDao::findAllByCommande($uneCommande['idCommande']);
+        foreach ($items as $item) {
+            echo '<li>' . htmlspecialchars($item->getNom()) . ' (Quantité: ' . htmlspecialchars($item->getQuantite()) . ')</li>'; //probleme possible ici
+        }
+        echo '</ul>';
+        echo '<a class="boutonAnnuler" href="?action=annulerCommandeLivreur&id='.htmlspecialchars((string) $uneCommande['idCommande']).'">Annuler</a>';
+        echo '</li>';
+
+    }
+}
 
 ?>

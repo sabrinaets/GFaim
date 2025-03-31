@@ -17,7 +17,17 @@
         </nav>
     </header>
     <main class="contenu">
-        <h1>Commandes disponible</h1>
+        <h1>Commandes disponibles</h1>
+        <?php
+            $cmdDispo = $controleur->getTabCmdDispo();
+
+            if (empty($cmdDispo)) {
+                echo "<h3>Aucune commande en attente.</h3>";
+            } else {
+                afficherCommandesDispo($cmdDispo);
+            }
+        ?>
+        <!--
         <ul class="liste-commandes">
         <li class="commande">
             <span class="restaurant">🍕 Pizzeria Bella</span><br>
@@ -31,6 +41,7 @@
             </form>
         </li>
         </ul>
+        -->
     </main>
     <footer>
         <p>@2025 tous droits reservés GFaim</p>

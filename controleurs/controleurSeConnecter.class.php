@@ -43,7 +43,7 @@ class SeConnecter extends Controleur
             // Connexion réussie
             $this->acteur = "utilisateur";
             $_SESSION['utilisateurConnecte'] = $unUtilisateur;
-            $_SESSION['idClient']=$unUtilisateur->getId();
+            $_SESSION['idUtilisateur']=$unUtilisateur->getId();
 
 
             $role = $unUtilisateur->getRole();

@@ -7,9 +7,9 @@
 
 		private $tabMesCommandes;
 		
-		// ******************* Constructeur vide
+		
 		public function __construct() {
-			//appel du constructeur parent
+			
 			parent::__construct();
 			$this->tabMesCommandes=array();
 		}
@@ -18,7 +18,7 @@
 
 		public function executerAction():string
 		{
-			$idClient = $_SESSION['idClient'] ?? null;
+			$idClient = $_SESSION['idUtilisateur'] ?? null;
 
 
             if (!$idClient) {

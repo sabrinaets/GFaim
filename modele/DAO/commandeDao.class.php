@@ -168,15 +168,40 @@ class commandeDAO implements DAO{
         return [];
     }
     static public function getCommandesParClient(PDO $pdo, int $idClient): array {
-        $stmt = $pdo->prepare("
-            SELECT c.*, r.nom AS nomRestaurant ,r.adresse AS adresseRestaurant
+        $stmt = $pdo->prepare(
+            "SELECT c.*, r.nom AS nomRestaurant ,r.adresse AS adresseRestaurant
             FROM commande c
             JOIN restaurant r ON c.idRestaurant = r.idRestaurant
-            WHERE c.idClient = :idClient
-        ");
+            WHERE c.idClient = :idClient"
+        );
         $stmt->execute(['idClient' => $idClient]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
    
+    static public function getCommandesDispo(PDO $pdo):array{
+        $requete = $pdo->prepare(
+            "SELECT cmd.*, r.nom AS nomRestaurant, c.codepostal as adresseClient, c.username AS nomClient 
+            FROM commande cmd
+            JOIN restaurant r ON cmd.idRestaurant = r.idRestaurant
+            JOIN utilisateur c ON cmd.idClient = c.idUtilisateur
+            WHERE cmd.idStatut = 1");
+        $requete->execute();
+        return $requete->fetchAll(PDO::FETCH_ASSOC);
+    }
 
+    static public function updateCommandeAcceptee(PDO $pdo, int $idCommande,int $idLivreur){
+            $requete = $pdo -> prepare(
+                "UPDATE commande SET idLivreur = :idLivreur WHERE idCommande = :idCommande AND idLivreur IS NULL"
+            );
+            $requete->execute(['idLivreur'=>$idLivreur,'idCommande'=>$idCommande]);
+            return $requete->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    static public function voirCommandesLivrer(PDO $pdo, int $idLivreur){
+        $requete = $pdo -> prepare(
+            "SELECT * FROM commande WHERE idLivreur = :idLivreur"
+        );
+        $requete->execute(['idLivreur'=>$idLivreur]);
+        return $requete->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

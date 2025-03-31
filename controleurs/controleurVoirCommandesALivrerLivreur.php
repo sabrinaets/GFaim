@@ -3,9 +3,10 @@
 
 	class VoirCommandesALivrerLivreur extends Controleur  {
 		
-		// ******************* Constructeur vide
+		private $tabCmdLivrer;
+		
 		public function __construct() {
-			//appel du constructeur parent
+			$this->tabCmdLivrer=array();
 			parent::__construct();
 		}
 		
@@ -13,14 +14,27 @@
 
 		public function executerAction():string
 		{
-		
-			return "coursesALivrer.php";
+			$pdo = ConnexionBD::getInstance();
+			$idLivreur = $_SESSION['idUtilisateur'];
+
+			if (isset($_GET['action']) && $_GET['action'] === 'ajouterCommandeLivreur' && isset($_GET['id'])) {
+				$idCommande = intval($_GET['id']); 
+
+				commandeDAO::updateCommandeAcceptee($pdo,$idCommande,$idLivreur); // on update la commande.
+
+				
+			
 		}
+		$this->tabCmdLivrer == commandeDAO::voirCommandesLivrer($pdo,$idLivreur);
+		return "coursesALivrer.php";
+	}
 
-		
 
 
-		
+		public function getTabCmdLivrer()
+		{
+				return $this->tabCmdLivrer;
+		}
 	}	
 	
 ?>

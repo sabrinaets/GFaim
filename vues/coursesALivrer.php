@@ -20,7 +20,16 @@
         <h1 class="commandeALivrer">Commandes à livrer</h1>
         <ul class="liste-commandes">
             <?php
-            if (!empty($_SESSION["commandeALivrer"])) {
+            
+            $cmdALivrer = $controleur->getTabCmdLivrer();
+
+            if (empty($cmdALivrer)) {
+                echo "<h3>Aucune commande a livrer.</h3>";
+            } else {
+                afficherCommandesALivrer($cmdALivrer);
+            }
+            
+            /*if (!empty($_SESSION["commandeALivrer"])) {
                 foreach ($_SESSION["commandeALivrer"] as $commande) {
                     echo "<li class='livraison'>
                             <span class='commandeALivrerNomResto'>🍽️ {$commande['restaurant']}</span><br>
@@ -36,7 +45,7 @@
                 }
             } else {
                 echo "<p>Aucune commande en attente</p>";
-            }
+            }*/
             ?>
         </ul>
     </main>
