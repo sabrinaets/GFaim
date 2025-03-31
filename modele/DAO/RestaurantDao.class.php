@@ -33,7 +33,7 @@ class RestaurantDao implements DAO {
                 $enr['idProprietaire'],
                 $enr['nom'],
                 $enr['adresse'],
-                $enr['phone'],
+                $enr['telephone'],
                 $enr['description']
             );
         }
@@ -65,7 +65,7 @@ class RestaurantDao implements DAO {
                 $enr['idProprietaire'],
                 $enr['nom'],
                 $enr['adresse'],
-                $enr['phone'],
+                $enr['telephone'],
                 $enr['description']
             );
             $liste[] = $restaurant;
@@ -99,7 +99,7 @@ class RestaurantDao implements DAO {
                 $enr['idProprietaire'],
                 $enr['nom'],
                 $enr['adresse'],
-                $enr['phone'],
+                $enr['telephone'],
                 $enr['description']
             );
             $liste[] = $restaurant;
@@ -132,7 +132,7 @@ class RestaurantDao implements DAO {
     
         // Requête préparée
         $requete = $connexion->prepare(
-            "INSERT INTO Restaurant (idProprietaire, nom, adresse, phone, description) 
+            "INSERT INTO Restaurant (idProprietaire, nom, adresse, telephone, description) 
              VALUES (:idProprietaire, :nom, :adresse, :phone, :description)"
         );
 
@@ -175,7 +175,7 @@ class RestaurantDao implements DAO {
         // Requête préparée
         $requete = $connexion->prepare(
             "UPDATE Restaurant 
-             SET idProprietaire = :idProprietaire, nom = :nom, adresse = :adresse, phone = :phone, description = :description 
+             SET idProprietaire = :idProprietaire, nom = :nom, adresse = :adresse, telephone = :phone, description = :description 
              WHERE idRestaurant = :idRestaurant"
         );
     

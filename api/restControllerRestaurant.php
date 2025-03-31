@@ -1,7 +1,7 @@
 <?php
 // Inclusion des classes nécessaires pour la gestion des produits
-include_once("../modele/DAO/itemDAO.class.php");
-include_once("../modele/item.class.php");
+include_once("../modele/DAO/RestaurantDAO.class.php");
+include_once("../modele/restaurant.class.php");
 
 // DÉFINIR LES EN-TÊTES HTTP REQUIS POUR LES RÉPONSES JSON
 header("Access-Control-Allow-Origin: *"); // pour autoriser les requêtes externes.
@@ -10,28 +10,29 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization"); //  pour pe
 header("Content-Type: application/json"); // pour spécifier le type json
 // FIN DES AJOUTS EN-TÊTES HTTP
 
-class RestControllerItem {
+class RestControllerRestaurant {
     //B. AJOUTER DES PROPRIÉTÉS DE LA CLASSE
     private $requestMethod;
-    private $itemId;
+    private $restaurantId;
 
-    public function __construct($requestMethod, $itemId) {
+    public function __construct($requestMethod, $restaurantId) {
         $this->requestMethod = $requestMethod;
         
-        if (empty($itemId)) {
-            $this->itemId = null;
+        if (empty($restaurantId)) {
+            $this->restaurantId = null;
         } else {
-            $this->itemId = $itemId;
+            $this->restaurantId = $restaurantId;
         }
     }
     //FIN DE B. AJOUTER DES PROPRIÉTÉS DE LA CLASSE
 
     // Vérification de la validité des données du produit
-    private function validateItem($data) {
-        return !empty($data['idRestaurant']) && 
+    private function validateRestaurant($data) {
+        return !empty($data['idProprietaire']) && 
                !empty($data['nom']) && 
-               !empty($data['description']) && 
-               isset($data['prix']) && is_numeric($data['prix']) && $data['prix'] > 0;
+               !empty($data['adresse']) &&
+                !empty($data['phone']) &&
+                !empty($data['description']);
     }
 
     // Génération des réponses HTTP standardisées
@@ -72,22 +73,22 @@ class RestControllerItem {
     //C. IMPLÉMENTER LA MÉTHODE processRequest()
     public function processRequest() {
         if ($this->requestMethod === 'GET') {
-            if ($this->itemId !== null) {
-                $reponse =  $this->getItem($this->itemId);
+            if ($this->restaurantId !== null) {
+                $reponse =  $this->getRestaurant($this->restaurantId);
             } else {
-                $reponse = $this->getAllItems();
+                $reponse = $this->getAllRestaurants();
             }
         }
         else if ($this->requestMethod === 'POST') {
-            $reponse = $this->createItemFromRequest();
+            $reponse = $this->createRestaurantFromRequest();
         }
 
-        else if ($this->requestMethod === 'PUT' && $this->itemId !== null) {
-            $reponse = $this->updateItemFromRequest($this->itemId);
+        else if ($this->requestMethod === 'PUT' && $this->restaurantId !== null) {
+            $reponse = $this->updateRestaurantFromRequest($this->restaurantId);
         }
 
-        else if ($this->requestMethod === 'DELETE' && $this->itemId !== null) {
-            $reponse = $this->deleteProductFromRequest($this->itemId);
+        else if ($this->requestMethod === 'DELETE' && $this->restaurantId !== null) {
+            $reponse = $this->deleteProductFromRequest($this->restaurantId);
         }
         else{
             $reponse = $this->notFoundResponse();
@@ -100,43 +101,43 @@ class RestControllerItem {
     //FIN DE C. IMPLÉMENTER LA MÉTHODE processRequest()
 
     //D. IMPLÉMENTER LES OPÉRATIONS CRUD
-    private function getAllItems() {
-        $items = ItemDAO::findAll();
-        return $this->responseJson(200, $items);
+    private function getAllRestaurants() {
+        $restaurants = RestaurantDAO::findAll();
+        return $this->responseJson(200, $restaurants);
     }
 
-    private function getItem($id) {
-        $item = ItemDAO::findById($id);
+    private function getRestaurant($id) {
+        $restaurant = RestaurantDAO::findById($id);
 
-        if ($item) {
-            return $this->responseJson(200, $item);
+        if ($restaurant) {
+            return $this->responseJson(200, $restaurant);
         } else {
             return $this->notFoundResponse();
         }
     }
 
-    private function createItemFromRequest() {
+    private function createRestaurantFromRequest() {
         $data = json_decode(file_get_contents('php://input'), true);
 
-        if (!$this->validateItem($data)) {
+        if (!$this->validateRestaurant($data)) {
             return $this->unprocessableEntityResponse();
         }
 
         // Trouve le dernier produit pour obtenir le dernier ID et incrémenter de 1
-        $allItems = ItemDAO::findAll();
-        $lastItem = end($allItems);
-        $newId = $lastItem->getIdItem() + 1;
+        $allrestaurants = RestaurantDAO::findAll();
+        $lastrestaurant = end($allrestaurants);
+        $newId = $lastrestaurant->getIdRestaurant() + 1;
 
-        $item = new Item(
+        $restaurant = new restaurant(
             $newId, 
-            $data['idRestaurant'],
+            $data['idProprietaire'],
             $data['nom'],
+            $data['adresse'],
+            $data['phone'], 
             $data['description'],
-            $data['prix'],
-            $data['image'] 
         );
 
-        $newItemId = ItemDAO::save($item);
+        $newrestaurantId = RestaurantDAO::save($restaurant);
 
         if ($newId) {
             return $this->responseJson(201, ["message" => "Product créé avec succès", "id" => $newId]);
@@ -145,24 +146,24 @@ class RestControllerItem {
         }
     }
 
-    public function updateItemFromRequest($id) {
-        $item = ItemDAO::findById($id);
+    public function updaterestaurantFromRequest($id) {
+        $restaurant = RestaurantDAO::findById($id);
 
-        if (!$item) {
+        if (!$restaurant) {
             return $this->notFoundResponse();
         }
 
         $data = json_decode(file_get_contents('php://input'), true);
-        if (!$this->validateItem($data)) {
+        if (!$this->validaterestaurant($data)) {
             return $this->unprocessableEntityResponse();
         }
 
-        $item->setNom($data['nom']);
-        $item->setPrix($data['prix']);
-        $item->setImage($data['image']);
-        $item->setDescription($data['description']);
+        $restaurant->setNom($data['nom']);
+        $restaurant->setAdresse($data['adresse']);
+        $restaurant->setPhone($data['phone']);
+        $restaurant->setDescription($data['description']);
 
-        if (ItemDAO::update($item)) {
+        if (restaurantDAO::update($restaurant)) {
             return $this->responseJson(200, ["message" => "Produit mis à jour avec succès"]);
         } else {
             return $this->serverErrorResponse();
@@ -170,18 +171,17 @@ class RestControllerItem {
     }
 
     public function deleteProductFromRequest($id) {
-        $item = ItemDAO::findById($id);
+        $restaurant = RestaurantDAO::findById($id);
 
-        if (!$item) {
+        if (!$restaurant) {
             return $this->notFoundResponse();
         }
 
-        if (ItemDAO::delete($item)) {
+        if (restaurantDAO::delete($restaurant)) {
             return $this->responseJson(200, ["message" => "Produit supprimé avec succès"]);
         } else {
             return $this->serverErrorResponse();
         }
     }
-    //FIN DE D. IMPLÉMENTER LES OPÉRATIONS CRUD
 }
 ?>
