@@ -46,18 +46,7 @@ class SeConnecter extends Controleur
             $_SESSION['idUtilisateur']=$unUtilisateur->getId();
 
 
-            $role = $unUtilisateur->getRole();
-            switch($role->getId()){
-                case 3:
-                    return "commandeApreparer.php";
-                    break;
-                case 4:
-                    return "coursesDispo.php";
-                    break;
-                default:
-                    return "index.php";
-                    break;        
-            }
+            return "index.php";
            
         }
 

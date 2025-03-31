@@ -1,27 +1,37 @@
 <?php
 	include_once("controleurs/controleur_classe_abstraite.php");
 	class AjouterCommandeLivreur extends Controleur  {
-		// ******************* Constructeur vide
+
+		private $tabCmdLivrer;
+		
 		public function __construct() {
-			//appel du constructeur parent
+			
 			parent::__construct();
+			$this->tabCmdLivrer=array();
 		}
 		
 		public function executerAction():string
 		{	
-			$commande = array();
+
+			$pdo = ConnexionBD::getInstance();
+			$idLivreur = $_SESSION['idUtilisateur'];
+
+			if (isset($_GET['action']) && $_GET['action'] === 'ajouterCommandeLivreur' && isset($_GET['id'])) {
+				$idCommande = intval($_GET['id']); 
+
+				commandeDAO::updateCommandeAcceptee($pdo,$idCommande,$idLivreur); // on update la commande.
+
+				
 			
-			if ($_SERVER["REQUEST_METHOD"] == "POST") {
-				$commande = [
-					"restaurant" => $_POST["restaurant"],
-					"adresse" => $_POST["adresse"],
-					"details" => $_POST["commande"]
-				];
-			}
-
-			$_SESSION["commandeALivrer"][] = $commande;
-
+		}
+			$this->tabCmdLivrer = commandeDAO::voirCommandesLivrer($pdo,$idLivreur);
 			return "coursesALivrer.php";
+		}
+
+
+		public function getTabCmdLivrer()
+		{
+				return $this->tabCmdLivrer;
 		}
 	}	
 ?>

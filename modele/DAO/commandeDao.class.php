@@ -184,24 +184,42 @@ class commandeDAO implements DAO{
             FROM commande cmd
             JOIN restaurant r ON cmd.idRestaurant = r.idRestaurant
             JOIN utilisateur c ON cmd.idClient = c.idUtilisateur
-            WHERE cmd.idStatut = 1");
+            WHERE cmd.idStatut = 1 AND cmd.idLivreur=null");
         $requete->execute();
         return $requete->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    static public function updateCommandeAcceptee(PDO $pdo, int $idCommande,int $idLivreur){
+    static public function updateCommandeAcceptee(PDO $pdo, int $idCommande,int $idLivreur):bool{
             $requete = $pdo -> prepare(
                 "UPDATE commande SET idLivreur = :idLivreur WHERE idCommande = :idCommande AND idLivreur IS NULL"
             );
             $requete->execute(['idLivreur'=>$idLivreur,'idCommande'=>$idCommande]);
-            return $requete->fetchAll(PDO::FETCH_ASSOC);
+            return $requete->rowCount() > 0;
     }
 
-    static public function voirCommandesLivrer(PDO $pdo, int $idLivreur){
+    static public function voirCommandesLivrer(PDO $pdo, int $idLivreur):array{
         $requete = $pdo -> prepare(
-            "SELECT * FROM commande WHERE idLivreur = :idLivreur"
+            "SELECT cmd.* ,r.nom AS nomRestaurant, c.codepostal as adresseClient, c.username AS nomClient 
+            FROM commande cmd 
+            JOIN restaurant r ON cmd.idRestaurant = r.idRestaurant
+            JOIN utilisateur c ON cmd.idClient = c.idUtilisateur
+            WHERE idLivreur = :idLivreur AND cmd.idStatut=1"
         );
         $requete->execute(['idLivreur'=>$idLivreur]);
+        $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
+    
+        return $resultats ?: []; // Retourne un tableau vide si aucune commande n'est trouvée
+    }
+
+    static public function voirCommandesResto(PDO $pdo, int $idRestaurateur):array{
+        $requete = $pdo->prepare(
+            "SELECT cmd.* , r.nom AS nomRestaurant, c.codepostal as adresseClient, c.username AS nomClient
+            FROM restaurant r 
+            JOIN commande cmd ON cmd.idRestaurant = r.idRestaurant
+            JOIN utilisateur c ON cmd.idClient = c.idUtilisateur
+            WHERE r.idProprietaire = :idRestaurateur AND cmd.idStatut=1"
+        );
+        $requete->execute(['idRestaurateur'=>$idRestaurateur]);
         return $requete->fetchAll(PDO::FETCH_ASSOC);
     }
 }

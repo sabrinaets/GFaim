@@ -28,7 +28,7 @@
     width:30%;
     align-self: center;
     justify-self: center;
-    background-color:rgb(168, 165, 165);
+    background-color:rgba(213, 208, 208, 0.48);
     margin:20px;
     border-radius: 40px;
     text-align: center;

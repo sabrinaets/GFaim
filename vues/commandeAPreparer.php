@@ -18,6 +18,17 @@
     </header>
     <main class="contenu">
         <h1 class="commandeALivrer">Commandes à préparer</h1>
+        <?php
+            $cmdResto = $controleur->getTabCommandesResto();
+
+
+            if (empty($cmdResto)) {
+                echo "<h3>Aucune commande n'a été placée.</h3>";
+            } else {
+                afficherCommandesResto($cmdResto);
+            }
+        ?>
+        <!--
         <ul class="liste-commandes">
             <li class="livraison">
                 <span class="commandeALivrerNomResto">🍉 Watermelon</span><br>

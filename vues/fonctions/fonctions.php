@@ -1,5 +1,7 @@
 
 <?php 
+require_once("modele/DAO/CommandeItemDao.php");
+
 function afficherMenu($controleur)
 {
     $menu = "
@@ -124,6 +126,25 @@ function afficherCommandesALivrer(array $tableau):void{
         }
         echo '</ul>';
         echo '<a class="boutonAnnuler" href="?action=annulerCommandeLivreur&id='.htmlspecialchars((string) $uneCommande['idCommande']).'">Annuler</a>';
+        echo '</li>';
+
+    }
+}
+function afficherCommandesResto(array $tableau):void{
+    echo '<ul class="liste-commandes">';
+    foreach ($tableau as $uneCommande){
+        echo '<li class="livraison">';
+        echo '<span class="commandeALivrerNomResto">' . htmlspecialchars($uneCommande['nomRestaurant']).'</span>';
+        echo '<span class="adresse">'. htmlspecialchars($uneCommande['adresseClient']).' - '. htmlspecialchars($uneCommande['nomClient']).'</span>';
+    
+        // Afficher les items de la commande
+        echo '<ul class="commandeALivrerDetails">';
+        $items = CommandeItemDao::findAllByCommande($uneCommande['idCommande']);
+        foreach ($items as $item) {
+            echo '<li>' . htmlspecialchars($item->getNom()) . ' (Quantité: ' . htmlspecialchars($item->getQuantite()) . ')</li>'; //probleme possible ici
+        }
+        echo '</ul>';
+        echo '<a class="boutonTerminer" href="?action=terminerCommande&id='.htmlspecialchars((string) $uneCommande['idCommande']).'">Terminer</a>';
         echo '</li>';
 
     }

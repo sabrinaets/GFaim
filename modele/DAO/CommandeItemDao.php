@@ -85,7 +85,7 @@ class CommandeItemDao implements DAO {
         }
 
         $liste = [];
-        $requete = $connexion->prepare("SELECT * FROM CommandeItem  WHERE idCommande = :idCommande");
+        $requete = $connexion->prepare("SELECT * FROM Commande_item  WHERE idCommande = :idCommande");
         $requete->bindParam(':idCommande', $idCommande, PDO::PARAM_INT);
         $requete->execute();
 
@@ -196,7 +196,7 @@ class CommandeItemDao implements DAO {
         return $requete->execute();
     }
 
-    static public function findByEmail(string $email): ?Restaurant {
+    static public function findByEmail(string $email): ?Object {
         throw new Exception("Cette fonction n'est pas disponible pour cette classe [commandeItem]");
         return null; // Retourne null si aucun utilisateur trouvé
     }
