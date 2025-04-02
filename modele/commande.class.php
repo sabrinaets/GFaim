@@ -8,7 +8,7 @@ class Commande implements JsonSerializable {
     private float $prixTotal;
     private int $idStatut;
 
-    public function __construct(int $idCommande,int $idClient, int $idRestaurant, ?int $idLivreur,int $prixTotal,int $idStatut){
+    public function __construct(int $idCommande,int $idClient, int $idRestaurant, ?int $idLivreur,float $prixTotal,int $idStatut){
        $this->idCommande = $idCommande;
         $this->idClient=$idClient;
         $this->idRestaurant = $idRestaurant;

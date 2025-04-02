@@ -31,7 +31,7 @@ class RestControllerCommande {
         return !empty($data['idClient']) && 
                !empty($data['idRestaurant']) && 
                !empty($data['idStatut']) &&
-                isset($data['prix']) && is_numeric($data['prix']) && $data['prix'] > 0;
+                isset($data['prixTotal']) && is_numeric($data['prixTotal']) && $data['prixTotal'] > 0;
     }
 
     // Génération des réponses HTTP standardisées
@@ -157,10 +157,11 @@ class RestControllerCommande {
             return $this->unprocessableEntityResponse();
         }
 
-        $Commande->setName($data['nom']);
-        $Commande->setPrix($data['adresse']);
-        $Commande->setImage($data['phone']);
-        $Commande->setDescription($data['description']);
+        $Commande->setIdRestaurant($data['idRestaurant']);
+        $Commande->setPrixTotal($data['prixTotal']);
+        $Commande->setIdClient($data['idClient']);
+        $Commande->setIdLivreur($data['idLivreur']);
+        $Commande->setIdStatut($data['idStatut']);
 
         if (CommandeDAO::update($Commande)) {
             return $this->responseJson(200, ["message" => "Produit mis à jour avec succès"]);
