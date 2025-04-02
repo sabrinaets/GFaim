@@ -1,7 +1,7 @@
 <?php
 // Inclusion des classes nécessaires pour la gestion des produits
-include_once("../modele/DAO/commandeDAO.class.php");
-include_once("../modele/commande.class.php");
+include_once("../modele/DAO/CommandeItemDAO.class.php");
+include_once("../modele/commandeItem.class.php");
 
 // DÉFINIR LES EN-TÊTES HTTP REQUIS POUR LES RÉPONSES JSON
 header("Access-Control-Allow-Origin: *"); // pour autoriser les requêtes externes.
@@ -10,28 +10,27 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization"); //  pour pe
 header("Content-Type: application/json"); // pour spécifier le type json
 // FIN DES AJOUTS EN-TÊTES HTTP
 
-class RestControllerCommande {
+class RestControllerCommandeItem {
     //B. AJOUTER DES PROPRIÉTÉS DE LA CLASSE
     private $requestMethod;
-    private $idCommande;
+    private $idCommandeItem;
 
-    public function __construct($requestMethod, $idCommande) {
+    public function __construct($requestMethod, $idCommandeItem) {
         $this->requestMethod = $requestMethod;
         
-        if (empty($idCommande)) {
-            $this->idCommande = null;
+        if (empty($idCommandeItem)) {
+            $this->idCommandeItem = null;
         } else {
-            $this->idCommande = $idCommande;
+            $this->idCommandeItem = $idCommandeItem;
         }
     }
     //FIN DE B. AJOUTER DES PROPRIÉTÉS DE LA CLASSE
 
     // Vérification de la validité des données du produit
-    private function validateCommande($data) {
-        return !empty($data['idClient']) && 
-               !empty($data['idRestaurant']) && 
-               !empty($data['idStatut']) &&
-                isset($data['prixTotal']) && is_numeric($data['prixTotal']) && $data['prixTotal'] > 0;
+    private function validateCommandeItem($data) {
+        return !empty($data['idCcommande']) && 
+               !empty($data['idItem']) && 
+               !empty($data['quantite']);
     }
 
     // Génération des réponses HTTP standardisées
@@ -72,22 +71,22 @@ class RestControllerCommande {
     //C. IMPLÉMENTER LA MÉTHODE processRequest()
     public function processRequest() {
         if ($this->requestMethod === 'GET') {
-            if ($this->idCommande !== null) {
-                $reponse =  $this->getCommande($this->idCommande);
+            if ($this->idCommandeItem !== null) {
+                $reponse =  $this->getCommandeItem($this->idCommandeItem);
             } else {
-                $reponse = $this->getAllCommandes();
+                $reponse = $this->getAllCommandesItem();
             }
         }
         else if ($this->requestMethod === 'POST') {
-            $reponse = $this->createCommandeFromRequest();
+            $reponse = $this->createCommandeItemFromRequest();
         }
 
-        else if ($this->requestMethod === 'PUT' && $this->idCommande !== null) {
-            $reponse = $this->updateCommandeFromRequest($this->idCommande);
+        else if ($this->requestMethod === 'PUT' && $this->idCommandeItem !== null) {
+            $reponse = $this->updateCommandeItemFromRequest($this->idCommandeItem);
         }
 
-        else if ($this->requestMethod === 'DELETE' && $this->idCommande !== null) {
-            $reponse = $this->deleteCommandeFromRequest($this->idCommande);
+        else if ($this->requestMethod === 'DELETE' && $this->idCommandeItem !== null) {
+            $reponse = $this->deleteCommandeItemFromRequest($this->idCommandeItem);
         }
         else{
             $reponse = $this->notFoundResponse();
@@ -100,22 +99,22 @@ class RestControllerCommande {
     //FIN DE C. IMPLÉMENTER LA MÉTHODE processRequest()
 
     //D. IMPLÉMENTER LES OPÉRATIONS CRUD
-    private function getAllCommandes() {
-        $Commandes = CommandeDAO::findAll();
-        return $this->responseJson(200, $Commandes);
+    private function getAllCommandesItem() {
+        $CommandesItem = CommandeItemDAO::findAll();
+        return $this->responseJson(200, $CommandesItem);
     }
 
     private function getCommande($id) {
-        $Commande = CommandeDAO::findById($id);
+        $CommandeItem = CommandeItemDAO::findById($id);
 
-        if ($Commande) {
-            return $this->responseJson(200, $Commande);
+        if ($CommandeItem) {
+            return $this->responseJson(200, $CommandeItem);
         } else {
             return $this->notFoundResponse();
         }
     }
 
-    private function createCommandeFromRequest() {
+    private function createCommandeItemFromRequest() {
         $data = json_decode(file_get_contents('php://input'), true);
 
         if (!$this->validateCommande($data)) {
@@ -123,20 +122,18 @@ class RestControllerCommande {
         }
 
         // Trouve le dernier produit pour obtenir le dernier ID et incrémenter de 1
-        $allCommandes = CommandeDAO::findAll();
+        $allCommandes = CommandeItemDAO::findAll();
         $lastCommande = end($allCommandes);
-        $newId = $lastCommande->getIdCommande() + 1;
+        $newId = $lastCommande->getIdCommandeItem() + 1;
 
-        $Commande = new Commande(
+        $CommandeItem = new CommandeItem(
             $newId, 
-            $data['idClient'],
-            $data['idRestaurant'],
-            null,
-            $data['prixTotal'], 
-            $data['idStatut'],
+            $data['idCommande'],
+            $data['idItem'],
+            $data['quantite'],
         );
 
-        $newidCommande = CommandeDAO::save($Commande);
+        $newidCommandeItem = CommandeItemDAO::save($Commande);
 
         if ($newId) {
             return $this->responseJson(201, ["message" => "Product créé avec succès", "id" => $newId]);
@@ -145,10 +142,10 @@ class RestControllerCommande {
         }
     }
 
-    public function updateCommandeFromRequest($id) {
-        $Commande = CommandeDAO::findById($id);
+    public function updateCommandeItemFromRequest($id) {
+        $CommandeItem = CommandeItemDAO::findById($id);
 
-        if (!$Commande) {
+        if (!$CommandeItem) {
             return $this->notFoundResponse();
         }
 
@@ -157,27 +154,25 @@ class RestControllerCommande {
             return $this->unprocessableEntityResponse();
         }
 
-        $Commande->setIdRestaurant($data['idRestaurant']);
-        $Commande->setPrixTotal($data['prixTotal']);
-        $Commande->setIdClient($data['idClient']);
-        $Commande->setIdLivreur($data['idLivreur']);
-        $Commande->setIdStatut($data['idStatut']);
+        $CommandeItem->setIdCommande($data['idCommande']);
+        $CommandeItem->setIdItem($data['idItem']);
+        $CommandeItem->setQuantite($data['quantite']);
 
-        if (CommandeDAO::update($Commande)) {
+        if (CommandeDAO::update($CommandeItem)) {
             return $this->responseJson(200, ["message" => "Produit mis à jour avec succès"]);
         } else {
             return $this->serverErrorResponse();
         }
     }
 
-    public function deleteCommandeFromRequest($id) {
-        $Commande = CommandeDAO::findById($id);
+    public function deleteCommandeItemFromRequest($id) {
+        $CommandeItem = CommandeItemDAO::findById($id);
 
-        if (!$Commande) {
+        if (!$CommandeItem) {
             return $this->notFoundResponse();
         }
 
-        if (CommandeDAO::delete($Commande)) {
+        if (CommandeDAO::delete($CommandeItem)) {
             return $this->responseJson(200, ["message" => "Produit supprimé avec succès"]);
         } else {
             return $this->serverErrorResponse();

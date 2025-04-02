@@ -3,6 +3,7 @@
 include_once("restControllerItem.php");
 include_once("restControllerRestaurant.php");
 include_once("restControllerCommande.php");
+include_once("restControllerCommandeItem.php");
 // FIN 2.
 
 // 3.
@@ -56,6 +57,10 @@ switch($resource){
         break;
     case "commande":
         $controller = new RestControllerCommande($requestMethod, $id);
+        processDemande($requestMethod, $id, $controller);
+        break;
+    case "commandeItem":
+        $controller = new RestControllerCommandeItem($requestMethod, $id);
         processDemande($requestMethod, $id, $controller);
         break;
     default:
