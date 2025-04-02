@@ -1,14 +1,14 @@
 <?php
-namespace Modele;
-class Commande {
+
+class Commande implements JsonSerializable {
     private int $idCommande;
     private int $idClient;
     private int $idRestaurant;
-    private int $idLivreur;
+    private ?int $idLivreur;
     private float $prixTotal;
     private int $idStatut;
 
-    public function __construct(int $idCommande,int $idClient, int $idRestaurant, int $idLivreur,int $prixTotal,int $idStatut){
+    public function __construct(int $idCommande,int $idClient, int $idRestaurant, ?int $idLivreur,int $prixTotal,int $idStatut){
        $this->idCommande = $idCommande;
         $this->idClient=$idClient;
         $this->idRestaurant = $idRestaurant;
@@ -17,6 +17,16 @@ class Commande {
         $this->idStatut = $idStatut;
     }
 
+    public function jsonSerialize(): array {
+        return [
+            'idCommande' => $this->idCommande,
+            'idClient' => $this->idClient,
+            'idRestaurant' => $this->idRestaurant,
+            'idLivreur' => $this->idLivreur,
+            'prixTotal' => $this->prixTotal,
+            'idStatut' => $this->idStatut
+        ];
+    }
     
 
     /**

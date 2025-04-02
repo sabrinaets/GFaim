@@ -4,7 +4,7 @@ include_once(__DIR__ . "/DAO.interface.php");
 require_once (__DIR__ . "/../commande.class.php");
 
 class commandeDAO implements DAO{
-    static public function findById(int $id):?Commande{
+    static public function findById(int $id):?object{
         try{
             $connexion = ConnexionBD::getInstance();
         }
