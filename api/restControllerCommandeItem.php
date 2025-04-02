@@ -1,7 +1,7 @@
 <?php
 // Inclusion des classes nécessaires pour la gestion des produits
 include_once("../modele/DAO/CommandeItemDao.php");
-include_once("../modele/commandeItem.class.php");
+
 
 // DÉFINIR LES EN-TÊTES HTTP REQUIS POUR LES RÉPONSES JSON
 header("Access-Control-Allow-Origin: *"); // pour autoriser les requêtes externes.
@@ -121,22 +121,19 @@ class RestControllerCommandeItem {
             return $this->unprocessableEntityResponse();
         }
 
-        // Trouve le dernier produit pour obtenir le dernier ID et incrémenter de 1
-        $allCommandes = CommandeItemDAO::findAll();
-        $lastCommande = end($allCommandes);
-        $newId = $lastCommande->getIdCommandeItem() + 1;
+
 
         $CommandeItem = new CommandeItem(
-            $newId, 
+            null, 
             $data['idCommande'],
             $data['idItem'],
             $data['quantite'],
         );
 
-        $newidCommandeItem = CommandeItemDAO::save($CommandeItem);
+        $newCommandeItem = CommandeItemDAO::save($CommandeItem);
 
-        if ($newId) {
-            return $this->responseJson(201, ["message" => "Product créé avec succès", "id" => $newId]);
+        if ($newCommandeItem) {
+            return $this->responseJson(201, ["message" => "Product créé avec succès"]);
         } else {
             return $this->serverErrorResponse();
         }

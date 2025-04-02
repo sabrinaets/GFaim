@@ -1,7 +1,6 @@
 <?php
 // Inclusion des classes nécessaires pour la gestion des produits
-include_once("../modele/DAO/RestaurantDAO.class.php");
-include_once("../modele/restaurant.class.php");
+include_once("../modele/DAO/RestaurantDao.class.php");
 
 // DÉFINIR LES EN-TÊTES HTTP REQUIS POUR LES RÉPONSES JSON
 header("Access-Control-Allow-Origin: *"); // pour autoriser les requêtes externes.
@@ -50,6 +49,7 @@ class RestControllerRestaurant {
 
     // Réponse 422 : Données invalides
     private function unprocessableEntityResponse() {
+        
         return $this->responseJson(422, ["message" => "Invalid input"]);
     }
 
@@ -124,12 +124,12 @@ class RestControllerRestaurant {
         }
 
         // Trouve le dernier produit pour obtenir le dernier ID et incrémenter de 1
-        $allrestaurants = RestaurantDAO::findAll();
+        /*$allrestaurants = RestaurantDAO::findAll();
         $lastrestaurant = end($allrestaurants);
-        $newId = $lastrestaurant->getIdRestaurant() + 1;
+        $newId = $lastrestaurant->getIdRestaurant() + 1;*/
 
         $restaurant = new restaurant(
-            $newId, 
+            null,
             $data['idProprietaire'],
             $data['nom'],
             $data['adresse'],
@@ -137,10 +137,10 @@ class RestControllerRestaurant {
             $data['description'],
         );
 
-        $newrestaurantId = RestaurantDAO::save($restaurant);
+        $newrestaurant = RestaurantDAO::save($restaurant);
 
-        if ($newId) {
-            return $this->responseJson(201, ["message" => "Product créé avec succès", "id" => $newId]);
+        if ($newrestaurant) {
+            return $this->responseJson(201, ["message" => "Product créé avec succès"]);
         } else {
             return $this->serverErrorResponse();
         }

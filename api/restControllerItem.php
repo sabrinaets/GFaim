@@ -1,7 +1,7 @@
 <?php
 // Inclusion des classes nécessaires pour la gestion des produits
-include_once("../modele/DAO/itemDAO.class.php");
-include_once("../modele/item.class.php");
+include_once("../modele/DAO/itemDao.class.php");
+
 
 // DÉFINIR LES EN-TÊTES HTTP REQUIS POUR LES RÉPONSES JSON
 header("Access-Control-Allow-Origin: *"); // pour autoriser les requêtes externes.
@@ -123,12 +123,12 @@ class RestControllerItem {
         }
 
         // Trouve le dernier produit pour obtenir le dernier ID et incrémenter de 1
-        $allItems = ItemDAO::findAll();
+        /*$allItems = ItemDAO::findAll();
         $lastItem = end($allItems);
-        $newId = $lastItem->getIdItem() + 1;
+        $newId = $lastItem->getIdItem() + 1;*/
 
         $item = new Item(
-            $newId, 
+            null, 
             $data['idRestaurant'],
             $data['nom'],
             $data['description'],
@@ -136,10 +136,10 @@ class RestControllerItem {
             $data['image'] 
         );
 
-        $newItemId = ItemDAO::save($item);
+        $newItem = ItemDAO::save($item);
 
-        if ($newId) {
-            return $this->responseJson(201, ["message" => "Product créé avec succès", "id" => $newId]);
+        if ($newItem) {
+            return $this->responseJson(201, ["message" => "Product créé avec succès"]);
         } else {
             return $this->serverErrorResponse();
         }

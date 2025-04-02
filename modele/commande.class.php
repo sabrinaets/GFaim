@@ -1,14 +1,14 @@
 <?php
 
 class Commande implements JsonSerializable {
-    private int $idCommande;
+    private ?int $idCommande;
     private int $idClient;
     private int $idRestaurant;
     private ?int $idLivreur;
     private float $prixTotal;
     private int $idStatut;
 
-    public function __construct(int $idCommande,int $idClient, int $idRestaurant, ?int $idLivreur,float $prixTotal,int $idStatut){
+    public function __construct(?int $idCommande,int $idClient, int $idRestaurant, ?int $idLivreur,float $prixTotal,int $idStatut){
        $this->idCommande = $idCommande;
         $this->idClient=$idClient;
         $this->idRestaurant = $idRestaurant;

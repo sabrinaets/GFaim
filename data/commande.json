@@ -1,0 +1,12 @@
+{
+    "commande":
+    [
+        {
+            "idClient":5,
+            "idRestaurant":4,
+            "idLivreur":null,
+            "prixTotal":0,
+            "idStatut":1
+        }
+    ]
+}
