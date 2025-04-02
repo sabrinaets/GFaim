@@ -21,7 +21,7 @@ class CommandeItemDao implements DAO {
 
         $commandeItem = null;
         $requete = $connexion->prepare(
-            "SELECT * FROM CommandeItem WHERE idCommandeItem = :idCommandeItem"
+            "SELECT * FROM commandeitem WHERE idCommandeItem = :idCommandeItem"
         );
         $requete->bindParam(':idCommandeItem', $idCommandeItem, PDO::PARAM_INT);
         $requete->execute();
@@ -54,7 +54,7 @@ class CommandeItemDao implements DAO {
         }
 
         $liste = [];
-        $requete = $connexion->prepare("SELECT * FROM CommandeItem");
+        $requete = $connexion->prepare("SELECT * FROM commandeitem");
         $requete->execute();
 
         while (($enr = $requete->fetch()) !== false) {
@@ -85,7 +85,7 @@ class CommandeItemDao implements DAO {
         }
 
         $liste = [];
-        $requete = $connexion->prepare("SELECT * FROM Commande_item  WHERE idCommande = :idCommande");
+        $requete = $connexion->prepare("SELECT * FROM commandeitem  WHERE idCommande = :idCommande");
         $requete->bindParam(':idCommande', $idCommande, PDO::PARAM_INT);
         $requete->execute();
 
@@ -124,7 +124,7 @@ class CommandeItemDao implements DAO {
     
         // Requête préparée
         $requete = $connexion->prepare(
-            "INSERT INTO CommandeItem (idCommande, idItem, quantite) 
+            "INSERT INTO commandeitem (idCommande, idItem, quantite) 
              VALUES (:idCommande, :idItem, :quantite)"
         );
 
@@ -162,7 +162,7 @@ class CommandeItemDao implements DAO {
 
         // Requête préparée
         $requete = $connexion->prepare(
-            "UPDATE CommandeItem 
+            "UPDATE commandeitem 
              SET idCommande = :idCommande, idItem = :idItem, quantite = :quantite 
              WHERE idCommandeItem = :idCommandeItem"
         );
@@ -189,7 +189,7 @@ class CommandeItemDao implements DAO {
         }
 
         $requete = $connexion->prepare(
-            "DELETE FROM commandeItem WHERE idCommandeItem = :idCommandeItem"
+            "DELETE FROM commandeitem WHERE idCommandeItem = :idCommandeItem"
         );
         $requete->bindParam(':idItem', $commandeItem->getIdCommandeItem(), PDO::PARAM_INT);
 

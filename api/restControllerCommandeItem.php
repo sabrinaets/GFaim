@@ -1,6 +1,6 @@
 <?php
 // Inclusion des classes nécessaires pour la gestion des produits
-include_once("../modele/DAO/CommandeItemDAO.class.php");
+include_once("../modele/DAO/CommandeItemDao.php");
 include_once("../modele/commandeItem.class.php");
 
 // DÉFINIR LES EN-TÊTES HTTP REQUIS POUR LES RÉPONSES JSON
@@ -28,7 +28,7 @@ class RestControllerCommandeItem {
 
     // Vérification de la validité des données du produit
     private function validateCommandeItem($data) {
-        return !empty($data['idCcommande']) && 
+        return !empty($data['idCommande']) && 
                !empty($data['idItem']) && 
                !empty($data['quantite']);
     }
@@ -104,7 +104,7 @@ class RestControllerCommandeItem {
         return $this->responseJson(200, $CommandesItem);
     }
 
-    private function getCommande($id) {
+    private function getCommandeItem($id) {
         $CommandeItem = CommandeItemDAO::findById($id);
 
         if ($CommandeItem) {
@@ -117,7 +117,7 @@ class RestControllerCommandeItem {
     private function createCommandeItemFromRequest() {
         $data = json_decode(file_get_contents('php://input'), true);
 
-        if (!$this->validateCommande($data)) {
+        if (!$this->validateCommandeItem($data)) {
             return $this->unprocessableEntityResponse();
         }
 
@@ -133,7 +133,7 @@ class RestControllerCommandeItem {
             $data['quantite'],
         );
 
-        $newidCommandeItem = CommandeItemDAO::save($Commande);
+        $newidCommandeItem = CommandeItemDAO::save($CommandeItem);
 
         if ($newId) {
             return $this->responseJson(201, ["message" => "Product créé avec succès", "id" => $newId]);
@@ -150,7 +150,7 @@ class RestControllerCommandeItem {
         }
 
         $data = json_decode(file_get_contents('php://input'), true);
-        if (!$this->validateCommande($data)) {
+        if (!$this->validateCommandeItem($data)) {
             return $this->unprocessableEntityResponse();
         }
 
@@ -158,7 +158,7 @@ class RestControllerCommandeItem {
         $CommandeItem->setIdItem($data['idItem']);
         $CommandeItem->setQuantite($data['quantite']);
 
-        if (CommandeDAO::update($CommandeItem)) {
+        if (CommandeItemDAO::update($CommandeItem)) {
             return $this->responseJson(200, ["message" => "Produit mis à jour avec succès"]);
         } else {
             return $this->serverErrorResponse();
