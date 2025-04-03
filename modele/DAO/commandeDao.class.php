@@ -229,9 +229,16 @@ class commandeDAO implements DAO{
         $requete->execute(['idCommande'=>$idCmd]);
         return $requete->execute();
     }
-    static public function terminerCommandeResto(PDO $pdo, int $idCmd){
+    static public function terminerCommandeResto(PDO $pdo, int $idCmd):bool{
         $requete = $pdo->prepare(
             "UPDATE commande SET idStatut = 3 WHERE idCommande = :idCommande"
+        );
+        $requete->execute(['idCommande'=>$idCmd]);
+        return $requete->execute();
+    }
+    static public function annulerMaCommande(PDO $pdo, int $idCmd):bool{
+        $requete = $pdo->prepare(
+            "DELETE FROM commande WHERE idCommande = :idCommande"
         );
         $requete->execute(['idCommande'=>$idCmd]);
         return $requete->execute();
