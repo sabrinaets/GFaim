@@ -17,7 +17,7 @@ $requestMethod = $_SERVER["REQUEST_METHOD"];
 $requestUri = $_SERVER['REQUEST_URI'];
 $scriptName = $_SERVER['SCRIPT_NAME']; // Chemin du script exécuté
 $scriptDir = dirname($scriptName); // Dossier contenant le script
-$requestPath = trim(str_replace($scriptDir, "", $requestUri), "/"); // Extraction du chemin relatif
+$requestPath = trim(str_replace("/PROJETWEB/api", "", $requestUri), "/"); // Extraction du chemin relatif
 // FIN 4.
 
 // 5.

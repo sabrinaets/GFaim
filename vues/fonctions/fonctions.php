@@ -191,4 +191,31 @@ function afficherMenuResto(array $tableauItem, Restaurant $resto):void{
     echo '</div>';
 
 }
+function afficherMesRestaurants(array $tableau):void{
+    echo '<ul class="liste-commandes">';
+    foreach ($tableau as $unRestaurant){
+        echo '<li class="article">';
+        echo '<a href="?action=voirMonMenu&id='.htmlspecialchars((string) $unRestaurant->getIdRestaurant()).'" style="font-size: 24px; font-weight: bold; color: #D2691E; text-transform: uppercase; height: 40px; line-height: 50px; margin-top: 10px;">' . htmlspecialchars($unRestaurant->getNom()).'</a>';
+        echo '<span class="description" style ="margin-top: 20px;">'. htmlspecialchars($unRestaurant->getDescription()).'</span>';
+        echo '<a class="boutonModifier" href="?action=modifierResto&id='.htmlspecialchars((string) $unRestaurant->getIdRestaurant()).'">Modifier Restaurant</a>';
+        echo '<button class="boutonSupprimer">Supprimer</button>';
+        echo '</li>';
+        
+    }
+    echo '</ul>';
+}
+function afficherMonMenu(array $tableauItem):void{
+    echo '<ul class="liste-commandes">';
+    foreach ($tableauItem as $unItem){
+        echo '<li class="article">';
+        echo '<span class="nomArticle">'. htmlspecialchars($unItem->getNom()).'</span><br>';
+        echo '<span class="description">'. htmlspecialchars($unItem->getDescription()).'</span><br>';
+        echo '<span class="prix">Prix: '. htmlspecialchars($unItem->getPrix()).'</span><br>';
+        echo '<a class="boutonModifier" href="?action=editArticle&id='.htmlspecialchars((string) $unItem->getIdItem()).'">Modifier</a>';
+        echo '<button class="boutonSupprimer">Supprimer</button>';
+    }
+    echo '</ul>';
+
+
+}
 ?>

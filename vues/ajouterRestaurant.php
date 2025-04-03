@@ -1,5 +1,7 @@
 <?php
-session_start(); // Toujours démarrer la session
+if(!isset($_SESSION)) {
+    session_start(); // Toujours démarrer la session
+}
 $idUtilisateur = isset($_SESSION['idUtilisateur']) ? $_SESSION['idUtilisateur'] : null;
 echo "<script>const idProprietaire = " . json_encode($idUtilisateur) . ";</script>";
 ?>
@@ -65,14 +67,12 @@ echo "<script>const idProprietaire = " . json_encode($idUtilisateur) . ";</scrip
 
         <script>
     document.addEventListener("DOMContentLoaded", function () {
-        // Sélection du formulaire
+
         const form = document.getElementById('ajouterResto');
 
-        // Vérifier si le formulaire existe avant d'ajouter l'écouteur d'événement
         if (form) {
             form.addEventListener('submit', function (event) {
-                event.preventDefault(); // Empêche la soumission classique
-                // Vérifier si les champs ne sont pas vides
+                event.preventDefault(); // Empêche la soumission classique du formulaire
                 const name = form.querySelector('[name="name"]').value.trim();
                 const adresse = form.querySelector('[name="adresse"]').value.trim();
                 const phone = form.querySelector('[name="phone"]').value.trim();
@@ -83,21 +83,18 @@ echo "<script>const idProprietaire = " . json_encode($idUtilisateur) . ";</scrip
                     return;
                 }
 
-                // Construire un objet JSON avec les informations du restaurant
                 const resto = {
-                    idProprietaire: idProprietaire, // L'ID peut être null lors de l'ajout
-                    name: name,
+                    idProprietaire: idProprietaire,
+                    nom: name,
                     adresse: adresse,
                     phone: phone,
                     description: description
                 };
 
-                // Demander confirmation avant d'envoyer
                 if (!confirm("Voulez-vous vraiment ajouter ce restaurant ?")) {
                     return;
                 }
 
-                // Envoi de la requête POST à l'API
                 fetch('http://localhost:9090/PROJETWEB/api/restaurant', {
                     method: 'POST',
                     headers: {
@@ -114,7 +111,7 @@ echo "<script>const idProprietaire = " . json_encode($idUtilisateur) . ";</scrip
                 .then(data => {
                     alert('Restaurant ajouté avec succès !');
                     console.log('Succès:', data);
-                    form.reset(); // Réinitialiser le formulaire
+                    form.reset();
                 })
                 .catch(error => {
                     console.error('Erreur:', error);

@@ -19,7 +19,16 @@
     <main class="contenu">
         <h1>Voici vos Restaurants</h1>
         <a class="boutonAjouter"href="?action=ajouterResto">Nouveau Restaurant</a>
-        <ul class="liste-commandes">
+        <?php
+        if(empty($controleur->getMesRestos()))
+        {
+            echo "<h1>Aucun restaurant trouvé</h1>";
+        }
+        else{
+            afficherMesRestaurants($controleur->getMesRestos()); // Affiche la liste des restaurants
+        }
+        ?>
+        <!---<ul class="liste-commandes">
             <li class="article">
                 <a href="?action=voirMonMenu" style="font-size: 24px; font-weight: bold; color: #D2691E; text-transform: uppercase; height: 40px; line-height: 50px; margin-top: 10px;">
                 Trois Amigos</a><br>
@@ -27,7 +36,7 @@
                 <a class="boutonModifier" href="?action=modifierResto">Modifier Restaurant</a>
                 <button class="boutonSupprimer">Supprimer</button>
             </li>
-        </ul>
+        </ul>--->
     </main>
     <footer>
         <p>@2025 tous droits reservés GFaim</p>

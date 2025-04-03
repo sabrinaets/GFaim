@@ -19,7 +19,16 @@
     <main class="contenu">
         <h1>Voici les articles dans votre menu</h1>
         <a class="boutonAjouter"href="?action=ajouterProduit">Ajouter</a>
-        <ul class="liste-commandes">
+        <?php
+        if(empty($controleur->getMesItems()))
+        {
+            echo "<h1>Aucun article trouvé</h1>";
+        }
+        else{
+            afficherMonMenu($controleur->getMesItems()); // Affiche la liste des articles
+        }
+        ?>
+        <!---<ul class="liste-commandes">
             <li class="article">
                 <span class="nomArticle">Rondelle d'oignon</span><br>
                 <span class="description">Des oignons frais pané servi avec notre mayo épicée signature</span><br>
@@ -62,7 +71,7 @@
                 <button class="boutonModifier" href="?action=editArticle">Modifier</button>
                 <button class="boutonSupprimer">Supprimer</button>
             </li>
-        </ul>
+        </ul>--->
         <div class="formAjouterPromotion">
             <h2>Ajouter une promotion</h2>
             <form id="ajouterPromotion" action="post">
