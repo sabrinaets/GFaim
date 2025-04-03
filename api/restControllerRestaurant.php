@@ -1,7 +1,6 @@
 <?php
 // Inclusion des classes nécessaires pour la gestion des produits
 include_once("../modele/DAO/RestaurantDao.class.php");
-
 // DÉFINIR LES EN-TÊTES HTTP REQUIS POUR LES RÉPONSES JSON
 header("Access-Control-Allow-Origin: *"); // pour autoriser les requêtes externes.
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS"); //pour spécifier les méthodes HTTP acceptées.
@@ -63,7 +62,7 @@ class RestControllerRestaurant {
         $statusMessages = [
             200 => "OK",
             201 => "Created",
-            404 => "Not Found 1",
+            404 => "Not Found",
             422 => "Unprocessable Entity",
             500 => "Internal Server Error"
         ];
