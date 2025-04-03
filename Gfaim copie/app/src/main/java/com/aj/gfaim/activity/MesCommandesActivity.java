@@ -53,6 +53,9 @@ public class MesCommandesActivity extends AppCompatActivity implements View.OnCl
         retour4 = findViewById(R.id.buttonRetour4);
         retour4.setOnClickListener(this);
 
+        //localiser = findViewById(R.id.buttonLocaliser);
+        //localiser.setOnClickListener(this);
+
         commandesList = new ArrayList<Commande>();
         commandesList.add(new Commande("commande 1", "produit 1", "statut 1"));
         commandesList.add(new Commande("commande 2", "produit 2", "statut 2"));
@@ -82,5 +85,10 @@ public class MesCommandesActivity extends AppCompatActivity implements View.OnCl
         if (v == retour4) {
             finish();
         }
+
+        /*if (v == localiser) {
+            Intent intent = new Intent(this, LocaliserActivity.class);
+            startActivity(intent);
+        }*/
     }
 }

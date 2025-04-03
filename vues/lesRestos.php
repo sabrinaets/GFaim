@@ -20,7 +20,16 @@
     </header>
 
     <main class="main">
-        <ul id="restaurant-list">
+        <?php
+        if(empty($controleur->getLesRestos()))
+        {
+            echo "<h1>Aucun restaurant trouvé</h1>";
+        }
+        else{
+            afficherRestaurants($controleur->getLesRestos()); // Affiche la liste des restaurants
+        }
+        ?>
+        <!--<ul id="restaurant-list">
 
         <li class="carreResto">
             <div class="texteResto">
@@ -51,6 +60,7 @@
             <h2>Panier</h2>
             <ul></ul>
         </div>
+    </ul>-->
     </main>
     <footer>
         <p>@2025 tous droits reservés GFaim</p>
