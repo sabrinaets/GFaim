@@ -121,9 +121,9 @@ function afficherCommandesALivrer(array $tableau):void{
         // Afficher les items de la commande
         echo '<ul class="commande-details">';
         $items = CommandeItemDao::findAllByCommande($uneCommande['idCommande']);
-        foreach ($items as $item) {
-            echo '<li>' . htmlspecialchars($item->getNom()) . ' (Quantité: ' . htmlspecialchars($item->getQuantite()) . ')</li>'; //probleme possible ici
-        }
+        /*foreach ($items as $item) {
+            echo '<li>'  .htmlspecialchars($item->getNom()). '  (Quantité: ' . htmlspecialchars($item->getQuantite()) . ')</li>'; //probleme possible ici
+        }*/
         echo '</ul>';
         echo '<a class="boutonAnnuler" href="?action=annulerCommandeLivreur&id='.htmlspecialchars((string) $uneCommande['idCommande']).'">Annuler</a>';
         echo '</li>';
@@ -140,9 +140,9 @@ function afficherCommandesResto(array $tableau):void{
         // Afficher les items de la commande
         echo '<ul class="commandeALivrerDetails">';
         $items = CommandeItemDao::findAllByCommande($uneCommande['idCommande']);
-        foreach ($items as $item) {
+        /*foreach ($items as $item) {
             echo '<li>' . htmlspecialchars($item->getNom()) . ' (Quantité: ' . htmlspecialchars($item->getQuantite()) . ')</li>'; //probleme possible ici
-        }
+        }*/
         echo '</ul>';
         echo '<a class="boutonTerminer" href="?action=terminerCommande&id='.htmlspecialchars((string) $uneCommande['idCommande']).'">Terminer</a>';
         echo '</li>';

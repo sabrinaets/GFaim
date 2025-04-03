@@ -1,6 +1,7 @@
 <?php
 
 	include_once("controleurs/controleur_classe_abstraite.php");
+	include_once("modele/DAO/commandeDao.class.php");
 	class VoirCommandesDispoLivreur extends Controleur  {
 
 		private $tabCmdDispo;

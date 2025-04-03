@@ -1,5 +1,7 @@
 <?php
 
+namespace Modele;
+use JsonSerializable;
 class Commande implements JsonSerializable {
     private ?int $idCommande;
     private int $idClient;
