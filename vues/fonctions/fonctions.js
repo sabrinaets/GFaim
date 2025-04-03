@@ -1,5 +1,15 @@
+let totalPrix =0;
+
+console.log("Fichier fonctions.js chargé !");
 //Fonction pour faire apparai
-    document.getElementById("toggle-panier").addEventListener("click", afficherPanier) ;
+    document.getElementById("toggle-panier").addEventListener("click", function(){
+        let panier = getPanier();
+        let panierHTML = document.querySelector(".panier");
+        afficherPanier();
+        panierHTML.classList.toggle("hidden");
+        this.textContent = panierHTML.classList.contains("hidden") ? "Panier" : "Fermer panier";
+
+    }) ;
 
 // Clé du panier dans Local Storage
 const PANIER_KEY = "panier";
@@ -15,7 +25,7 @@ function savePanier(panier) {
 }
 
 // Fonction pour ajouter un produit au panier
-function ajouterAuPanier(id, nom, prix) {
+function ajouterAuPanier(id, nom, prix,idRestaurant) {
     let panier = getPanier();
     
     // Vérifie si l'item est déjà dans le panier
@@ -24,9 +34,9 @@ function ajouterAuPanier(id, nom, prix) {
     if (item) {
         item.quantite++; // Incrémente la quantité
     } else {
-        panier.push({ id, nom, prix, quantite: 1 });
+        panier.push({ id, nom, prix, idRestaurant,quantite: 1 });
     }
-    
+    totalPrix+=prix;
     savePanier(panier);
     afficherPanier();
 }
@@ -35,7 +45,7 @@ function ajouterAuPanier(id, nom, prix) {
 function afficherPanier() {
     let panier = getPanier();
     let panierHTML = document.querySelector(".panier");
-    let totalPrix =0;
+    
 
     // Vide le HTML actuel
     let contenu = "";
@@ -43,18 +53,27 @@ function afficherPanier() {
     panier.forEach(item => {
         contenu += `<li>${item.nom} - ${item.prix}€ (x${item.quantite}) 
             <button onclick="supprimerDuPanier(${item.id})">❌</button></li>`;
-        totalPrix += item.prix;
     });
 
-    panierHTML.innerHTML = contenu + `<h2>Total: ${totalPrix}€</h2><br><a href="#">Commander</a>`
-    panierHTML.classList.toggle("hidden");
-    this.textContent = panierHTML.classList.contains("hidden") ? "Panier" : "Fermer panier";
+    panierHTML.innerHTML = contenu + `<h2>Total: ${totalPrix}€</h2><br><a class="commander-panier">Commander</a>`
+    let boutonCommander = document.querySelector(".commander-panier");
+    if (boutonCommander) {
+        boutonCommander.addEventListener("click", commanderPanier);
+    } else {
+        console.error("Le bouton .commander-panier n'a pas été trouvé.");
+    }
 }
 
 // Fonction pour supprimer un produit du panier
 function supprimerDuPanier(id) {
     let panier = getPanier();
+
+    itemASupprimer = panier.find(item => item.id === id);
+    if (itemASupprimer) {
+        totalPrix -= itemASupprimer.quantite * itemASupprimer.prix; // Corrige la soustraction
+    }
     panier = panier.filter(item => item.id !== id);
+   
     savePanier(panier);
     afficherPanier();
 }
@@ -62,8 +81,81 @@ function supprimerDuPanier(id) {
 // Fonction pour vider tout le panier
 function viderPanier() {
     localStorage.removeItem(PANIER_KEY);
+    totalPrix=0;
     afficherPanier();
 }
 
 // Afficher le panier au chargement de la page
 document.addEventListener("DOMContentLoaded", afficherPanier);
+
+
+function commanderPanier(id) {
+    let panier = getPanier();
+
+    if (!panier || panier.length === 0) {
+        alert("Votre panier est vide !");
+        return;
+    }
+
+    
+   // let item = panier.find(item => item.id === id);
+    let idC = sessionStorage.getItem("idUtilisateur");
+
+    if (!idC){
+        console.log("Aucun utilisateur connecte");
+    }
+
+
+    let itemsCommande = panier.map(item => {
+        console.log(item); 
+        return {
+            idProduit: item.id,
+            nom: item.nom,
+            prix: item.prix,
+            quantite: item.quantite,
+            idRestaurant: item.idRestaurant 
+        };
+    });
+
+    let idR;
+    // Vérifie si l'élément contient un idRestaurant avant de l'utiliser
+    itemsCommande.forEach(item => {
+        if (item.idRestaurant === undefined) {
+            console.error("L'élément ne contient pas de idRestaurant");
+        } else {
+            console.log("ID Restaurant: ", item.idRestaurant);
+            idR = item.idRestaurant;
+        }
+    });
+
+    
+
+    // Construire l'objet commande
+    let commande = {
+        idClient: idC, 
+        idRestaurant: idR, 
+        idStatut: 1,  
+        prixTotal: panier.reduce((total, item) => total + item.prix * item.quantite, 0),
+    };
+
+    console.log("Commande envoyée:", commande);
+    fetch("http://localhost:9090/ProjetWeb/api/commande", { 
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(commande)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("Réponse de l'API:", data); 
+        if (data.message) {
+            alert("Commande passée avec succès !");
+            viderPanier(); // Vide le panier après la commande
+        } else {
+            alert("Erreur lors de la commande.");
+        }
+    })
+    .catch(error => console.error("Erreur:", error));
+}
+

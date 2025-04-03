@@ -177,7 +177,13 @@ function afficherMenuResto(array $tableauItem, Restaurant $resto):void{
         echo '<h3>'. htmlspecialchars($unItem->getNom()).'</h3>';
         echo '<p>'. htmlspecialchars($unItem->getDescription()).'</p>';
         echo '<p>Prix: '. htmlspecialchars($unItem->getPrix()).'</p>';
-        echo '<a href="?action=ajouterPanier&id='.htmlspecialchars((string) $unItem->getIdItem()).'">Ajouter au panier</a>';
+        echo '<a onclick="ajouterAuPanier('
+        . htmlspecialchars((string) $unItem->getIdItem()) 
+        . ', \'' . addslashes(htmlspecialchars((string) $unItem->getNom())) . '\', ' 
+        . htmlspecialchars((string) $unItem->getPrix()) . ', ' 
+        . htmlspecialchars((string) $unItem->getIdRestaurant())
+        . ')" href="#">Ajouter au panier</a>';
+   
         echo '</div>';
         echo '</div>';
     }

@@ -21,40 +21,7 @@
     <main class="main" id="main-menu">
         
         <div class="panier hidden">
-            <h2>Mon panier</h2>
-            <div class="panier-items">
-                <div class="panier-item">
-                   
-                        <div>
-                        <h3>Item 1</h3>
-                        <p>Prix: 10$</p>
-                        </div>
-                        <a><i class="fa-solid fa-x"></i></a>
-                    
-                </div>
-                <div class="panier-item">
-                    
-                        <div>
-                        <h3>Item 1</h3>
-                        <p>Prix: 10$</p>
-                        </div>
-                        <a><i class="fa-solid fa-x"></i></a>
-                    
-                </div>
-                <div class="panier-item">
-                    
-                        <div>
-                        <h3>Item 1</h3>
-                        <p>Prix: 10$</p>
-                        </div>
-                        <a><i class="fa-solid fa-x"></i></a>
-                   
-                </div>
-            </div>
-            <div class="total">
-                <h2>Total: 0$</h2>
-                <a class="commander-panier">Commander</a>
-            </div>
+     
         </div>
 
         <div class="carreMenu">
@@ -106,7 +73,7 @@
     <footer>
         <p>@2025 tous droits reservés GFaim</p>
     </footer>
-    <script src="vues/fonctions/fonctions.js"></script>
+    <script src="vues/fonctions/fonctions.js" defer ></script>
     
 </body>
 </html>
