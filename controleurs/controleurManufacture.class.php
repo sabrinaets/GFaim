@@ -22,6 +22,8 @@ include_once("controleurs/controleurAjouterResto.php");
 include_once("controleurs/controleurModifierResto.php");
 include_once("controleurs/controleurVoirStats.php");
 include_once("controleurs/controleurLocaliserClient.php");
+include_once("controleurs/controleurAnnulerCommandeLivreur.php");
+include_once("controleurs/controleurTerminerCommande.php");
 
 class ManufactureControleur
 {
@@ -46,7 +48,11 @@ class ManufactureControleur
 			$controleur = new voirRestos();
 		} elseif ($action=="voirMenu"){
 			$controleur = new voirMenu();
-		} elseif ($action == "accueil") {
+		} elseif($action=="terminerCommande"){
+			$controleur = new terminerCommande();
+		}
+		
+		elseif ($action == "accueil") {
 			$controleur = new AccueilDefaut();
 		} else if ($action == "ajouterCommandeLivreur") {
 			$controleur = new AjouterCommandeLivreur();
@@ -61,6 +67,9 @@ class ManufactureControleur
 		}
 		elseif($action == "voirCommandesClient"){
 			$controleur = new voirCommandesClient();
+		}
+		elseif($action == "annulerCommandeLivreur"){
+			$controleur = new annulerCommandeLivreur;
 		}
 		elseif($action == "voirMonMenu"){
 			$controleur = new voirMonMenu();
