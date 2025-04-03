@@ -37,7 +37,7 @@ class SeConnecter extends Controleur
             
             // Vérification de l'existence de l'utilisateur
             if ($unUtilisateur == null) {
-                array_push($this->messagesErreur, "Cet utilisateur n'existe pas.");
+                header("Location: ?action=seConnecter&message=Aucun utilisateur trouvé.");
                 return "connexion.php";
             }
             // Connexion réussie

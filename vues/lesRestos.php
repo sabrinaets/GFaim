@@ -47,6 +47,10 @@
             
         </li>
     </ul>
+    <div class="panier hidden">
+            <h2>Panier</h2>
+            <ul></ul>
+        </div>
     </main>
     <footer>
         <p>@2025 tous droits reservés GFaim</p>

@@ -1,51 +1,69 @@
-//Fonction pour faire apparaitre le panier
-document.getElementById("toggle-panier").addEventListener("click", function () {
-    let panier = document.querySelector(".panier");
-    //nouveau:
+//Fonction pour faire apparai
+    document.getElementById("toggle-panier").addEventListener("click", afficherPanier) ;
+
+// Clé du panier dans Local Storage
+const PANIER_KEY = "panier";
+
+// Fonction pour récupérer le panier depuis Local Storage
+function getPanier() {
+    return JSON.parse(localStorage.getItem(PANIER_KEY)) || [];
+}
+
+// Fonction pour sauvegarder le panier dans Local Storage
+function savePanier(panier) {
+    localStorage.setItem(PANIER_KEY, JSON.stringify(panier));
+}
+
+// Fonction pour ajouter un produit au panier
+function ajouterAuPanier(id, nom, prix) {
+    let panier = getPanier();
     
-    if (!panier) {
-        panier = document.createElement("div");
-        panier.classList.add("panier", "hidden");
-
-        let titre = document.createElement("h2");
-        titre.innerHTML = "Panier";
-
-        let cas1 = document.createElement("div");
-        cas1.classList.add("panier-items"); 
-
-        // Exemple de produit (tu peux remplacer par une liste dynamique)
-        let produit = { nom: "Item 1", prix: 10, id: 1 };
-
-        let innercas1 = document.createElement("div");
-        innercas1.classList.add("panier-item");
-        innercas1.innerHTML = `
-            <div>
-                <h3>${produit.nom}</h3>
-                <p>Prix: ${produit.prix}$</p>
-            </div>
-            <a class="supprimer-item" data-id="${produit.id}"><i class="fa-solid fa-x"></i></a>
-        `;
-
-        cas1.appendChild(innercas1); // Correction : appendChild()
-
-        // Section total
-        let total = document.createElement("div");
-        total.classList.add("total");
-        total.innerHTML = `
-            <h2>Total: ${produit.prix}$</h2>
-            <a class="commander-panier">Commander</a>
-        `;
-
-        // Ajout des éléments au panier
-        panier.appendChild(titre);
-        panier.appendChild(cas1);
-        panier.appendChild(total);
-
-        // Ajout au DOM
-        document.body.appendChild(panier);
+    // Vérifie si l'item est déjà dans le panier
+    let item = panier.find(item => item.id === id);
+    
+    if (item) {
+        item.quantite++; // Incrémente la quantité
+    } else {
+        panier.push({ id, nom, prix, quantite: 1 });
     }
+    
+    savePanier(panier);
+    afficherPanier();
+}
 
-  //fin nouveau              
-    panier.classList.toggle("hidden");
-    this.textContent = panier.classList.contains("hidden") ? "Panier" : "Fermer panier";
-});
+// Fonction pour afficher le panier dans une liste
+function afficherPanier() {
+    let panier = getPanier();
+    let panierHTML = document.querySelector(".panier");
+    let totalPrix =0;
+
+    // Vide le HTML actuel
+    let contenu = "";
+    
+    panier.forEach(item => {
+        contenu += `<li>${item.nom} - ${item.prix}€ (x${item.quantite}) 
+            <button onclick="supprimerDuPanier(${item.id})">❌</button></li>`;
+        totalPrix += item.prix;
+    });
+
+    panierHTML.innerHTML = contenu + `<h2>Total: ${totalPrix}€</h2><br><a href="#">Commander</a>`
+    panierHTML.classList.toggle("hidden");
+    this.textContent = panierHTML.classList.contains("hidden") ? "Panier" : "Fermer panier";
+}
+
+// Fonction pour supprimer un produit du panier
+function supprimerDuPanier(id) {
+    let panier = getPanier();
+    panier = panier.filter(item => item.id !== id);
+    savePanier(panier);
+    afficherPanier();
+}
+
+// Fonction pour vider tout le panier
+function viderPanier() {
+    localStorage.removeItem(PANIER_KEY);
+    afficherPanier();
+}
+
+// Afficher le panier au chargement de la page
+document.addEventListener("DOMContentLoaded", afficherPanier);

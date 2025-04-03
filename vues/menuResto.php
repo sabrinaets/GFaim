@@ -52,7 +52,7 @@
                 </div>
             </div>
             <div class="total">
-                <h2>Total: 30$</h2>
+                <h2>Total: 0$</h2>
                 <a class="commander-panier">Commander</a>
             </div>
         </div>
@@ -94,6 +94,7 @@
             
         </div>
     </div>
+
     </main>
     <footer>
         <p>@2025 tous droits reservés GFaim</p>
