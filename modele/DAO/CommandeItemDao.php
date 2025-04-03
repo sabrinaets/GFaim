@@ -85,17 +85,21 @@ class CommandeItemDao implements DAO {
         }
 
         $liste = [];
-        $requete = $connexion->prepare("SELECT * FROM commandeitem  WHERE idCommande = :idCommande");
+        $requete = $connexion->prepare(
+            "SELECT cmdi.*,i.nom AS nomItem FROM commandeitem cmdi
+            JOIN item i ON cmdi.idItem = i.idItem
+            WHERE cmdi.idCommande = :idCommande");
         $requete->bindParam(':idCommande', $idCommande, PDO::PARAM_INT);
         $requete->execute();
 
         while (($enr = $requete->fetch()) !== false) {
-            $commandeItem = new CommandeItem(
-                $enr['idCommandeItem'],
-                $enr['idCommande'],
-                $enr['idItem'],
-                $enr['quantite']
-            );
+            $commandeItem =[
+                'idCommandeItem' => $enr['idCommandeItem'],
+                'idCommande' => $enr['idCommande'],
+                'idItem' => $enr['idItem'],
+                'quantite' => $enr['quantite'],
+                'nomItem' => $enr['nomItem']
+            ];
             $liste[] = $commandeItem;
         }
 

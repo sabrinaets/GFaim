@@ -10,7 +10,11 @@
             background-color:rgba(24, 138, 45, 0.98);
             text-decoration: none;
             height:20px;
+            padding:10px 15px;
+            border-radius: 20px;
             font-weight: 600;
+            color:#fff;
+
         }
         .boutonAccepte:hover {
     background-color: var(--bleuLogo);

@@ -53,16 +53,16 @@ function afficherCommandesClient(array $tableau): void {
     echo '<ul class="liste-commandes-client">';
     foreach ($tableau as $uneCommande) {
         echo '<li class="commande">';    
-        echo '<span>Restaurant : ' . htmlspecialchars($uneCommande['nomRestaurant']) . '</span>';
-        echo '<span>Adresse : ' . htmlspecialchars($uneCommande['adresseRestaurant']) . '</span>';
-        echo '<p class="price"><small>Prix</small> ' . number_format($uneCommande['prixTotal'], 2) . '&thinsp;$</p>';
+        echo '<span>' . htmlspecialchars($uneCommande['nomRestaurant']) . '</span>';
+        echo '<span>' . htmlspecialchars($uneCommande['adresseRestaurant']) . '</span>';
+        echo '<span>' . number_format($uneCommande['prixTotal'], 2) . '&thinsp;$</span>';
 
 
         // Afficher les items de la commande
         echo '<ul class="items-commande">';
         $items = CommandeItemDao::findAllByCommande($uneCommande['idCommande']);
         foreach ($items as $item) {
-            echo '<li>' . htmlspecialchars($item->getNom()) . ' (Quantité: ' . htmlspecialchars($item->getQuantite()) . ')</li>';
+            echo '<li style="margin-right:20px">' . htmlspecialchars((string) $item['nomItem']) . ' (x' . htmlspecialchars((string) $item['quantite']) . ')</li>'; //probleme possible ici
         }
         echo '</ul>';
 
@@ -101,7 +101,7 @@ function afficherCommandesDispo(array $tableau):void{
         echo '<ul class="commande-details">';
         $items = CommandeItemDao::findAllByCommande($uneCommande['idCommande']);
         foreach ($items as $item) {
-            echo '<li>' . htmlspecialchars($item->getNom()) . ' (Quantité: ' . htmlspecialchars($item->getQuantite()) . ')</li>'; //probleme possible ici
+            echo '<li style="margin-right:20px">' . htmlspecialchars((string) $item['nomItem']) . ' (x' . htmlspecialchars((string) $item['quantite']) . ')</li>'; //probleme possible ici
         }
         echo '</ul>';
     
@@ -121,9 +121,9 @@ function afficherCommandesALivrer(array $tableau):void{
         // Afficher les items de la commande
         echo '<ul class="commande-details">';
         $items = CommandeItemDao::findAllByCommande($uneCommande['idCommande']);
-        /*foreach ($items as $item) {
-            echo '<li>'  .htmlspecialchars($item->getNom()). '  (Quantité: ' . htmlspecialchars($item->getQuantite()) . ')</li>'; //probleme possible ici
-        }*/
+        foreach ($items as $item) {
+            echo '<li style="margin-right:20px">' . htmlspecialchars((string) $item['nomItem']) . ' (x' . htmlspecialchars((string) $item['quantite']) . ')</li>'; 
+        }
         echo '</ul>';
         echo '<a class="boutonAnnuler" href="?action=annulerCommandeLivreur&id='.htmlspecialchars((string) $uneCommande['idCommande']).'">Annuler</a>';
         echo '</li>';
@@ -140,9 +140,9 @@ function afficherCommandesResto(array $tableau):void{
         // Afficher les items de la commande
         echo '<ul class="commandeALivrerDetails">';
         $items = CommandeItemDao::findAllByCommande($uneCommande['idCommande']);
-        /*foreach ($items as $item) {
-            echo '<li>' . htmlspecialchars($item->getNom()) . ' (Quantité: ' . htmlspecialchars($item->getQuantite()) . ')</li>'; //probleme possible ici
-        }*/
+        foreach ($items as $item) {
+            echo '<li style="margin-right:20px">' . htmlspecialchars((string) $item['nomItem']) . ' (Quantité: ' . htmlspecialchars((string) $item['quantite']) . ')</li>'; //probleme possible ici
+        }
         echo '</ul>';
         echo '<a class="boutonTerminer" href="?action=terminerCommande&id='.htmlspecialchars((string) $uneCommande['idCommande']).'">Terminer</a>';
         echo '</li>';
