@@ -58,7 +58,14 @@
         </div>
 
         <div class="carreMenu">
-            <div class="menuResto">
+            <?php
+                if(empty($controleur->getLesItems())) {
+                    echo "<h1>Aucun Produits trouvé</h1>";
+                } else {
+                    afficherMenuResto($controleur->getLesItems(), $controleur->getResto()); // Affiche la liste des restaurants
+                }
+            ?>
+            <!---<div class="menuResto">
                 <h1 id="resto-nom">Restaurant l'escondite</h1>
                 <br>
                 <h2> - Menu - </h2>
@@ -92,7 +99,7 @@
                     </div>
                 </div>
             
-        </div>
+        </div>--->
     </div>
     </main>
     <footer>

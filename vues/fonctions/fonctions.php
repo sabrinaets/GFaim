@@ -150,4 +150,39 @@ function afficherCommandesResto(array $tableau):void{
     }
 }
 
+function afficherRestaurants(array $tableau):void{
+    echo '<ul id="restaurant-list">';
+    foreach ($tableau as $unRestaurant){
+        echo '<li class="carreResto">';
+        echo '<div class="texteResto">';
+        echo '<h1 id="resto-nom" class="nomResto" style ="margin: 0; padding: 0">'. htmlspecialchars($unRestaurant->getNom()).'</h1>';
+        echo '<h2 id="resto-adresse" class="adresseResto">'. htmlspecialchars($unRestaurant->getAdresse()).'</h2>';
+        echo '</div>';
+        echo '<a href="?action=voirMenu&id='.htmlspecialchars((string) $unRestaurant->getIdRestaurant()).'" style="text-align: center;">Menu</a>';
+        echo '</li>';
+        
+    }
+    echo '</ul>';
+}
+function afficherMenuResto(array $tableauItem, Restaurant $resto):void{
+    echo '<div class="menuResto">';
+    echo '<h1 id="resto-nom">'. htmlspecialchars($resto->getNom()).'</h1>';
+    echo '<br>';
+    echo '<h2>'. htmlspecialchars(" - Menu - ").'</h2>';
+    echo '<div id="menu">';
+    foreach ($tableauItem as $unItem){
+        echo '<div class="menu-item">';
+        echo '<img src="images/imageBurger.jpg" alt="burger" width ="250px" height="250px">';
+        echo '<div class="item-info">';
+        echo '<h3>'. htmlspecialchars($unItem->getNom()).'</h3>';
+        echo '<p>'. htmlspecialchars($unItem->getDescription()).'</p>';
+        echo '<p>Prix: '. htmlspecialchars($unItem->getPrix()).'</p>';
+        echo '<a href="?action=ajouterPanier&id='.htmlspecialchars((string) $unItem->getIdItem()).'">Ajouter au panier</a>';
+        echo '</div>';
+        echo '</div>';
+    }
+    echo '</div>';
+    echo '</div>';
+
+}
 ?>

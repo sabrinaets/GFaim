@@ -63,7 +63,7 @@ class RestControllerRestaurant {
         $statusMessages = [
             200 => "OK",
             201 => "Created",
-            404 => "Not Found",
+            404 => "Not Found 1",
             422 => "Unprocessable Entity",
             500 => "Internal Server Error"
         ];

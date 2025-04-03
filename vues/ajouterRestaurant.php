@@ -1,3 +1,8 @@
+<?php
+session_start(); // Toujours démarrer la session
+$idUtilisateur = isset($_SESSION['idUtilisateur']) ? $_SESSION['idUtilisateur'] : null;
+echo "<script>const idProprietaire = " . json_encode($idUtilisateur) . ";</script>";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,6 +29,7 @@
                 <input
                   type="text"
                   id="ajouterNom"
+                  name="name"
                   class="form-control my-2"
                   placeholder="Nom du restaurant"
                   required
@@ -31,6 +37,7 @@
                 <input
                   type="text"
                   id="ajouterAdresse"
+                  name="adresse"
                   class="form-control my-2"
                   placeholder="Adresse civique"
                   required
@@ -38,12 +45,14 @@
                 <input
                   type="text"
                   id="ajouterPhone"
+                  name="phone"
                   class="form-control my-2"
                   placeholder="Numéro de téléphone"
                   required
                 />
                 <textarea
                   id="ajouterDescription"
+                  name="description"
                   class="form-control my-2"
                   placeholder="Description"
                   required
@@ -51,6 +60,73 @@
                 <input  style="font-size:17px; padding:7px; margin-top:15px; border:none; width:40%; border-radius:20px" type="submit" value="Ajouter">
             </form>
         </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Sélection du formulaire
+        const form = document.getElementById('ajouterResto');
+
+        // Vérifier si le formulaire existe avant d'ajouter l'écouteur d'événement
+        if (form) {
+            form.addEventListener('submit', function (event) {
+                event.preventDefault(); // Empêche la soumission classique
+                // Vérifier si les champs ne sont pas vides
+                const name = form.querySelector('[name="name"]').value.trim();
+                const adresse = form.querySelector('[name="adresse"]').value.trim();
+                const phone = form.querySelector('[name="phone"]').value.trim();
+                const description = form.querySelector('[name="description"]').value.trim();
+
+                if (!name || !adresse || !phone || !description) {
+                    alert("Veuillez remplir tous les champs !");
+                    return;
+                }
+
+                // Construire un objet JSON avec les informations du restaurant
+                const resto = {
+                    idProprietaire: idProprietaire, // L'ID peut être null lors de l'ajout
+                    name: name,
+                    adresse: adresse,
+                    phone: phone,
+                    description: description
+                };
+
+                // Demander confirmation avant d'envoyer
+                if (!confirm("Voulez-vous vraiment ajouter ce restaurant ?")) {
+                    return;
+                }
+
+                // Envoi de la requête POST à l'API
+                fetch('http://localhost:9090/PROJETWEB/api/restaurant', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(resto)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erreur lors de la requête');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    alert('Restaurant ajouté avec succès !');
+                    console.log('Succès:', data);
+                    form.reset(); // Réinitialiser le formulaire
+                })
+                .catch(error => {
+                    console.error('Erreur:', error);
+                    alert("Erreur lors de l'ajout du restaurant. Veuillez réessayer.");
+                });
+            });
+        } else {
+            console.error("Formulaire #ajouterResto non trouvé !");
+        }
+    });
+</script>
+
     </section>
     <footer>
         <p>@2025 tous droits reservés GFaim</p>
