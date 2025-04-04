@@ -198,7 +198,7 @@ function afficherMesRestaurants(array $tableau):void{
         echo '<a href="?action=voirMonMenu&id='.htmlspecialchars((string) $unRestaurant->getIdRestaurant()).'" style="font-size: 24px; font-weight: bold; color: #D2691E; text-transform: uppercase; height: 40px; line-height: 50px; margin-top: 10px;">' . htmlspecialchars($unRestaurant->getNom()).'</a>';
         echo '<span class="description" style ="margin-top: 20px;">'. htmlspecialchars($unRestaurant->getDescription()).'</span>';
         echo '<a class="boutonModifier" href="?action=modifierResto&id='.htmlspecialchars((string) $unRestaurant->getIdRestaurant()).'">Modifier Restaurant</a>';
-        echo '<button class="boutonSupprimer">Supprimer</button>';
+        echo '<button class="boutonSupprimer" data-id="'.htmlspecialchars((string) $unRestaurant->getIdRestaurant()).'">Supprimer</button>';
         echo '</li>';
         
     }
@@ -211,8 +211,8 @@ function afficherMonMenu(array $tableauItem):void{
         echo '<span class="nomArticle">'. htmlspecialchars($unItem->getNom()).'</span><br>';
         echo '<span class="description">'. htmlspecialchars($unItem->getDescription()).'</span><br>';
         echo '<span class="prix">Prix: '. htmlspecialchars($unItem->getPrix()).'</span><br>';
-        echo '<a class="boutonModifier" href="?action=editArticle&id='.htmlspecialchars((string) $unItem->getIdItem()).'">Modifier</a>';
-        echo '<button class="boutonSupprimer">Supprimer</button>';
+        echo '<a class="boutonModifier" href="?action=editArticle&id='.htmlspecialchars((string) $unItem->getIdItem()).'&idResto='.htmlspecialchars((string) $unItem->getIdRestaurant()).'">Modifier</a>';
+        echo '<button class="boutonSupprimer" data-id="'.htmlspecialchars((string) $unItem->getIdItem()).'">Supprimer</button>';
     }
     echo '</ul>';
 
