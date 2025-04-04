@@ -37,6 +37,54 @@
                 <button class="boutonSupprimer">Supprimer</button>
             </li>
         </ul>--->
+
+        <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Sélectionner tous les boutons de suppression
+            const boutonsSupprimer = document.querySelectorAll(".boutonSupprimer");
+
+            boutonsSupprimer.forEach(bouton => {
+                bouton.addEventListener("click", function () {
+                    const restaurantId = this.getAttribute("data-id");
+
+                    if (!restaurantId) {
+                        alert("ID du restaurant introuvable !");
+                        return;
+                    }
+
+                    // Demander confirmation avant de supprimer
+                    if (!confirm("Voulez-vous vraiment supprimer ce restaurant ?")) {
+                        return;
+                    }
+
+                    // Envoyer une requête DELETE à l'API
+                    fetch(`http://localhost:9090/PROJETWEB/api/restaurant/${restaurantId}`, {
+                        method: "DELETE",
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Erreur lors de la suppression");
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        alert("Restaurant supprimé avec succès !");
+                        console.log("Succès:", data);
+
+                        // Supprimer l'élément du DOM
+                        this.closest("li.article").remove();
+                    })
+                    .catch(error => {
+                        console.error("Erreur:", error);
+                        location.reload(); // Recharger la page en cas d'erreur
+                    });
+                });
+            });
+        });
+        </script>
     </main>
     <footer>
         <p>@2025 tous droits reservés GFaim</p>
