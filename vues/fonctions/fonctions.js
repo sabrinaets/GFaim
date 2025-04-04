@@ -1,5 +1,6 @@
 let totalPrix =0;
 
+
 console.log("Fichier fonctions.js chargé !");
 //Fonction pour faire apparai
     document.getElementById("toggle-panier").addEventListener("click", function(){
@@ -98,9 +99,9 @@ function commanderPanier(id) {
     }
 
     
-   // let item = panier.find(item => item.id === id);
-    let idC = sessionStorage.getItem("idUtilisateur");
 
+    let idC = sessionStorage.getItem('idUtilisateur');
+        console.log("idC"+idC);
     if (!idC){
         console.log("Aucun utilisateur connecte");
     }
@@ -118,7 +119,6 @@ function commanderPanier(id) {
     });
 
     let idR;
-    // Vérifie si l'élément contient un idRestaurant avant de l'utiliser
     itemsCommande.forEach(item => {
         if (item.idRestaurant === undefined) {
             console.error("L'élément ne contient pas de idRestaurant");
@@ -130,7 +130,7 @@ function commanderPanier(id) {
 
     
 
-    // Construire l'objet commande
+   
     let commande = {
         idClient: idC, 
         idRestaurant: idR, 
@@ -138,8 +138,10 @@ function commanderPanier(id) {
         prixTotal: panier.reduce((total, item) => total + item.prix * item.quantite, 0),
     };
 
+
+    //Faire POST pour la commande vide
     console.log("Commande envoyée:", commande);
-    fetch("http://localhost:9090/ProjetWeb/api/commande", { 
+    fetch("http://localhost:9090/PROJETWEB/api/commande", { 
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -149,12 +151,19 @@ function commanderPanier(id) {
     .then(response => response.json())
     .then(data => {
         console.log("Réponse de l'API:", data); 
+
+        try{
         if (data.message) {
             alert("Commande passée avec succès !");
             viderPanier(); // Vide le panier après la commande
         } else {
             alert("Erreur lors de la commande.");
         }
+    }
+    catch(e){
+        console.error("Erreur de parsing JSON:", e); 
+        alert("Réponse invalide du serveur.");
+    }
     })
     .catch(error => console.error("Erreur:", error));
 }

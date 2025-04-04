@@ -74,6 +74,12 @@
         <p>@2025 tous droits reservés GFaim</p>
     </footer>
     <script src="vues/fonctions/fonctions.js" defer ></script>
+    <script>
+    var idUtilisateur = <?php echo json_encode($_SESSION['idUtilisateur']); ?>;
+         console.log("id utilisateur de menuResto:" +idUtilisateur);
+         sessionStorage.setItem('idUtilisateur',idUtilisateur);
+         </script>
+    </script>
     
 </body>
 </html>

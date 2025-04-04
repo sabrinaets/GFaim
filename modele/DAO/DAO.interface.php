@@ -50,7 +50,7 @@ interface DAO {
      * @param object $object L'objet à insérer.
      * @return bool Retourne true si l'opération est réussie, false sinon.
      */
-    static public function save(object $object): bool;
+    static public function save(object $object);
 
     /**
      * Cette méthode met à jour un objet existant dans la table de la BD.

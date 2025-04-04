@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GFaim - livraison de repas</title>
@@ -30,6 +31,7 @@
 </head>
 <body>
     <header>
+        
         <nav>
             <?php
                 include("vues/fonctions/entete.php");
@@ -81,7 +83,13 @@
     <footer>
         <p>@2025 tous droits reservés GFaim</p>
     </footer>
-    <script src="vues/fonctions/fonctions.js"></script>
+    <script src="vues/fonctions/fonctions.js">
+         
+    </script>
+    <script>
+    var idUtilisateur = <?php echo json_encode($_SESSION['idUtilisateur']); ?>;
+         console.log("id utilisateur de index:" +idUtilisateur);
+         sessionStorage.setItem('idUtilisateur',idUtilisateur);
+         </script>
 </body>
 </html>
-

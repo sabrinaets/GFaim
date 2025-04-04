@@ -68,7 +68,7 @@ class commandeDAO implements DAO{
         return $commandes;
     }
 
-    static public function save(object $commande):bool{
+    static public function save(object $commande){
         try{
             $connexion = ConnexionBD::getInstance();
         }
@@ -98,7 +98,12 @@ class commandeDAO implements DAO{
         $requete->bindParam(':prixTotal',$prix,PDO::PARAM_STR);
         $requete->bindParam(':idStatut',$statut,PDO::PARAM_INT);
     
-        return $requete->execute();
+        $result =  $requete->execute();
+        if ($result){
+            $newId = $connexion->lastInsertId();
+            return $newId;
+        }
+        return false;
     
     }
 

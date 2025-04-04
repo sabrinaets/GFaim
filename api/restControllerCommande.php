@@ -1,7 +1,8 @@
 <?php
 // Inclusion des classes nécessaires pour la gestion des produits
 include_once("../modele/DAO/commandeDao.class.php");
-
+include_once("../modele/commande.class.php");
+use Modele\Commande;
 // DÉFINIR LES EN-TÊTES HTTP REQUIS POUR LES RÉPONSES JSON
 header("Access-Control-Allow-Origin: *"); // pour autoriser les requêtes externes.
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS"); //pour spécifier les méthodes HTTP acceptées.
@@ -122,7 +123,7 @@ class RestControllerCommande {
         }
 
 
-
+       
         $Commande = new Commande(
             null, 
             $data['idClient'],
@@ -132,10 +133,10 @@ class RestControllerCommande {
             $data['idStatut'],
         );
 
-        $newCommande = CommandeDAO::save($Commande);
+        $newCommandeId = CommandeDAO::save($Commande);
 
-        if ($newCommande) {
-            return $this->responseJson(201, ["message" => "Product créé avec succès"]);
+        if ($newCommandeId!=null) {
+            return $this->responseJson(201, ["message" => "Product créé avec succès","idCommande" => $newCommandeId]);
         } else {
             return $this->serverErrorResponse();
         }
