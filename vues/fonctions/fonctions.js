@@ -2,7 +2,7 @@ let totalPrix =0;
 
 
 console.log("Fichier fonctions.js chargé !");
-//Fonction pour faire apparai
+
     document.getElementById("toggle-panier").addEventListener("click", function(){
         let panier = getPanier();
         let panierHTML = document.querySelector(".panier");
@@ -12,28 +12,28 @@ console.log("Fichier fonctions.js chargé !");
 
     }) ;
 
-// Clé du panier dans Local Storage
+
 const PANIER_KEY = "panier";
 
-// Fonction pour récupérer le panier depuis Local Storage
+
 function getPanier() {
     return JSON.parse(localStorage.getItem(PANIER_KEY)) || [];
 }
 
-// Fonction pour sauvegarder le panier dans Local Storage
+
 function savePanier(panier) {
     localStorage.setItem(PANIER_KEY, JSON.stringify(panier));
 }
 
-// Fonction pour ajouter un produit au panier
+
 function ajouterAuPanier(id, nom, prix,idRestaurant) {
     let panier = getPanier();
     
-    // Vérifie si l'item est déjà dans le panier
+    
     let item = panier.find(item => item.id === id);
     
     if (item) {
-        item.quantite++; // Incrémente la quantité
+        item.quantite++; 
     } else {
         panier.push({ id, nom, prix, idRestaurant,quantite: 1 });
     }
@@ -42,13 +42,13 @@ function ajouterAuPanier(id, nom, prix,idRestaurant) {
     afficherPanier();
 }
 
-// Fonction pour afficher le panier dans une liste
+
 function afficherPanier() {
     let panier = getPanier();
     let panierHTML = document.querySelector(".panier");
     
 
-    // Vide le HTML actuel
+    
     let contenu = "";
     
     panier.forEach(item => {
@@ -65,7 +65,7 @@ function afficherPanier() {
     }
 }
 
-// Fonction pour supprimer un produit du panier
+
 function supprimerDuPanier(id) {
     let panier = getPanier();
 
@@ -79,14 +79,14 @@ function supprimerDuPanier(id) {
     afficherPanier();
 }
 
-// Fonction pour vider tout le panier
+
 function viderPanier() {
     localStorage.removeItem(PANIER_KEY);
     totalPrix=0;
     afficherPanier();
 }
 
-// Afficher le panier au chargement de la page
+
 document.addEventListener("DOMContentLoaded", afficherPanier);
 
 
@@ -153,9 +153,10 @@ function commanderPanier(id) {
         console.log("Réponse de l'API:", data); 
 
         try{
-        if (data.message) {
+        if (data.idCommande) {
             alert("Commande passée avec succès !");
-            viderPanier(); // Vide le panier après la commande
+            ajouterItemsACommande(data.idCommande);
+            viderPanier(); 
         } else {
             alert("Erreur lors de la commande.");
         }
@@ -168,3 +169,35 @@ function commanderPanier(id) {
     .catch(error => console.error("Erreur:", error));
 }
 
+function ajouterItemsACommande(idCommande) {
+    let panier = getPanier();
+    
+    
+    panier.forEach(item => {
+        let commandeItem = {
+            idCommande: idCommande, 
+            idItem: item.id,      
+            quantite: item.quantite, 
+        };
+
+        console.log("CommandeItem envoyée:", commandeItem);
+       
+        fetch("http://localhost:9090/PROJETWEB/api/commandeItem", { 
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(commandeItem)
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log("Réponse de l'API commandeItem:", data);
+            if (data.message) {
+                console.log("Item ajouté à la commande avec succès");
+            } else {
+                console.error("Erreur lors de l'ajout de l'item à la commande");
+            }
+        })
+        .catch(error => console.error("Erreur:", error));
+    });
+}

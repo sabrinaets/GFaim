@@ -28,6 +28,7 @@ class RestControllerCommandeItem {
 
     // Vérification de la validité des données du produit
     private function validateCommandeItem($data) {
+        error_log("Données reçues pour validation: " . print_r($data, true)); 
         return !empty($data['idCommande']) && 
                !empty($data['idItem']) && 
                !empty($data['quantite']);
