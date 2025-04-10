@@ -218,4 +218,26 @@ function afficherMonMenu(array $tableauItem):void{
 
 
 }
+function rrestosDunProprio(){
+    echo '<input id=listeRestolist="restos" name="restaurant"placeholder="Quel restaurant voulez-vous voir?" required>';
+    echo '<datalist id=restos>';
+    $tabRestos = RestaurantDAO::findAllByProprietaire($_SESSION['idUtilisateur']);
+    foreach($tabRestos as $resto){
+        echo '<option value='.htmlspecialchars($resto->getNom()).'>';
+    }
+    echo '</datalist>';
+}
+function restosDunProprio() {
+    echo '<select name="restaurant" id="listeResto" required>';
+    echo '<option value="">-- Choisissez un restaurant --</option>';
+    
+    $tabRestos = RestaurantDAO::findAllByProprietaire($_SESSION['idUtilisateur']);
+    
+    foreach ($tabRestos as $resto) {
+        echo '<option value="' . htmlspecialchars($resto->getIdRestaurant()) . '">' . htmlspecialchars($resto->getNom()) . '</option>';
+    }
+
+    echo '</select>';
+}
+
 ?>
