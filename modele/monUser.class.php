@@ -106,14 +106,14 @@ class monUser
     }
 
 
-     // Method to verify password
+
      public function verifyPassword(string $password): bool
      {
-         // Assuming $this->password is a hashed password (e.g., bcrypt)
+         
          return password_verify($password, $this->password);
      }
 
-     // Méthode pour hacher le mot de passe 
+      
      public function hashPassword(): void {
         $this->password = password_hash($this->password, PASSWORD_BCRYPT);
     }

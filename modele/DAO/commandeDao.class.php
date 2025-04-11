@@ -177,8 +177,8 @@ class commandeDAO implements DAO{
     static public function getCommandesParClient(PDO $pdo, int $idClient): array {
         $stmt = $pdo->prepare(
             "SELECT c.*, r.nom AS nomRestaurant ,r.adresse AS adresseRestaurant
-            FROM commande c
-            JOIN restaurant r ON c.idRestaurant = r.idRestaurant
+            FROM Commande c
+            JOIN Restaurant r ON c.idRestaurant = r.idRestaurant
             WHERE c.idClient = :idClient"
         );
         $stmt->execute(['idClient' => $idClient]);

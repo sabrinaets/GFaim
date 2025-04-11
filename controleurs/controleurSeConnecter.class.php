@@ -39,13 +39,18 @@ class SeConnecter extends Controleur
                 header("Location: ?action=seConnecter&message=Aucun utilisateur trouvé.");
                 return "connexion.php";
             }
+            if ($unUtilisateur->verifyPassword($_POST['password'])){
             // Connexion réussie
-            $this->acteur = "utilisateur";
-            $_SESSION['utilisateurConnecte'] = $unUtilisateur;
-            $_SESSION['idUtilisateur']=$unUtilisateur->getId();
+                $this->acteur = "utilisateur";
+                $_SESSION['utilisateurConnecte'] = $unUtilisateur;
+                $_SESSION['idUtilisateur']=$unUtilisateur->getId();
 
-
-            return "index.php";
+                return "index.php";
+            }
+            else{
+                header("Location: ?action=seConnecter&message=Mot de passe incorrect.");
+                return "connexion.php";
+            }
            
         }
 
