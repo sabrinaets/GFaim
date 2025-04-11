@@ -1,7 +1,7 @@
 -- Création de la base de données
 -- Auteur: Alexandre Gaudreau - GAUA01379801
 
-CREATE DATABASE Gfaim CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+--CREATE DATABASE Gfaim CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- Sélection de la base de données
 USE Gfaim;
@@ -85,3 +85,12 @@ INSERT INTO Role (roleName) VALUES ('Admin'), ('Client'), ('Restaurant'), ('Livr
 
 -- Insertion des statuts de commande dans la table StatutCommande
 INSERT INTO StatutCommande (statut) VALUES ('En attente'), ('En préparation'), ('Prête'), ('Livrée');
+
+INSERT INTO `utilisateur` (`idUtilisateur`, `username`, `email`, `password`, `phone`, `codepostal`, `roleId`) 
+VALUES (NULL, 'Jordan', 'jord199@gmail.com', 'jojo', '4508443963', 'j5l2r8', '4');
+
+INSERT INTO `utilisateur` (`idUtilisateur`, `username`, `email`, `password`, `phone`, `codepostal`, `roleId`) 
+VALUES (NULL, 'AlexG', 'alexgaudfallout@gmail.com', 'root', '4508483903', 'j8l1e0', '3');
+
+INSERT INTO `utilisateur` (`idUtilisateur`, `username`, `email`, `password`, `phone`, `codepostal`, `roleId`) 
+VALUES (NULL, 'Maxime', 'max2001@gmail.com', 'tarkov', '4502586963', 'j8l1e0', '2');
