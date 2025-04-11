@@ -248,4 +248,28 @@ class commandeDAO implements DAO{
         $requete->execute(['idCommande'=>$idCmd]);
         return $requete->execute();
     }
+    static public function itemPlusPopulaire(PDO $pdo,int $idRestaurant):string{
+        $requete = $pdo->prepare(
+            "SELECT MAX(nom) FROM item WHERE idItem IN 
+            (SELECT idItem FROM commandeItem cI
+            JOIN Commande c ON c.idCommande = cI.idCommande
+            WHERE c.idRestaurant = :idRestaurant)"
+        );
+        $requete->execute(['idRestaurant'=>$idRestaurant]);
+        return (string)$requete->fetchColumn();
+    }
+    static public function commandesParResto(PDO $pdo, int $idRestaurant):int{
+        $requete=$pdo->prepare(
+            "SELECT COUNT(idCommande) FROM Commande WHERE idRestaurant= :idRestaurant"
+        );
+        $requete->execute(['idRestaurant'=>$idRestaurant]);
+        return (int) $requete->fetchColumn();
+    }
+    static public function clientsParResto(PDO $pdo, int $idRestaurant){
+        $requete = $pdo->prepare(
+            "SELECT COUNT(DISTINCT idClient) FROM Commande WHERE idRestaurant = :idRestaurant"
+        );
+        $requete->execute(['idRestaurant'=>$idRestaurant]);
+        return (int) $requete->fetchColumn();
+    }
 }

@@ -616,3 +616,7 @@ h1 {
     transform: scale(1.05);
 }
 
+.deletePanier{
+    border-radius: 40px;
+    padding:15px;
+}

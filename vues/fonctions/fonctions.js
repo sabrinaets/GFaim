@@ -1,5 +1,4 @@
-let totalPrix =0;
-
+let totalPrix =0;  // doit la mettre dans localstorage, sinon se reset a zero a chaque refresh
 
 console.log("Fichier fonctions.js chargé !");
 
@@ -52,11 +51,11 @@ function afficherPanier() {
     let contenu = "";
     
     panier.forEach(item => {
-        contenu += `<li>${item.nom} - ${item.prix}€ (x${item.quantite}) 
-            <button onclick="supprimerDuPanier(${item.id})">❌</button></li>`;
+        contenu += `<li>${item.nom} - ${item.prix}$ (x${item.quantite}) 
+            <button class="deletePanier" onclick="supprimerDuPanier(${item.id})"><i class="fa-solid fa-xmark"></i></button></li>`;
     });
 
-    panierHTML.innerHTML = contenu + `<h2>Total: ${totalPrix}€</h2><br><a class="commander-panier">Commander</a>`
+    panierHTML.innerHTML = contenu + `<h2>Total: ${totalPrix}$</h2><br><a class="commander-panier">Commander</a>`
     let boutonCommander = document.querySelector(".commander-panier");
     if (boutonCommander) {
         boutonCommander.addEventListener("click", commanderPanier);

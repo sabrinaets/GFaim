@@ -1,4 +1,9 @@
+<?php
 
+if (isset($_POST['restaurant'])) {
+    $_SESSION['idRestoSelectionne'] = $_POST['restaurant'];
+} 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,9 +22,9 @@
     height:80%
 
 }    
-.carre p{
+.carre{
     margin:0;
-    text-align: center;
+    display: block !important; 
 }
 #unstat {
     display: flex;
@@ -51,6 +56,18 @@
     margin-top:10px;
     font-size:25px;
 }
+#listeResto{
+    margin-top: 40px;
+    margin-left: 30px;
+    width:300px;
+    height:40px;
+    border-radius: 20px;
+    border: 1px solid black;
+    padding:0px 10px;
+}
+h3{
+    margin:30px 0px 0px 20px;
+}
 </style>
 <body>
     <header>
@@ -64,21 +81,45 @@
     </header>
     <main class="main">
         <div class="carre">
+
             <h2>Quelques statistiques</h2>
+            
+            <form method="post" action="">
+            
+                  <?php 
+                    
+                    restosDunProprio()
+                  ?>
+                <button type="submit" style="font-size:17px; padding:12px; margin-top:15px; border:none; border-radius:20px">
+                     <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+
+            </form>
+
+
         <section id="stats">
         <div id="unstat">
             <i class="fa-solid fa-burger"></i>
-            <h4>Le poke bowl</h4>
+            <?php 
+            $pdo = ConnexionBD::getInstance();
+            echo '<h4>'.commandeDAO::itemPlusPopulaire($pdo,$_SESSION['idRestoSelectionne'])??'Selectionnez un restaurant'.'</h4>'
+            ?>
             <p>est votre mets le plus populaire</p>
         </div>
         <div id="unstat">
             <i class="fa-solid fa-laptop"></i>
-            <h4>18</h4>
+            <?php 
+            $pdo = ConnexionBD::getInstance();
+            echo '<h4>'.commandeDAO::commandesParResto($pdo,$_SESSION['idRestoSelectionne'])??'Selectionnez un restaurant'.'</h4>'
+            ?>
             <p>commandes vous sont assignées</p>
         </div>
         <div id="unstat">
             <i class="fa-solid fa-user-group"></i>
-            <h4>20</h4>
+            <?php 
+            $pdo = ConnexionBD::getInstance();
+            echo '<h4>'.commandeDAO::clientsParResto($pdo,$_SESSION['idRestoSelectionne'])??'Selectionnez un restaurant'.'</h4>'
+            ?>
             <p>clients font affaire avec vous</p>
         </div>
         </section>
