@@ -159,8 +159,10 @@ class commandeDAO implements DAO{
 
     }
 
-    static public function findByEmail(string $email): null{
+    static public function findByEmail(string $email): object{
         throw new Exception("Fonction indisponible pour cette classe");
+        $obj = null;
+        return $obj;
     }
     static public function existsByEmail(string $email): bool{
         throw new Exception("Fonction indisponible pour cette classe");
@@ -186,9 +188,9 @@ class commandeDAO implements DAO{
     static public function getCommandesDispo(PDO $pdo):array{
         $requete = $pdo->prepare(
             "SELECT cmd.*, r.nom AS nomRestaurant, c.codepostal as adresseClient, c.username AS nomClient 
-            FROM commande cmd
-            JOIN restaurant r ON cmd.idRestaurant = r.idRestaurant
-            JOIN utilisateur c ON cmd.idClient = c.idUtilisateur
+            FROM Commande cmd
+            JOIN Restaurant r ON cmd.idRestaurant = r.idRestaurant
+            JOIN Utilisateur c ON cmd.idClient = c.idUtilisateur
             WHERE cmd.idStatut = 1 AND cmd.idLivreur IS NULL");
         $requete->execute();
         return $requete->fetchAll(PDO::FETCH_ASSOC);

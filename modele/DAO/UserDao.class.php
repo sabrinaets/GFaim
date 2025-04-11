@@ -1,8 +1,8 @@
 <?php
 
 include_once(__DIR__ . "/DAO.interface.php");
-include_once(__DIR__ . "/../user.class.php");
-include_once(__DIR__ . "/../role.class.php");
+include_once(__DIR__ . "/../monUser.class.php");
+include_once(__DIR__ . "/../monRole.class.php");
 
 class UserDAO implements DAO {
 
@@ -11,7 +11,7 @@ class UserDAO implements DAO {
      * @param int $id
      * @return User|null
      */
-    static public function findById(int $id): ?User {
+    static public function findById(int $id): ?monUser {
         try {
             $connexion = ConnexionBD::getInstance();
         } catch (Exception $e) {
@@ -30,7 +30,7 @@ class UserDAO implements DAO {
 
         if ($requete->rowCount() != 0) {
             $enr = $requete->fetch();
-            $user = new User(
+            $user = new monUser(
                 $enr['UserID'],
                 $enr['FirstName'],
                 $enr['LastName'],
@@ -38,7 +38,7 @@ class UserDAO implements DAO {
                 $enr['Password'],
                 $enr['Phone'],
                 $enr['Address'],
-                new Role($enr['RoleID'], $enr['RoleName'])
+                new monRole($enr['RoleID'], $enr['RoleName'])
             );
         }
 
@@ -68,10 +68,10 @@ class UserDAO implements DAO {
         $requete->execute();
 
         foreach ($requete as $enr) {
-            $users[] = new User(
+            $users[] = new monUser(
                 $enr['UserID'],
                 $enr['username'],
-                new Role($enr['RoleID'], $enr['role']),
+                new monRole($enr['RoleID'], $enr['role']),
                 $enr['codepostal'],
                 $enr['phone'],
                 $enr['email'],
@@ -200,7 +200,7 @@ class UserDAO implements DAO {
         return $requete->execute();
     }
 
-    static public function findByEmail(string $email): ?User {
+    static public function findByEmail(string $email): ?monUser {
         try {
             $connexion = ConnexionBD::getInstance();
         } catch (Exception $e) {
@@ -218,10 +218,10 @@ class UserDAO implements DAO {
     
         if ($requete->rowCount() != 0) {
             $enr = $requete->fetch();
-            return new User(
+            return new monUser(
                 $enr['idUtilisateur'],
                 $enr['username'],
-                new Role($enr['roleId'], $enr['roleName']),
+                new monRole($enr['roleId'], $enr['roleName']),
                 $enr['codepostal'],
                 $enr['phone'],
                 $enr['email'],
@@ -255,10 +255,3 @@ class UserDAO implements DAO {
         return $tableau;  
     }
 }
-
-
-?>
-
-
-
-

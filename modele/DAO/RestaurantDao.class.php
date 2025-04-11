@@ -1,8 +1,8 @@
 <?php
 
 include_once(__DIR__ . "/DAO.interface.php");
-include_once(__DIR__ . "/../user.class.php");
-include_once(__DIR__ . "/../restaurant.class.php");
+include_once(__DIR__ . "/../monUser.class.php");
+include_once(__DIR__ . "/../unRestaurant.class.php");
 
 
 class RestaurantDao implements DAO {
@@ -10,9 +10,9 @@ class RestaurantDao implements DAO {
     /**
      * Recherche un restaurant par ID
      * @param int $id
-     * @return Restaurant|null
+     * @return unRestaurant|null
      */
-    static public function findById(int $idRestaurant): ?Restaurant {
+    static public function findById(int $idRestaurant): ?unRestaurant {
         try {
             $connexion = ConnexionBD::getInstance();
         } catch (Exception $e) {
@@ -28,7 +28,7 @@ class RestaurantDao implements DAO {
 
         if ($requete->rowCount() != 0) {
             $enr = $requete->fetch();
-            $restaurant = new Restaurant(
+            $restaurant = new unRestaurant(
                 $enr['idRestaurant'],
                 $enr['idProprietaire'],
                 $enr['nom'],
@@ -60,7 +60,7 @@ class RestaurantDao implements DAO {
         $requete->execute();
 
         while ($enr = $requete->fetch()) {
-            $restaurant = new Restaurant(
+            $restaurant = new unRestaurant(
                 $enr['idRestaurant'],
                 $enr['idProprietaire'],
                 $enr['nom'],
@@ -94,7 +94,7 @@ class RestaurantDao implements DAO {
         $requete->execute();
 
         while ($enr = $requete->fetch()) {
-            $restaurant = new Restaurant(
+            $restaurant = new unRestaurant(
                 $enr['idRestaurant'],
                 $enr['idProprietaire'],
                 $enr['nom'],
@@ -210,7 +210,7 @@ class RestaurantDao implements DAO {
         return $requete->execute();
     }
 
-    static public function findByEmail(string $email): ?Restaurant {
+    static public function findByEmail(string $email): ?unRestaurant {
         throw new Exception("Cette fonction n'est pas disponible pour cette classe [restaurant]");
         return null; // Retourne null si aucun utilisateur trouvé
     }

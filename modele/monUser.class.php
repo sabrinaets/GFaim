@@ -1,5 +1,5 @@
 <?php
-class User
+class monUser
 {
     private ?int $id;
     private string $username;
@@ -7,13 +7,13 @@ class User
     private string $password;
     private ?string $phone;
     private ?string $codepostal;
-    private Role $role;
+    private monRole $role;
 
        // Constructor
        public function __construct(
         ?int $id,
         string $username,
-        Role $role,
+        monRole $role,
         string $codepostal,
         ?string $phone,
         string $email,
@@ -95,12 +95,12 @@ class User
     }
 
     // Getters and Setters for $role
-    public function getRole(): Role
+    public function getRole(): monRole
     {
         return $this->role;
     }
 
-    public function setRole(Role $role): void
+    public function setRole(monRole $role): void
     {
         $this->role = $role;
     }

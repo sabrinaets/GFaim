@@ -1,5 +1,5 @@
 <?php
-class Restaurant implements JsonSerializable
+class unRestaurant implements JsonSerializable
 {
     private ?int $idRestaurant;
     private int $idProprietaire;

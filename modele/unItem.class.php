@@ -1,6 +1,6 @@
 <?php
 
-class Item implements JsonSerializable{
+class unItem implements JsonSerializable{
     private ?int $idItem;
     private int $idRestaurant;
     private string $nom;

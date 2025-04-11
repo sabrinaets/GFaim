@@ -29,7 +29,7 @@ abstract class Controleur
 			$utilisateurConnecte = $_SESSION['utilisateurConnecte'];
 
 			// Vérifie si l'objet est une instance de User et possède un rôle valide
-			if ($utilisateurConnecte instanceof User && $utilisateurConnecte->getRole() instanceof Role) {
+			if ($utilisateurConnecte instanceof monUser && $utilisateurConnecte->getRole() instanceof monRole) {
 				return $utilisateurConnecte->getRole()->getRoleName() === "Admin";
 			}
 		}
@@ -44,7 +44,7 @@ abstract class Controleur
 	private function determinerActeur(): void
 	{
 		//creation d'une session ou recuperation de la session existante
-		session_start();
+		//session_start();
 		//Si la session de l'utilisateur existe, le type d'utilisateur
 		// devient, utilisateur, il est connecté
 		if (isset($_SESSION['utilisateurConnecte'])) {

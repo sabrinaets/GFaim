@@ -3,7 +3,7 @@ include_once("controleurs/controleur_classe_abstraite.php");
 include_once("modele/DAO/UserDAO.class.php");
 include_once("modele/DAO/itemDao.class.php");
 include_once("modele/DAO/RestaurantDao.class.php");
-include_once("modele/Restaurant.class.php");
+include_once("modele/unRestaurant.class.php");
 
 class voirMenu extends Controleur
 {
@@ -25,7 +25,7 @@ class voirMenu extends Controleur
         {
             return $this->tableLesItems;
     }
-    public function getResto():Restaurant
+    public function getResto():unRestaurant
         {
             return $this->resto;
     }

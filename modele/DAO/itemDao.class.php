@@ -1,9 +1,8 @@
 <?php
 
 include_once(__DIR__ . "/DAO.interface.php");
-include_once(__DIR__ . "/../user.class.php");
-include_once(__DIR__ . "/../Item.class.php");
-include_once(__DIR__ . "/../item.class.php");
+include_once(__DIR__ . "/../monUser.class.php");
+include_once(__DIR__ . "/../unItem.class.php");
 
 
 class ItemDao implements DAO {
@@ -13,7 +12,7 @@ class ItemDao implements DAO {
      * @param int $id
      * @return Item|null
      */
-    static public function findById(int $idItem): ?Item {
+    static public function findById(int $idItem): ?unItem {
         try {
             $connexion = ConnexionBD::getInstance();
         } catch (Exception $e) {
@@ -29,7 +28,7 @@ class ItemDao implements DAO {
 
         if ($requete->rowCount() != 0) {
             $enr = $requete->fetch();
-            $Item = new Item(
+            $Item = new unItem(
                 $enr['idItem'],
                 $enr['idRestaurant'],
                 $enr['nom'],
@@ -61,7 +60,7 @@ class ItemDao implements DAO {
         $requete->execute();
 
         while ($enr = $requete->fetch()) {
-            $Item = new Item(
+            $Item = new unItem(
                 $enr['idItem'],
                 $enr['idRestaurant'],
                 $enr['nom'],
@@ -95,7 +94,7 @@ class ItemDao implements DAO {
         $requete->execute();
 
         while ($enr = $requete->fetch()) {
-            $Item = new Item(
+            $Item = new unItem(
                 $enr['idItem'],
                 $enr['idRestaurant'],
                 $enr['nom'],
@@ -213,7 +212,7 @@ class ItemDao implements DAO {
         return $requete->execute();
     }
 
-    static public function findByEmail(string $email): ?Item {
+    static public function findByEmail(string $email): ?unItem {
         throw new Exception("Cette fonction n'est pas disponible pour cette classe [Item]");
         return null; // Retourne null si aucun utilisateur trouvé
     }

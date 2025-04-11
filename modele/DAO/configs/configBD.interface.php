@@ -2,9 +2,9 @@
 
 	interface ConfigBD
 	{	
-		const BD_HOTE = "localhost";
-		const BD_UTILISATEUR = "root";
-		const BD_MOT_PASSE = "root";
-		const BD_NOM = "gfaim";    
+		const BD_HOTE = "Gfaim-db";
+		const BD_UTILISATEUR = "user";
+		const BD_MOT_PASSE = "password";
+		const BD_NOM = "Gfaim";    
 	}
 ?>

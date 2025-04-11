@@ -1,8 +1,7 @@
 <?php
 include_once("controleurs/controleur_classe_abstraite.php");
 include_once("modele/DAO/UserDAO.class.php");
-//include_once("modele/user.class.php");
-include_once("modele/role.class.php");
+include_once("modele/monRole.class.php");
 
 class SeConnecter extends Controleur
 {

@@ -15,7 +15,7 @@ function afficherMenu($controleur)
         $menu .= "<a href='?action=creerCompte'>Créer un compte</a>";
     } else {
         // Vérifier si l'utilisateur est connecté
-        if (isset($_SESSION['utilisateurConnecte']) && $_SESSION['utilisateurConnecte'] instanceof User) {
+        if (isset($_SESSION['utilisateurConnecte']) && $_SESSION['utilisateurConnecte'] instanceof monUser) {
             $utilisateurConnecte = $_SESSION['utilisateurConnecte'];
             $nom = htmlspecialchars($utilisateurConnecte->getUserName());
             $menu .= "<span style='color:white'>" . $nom . " connecté </span>";
@@ -164,7 +164,7 @@ function afficherRestaurants(array $tableau):void{
     }
     echo '</ul>';
 }
-function afficherMenuResto(array $tableauItem, Restaurant $resto):void{
+function afficherMenuResto(array $tableauItem, unRestaurant $resto):void{
     echo '<div class="menuResto">';
     echo '<h1 id="resto-nom">'. htmlspecialchars($resto->getNom()).'</h1>';
     echo '<br>';

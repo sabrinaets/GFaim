@@ -1,5 +1,5 @@
 <?php
-class Role
+class monRole
 {
     private ?int $id;
     private string $roleName;

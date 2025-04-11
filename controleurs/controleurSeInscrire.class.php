@@ -2,8 +2,8 @@
 
 include_once("controleurs/controleur_classe_abstraite.php");
 include_once("modele/DAO/UserDAO.class.php");
-include_once("modele/Role.class.php");
-include_once("modele/User.class.php");
+include_once("modele/monRole.class.php");
+include_once("modele/monUser.class.php");
 
 class SeInscrire extends Controleur
 {
@@ -49,14 +49,14 @@ class SeInscrire extends Controleur
                         $idRole=1;
                         break;
                 }
-                $role = new Role($idRole, $_POST['role']);
+                $role = new monRole($idRole, $_POST['role']);
             } else {
                 // Sinon, attribuer le rôle "Client" par défaut
-                $role = new Role(3, "Client");
+                $role = new monRole(3, "Client");
             }
 
             // Création de l'utilisateur
-            $nouvelUtilisateur = new User(
+            $nouvelUtilisateur = new monUser(
                 null,
                 $_POST['userName'],
                 $role,
