@@ -198,7 +198,7 @@ class commandeDAO implements DAO{
 
     static public function updateCommandeAcceptee(PDO $pdo, int $idCommande,int $idLivreur):bool{
             $requete = $pdo -> prepare(
-                "UPDATE commande SET idLivreur = :idLivreur WHERE idCommande = :idCommande AND idLivreur IS NULL"
+                "UPDATE Commande SET idLivreur = :idLivreur WHERE idCommande = :idCommande AND idLivreur IS NULL"
             );
             $requete->execute(['idLivreur'=>$idLivreur,'idCommande'=>$idCommande]);
             return $requete->rowCount() > 0;
@@ -207,9 +207,9 @@ class commandeDAO implements DAO{
     static public function voirCommandesLivrer(PDO $pdo, int $idLivreur):array{
         $requete = $pdo -> prepare(
             "SELECT cmd.* ,r.nom AS nomRestaurant, c.codepostal as adresseClient, c.username AS nomClient 
-            FROM commande cmd 
-            LEFT JOIN restaurant r ON cmd.idRestaurant = r.idRestaurant
-            LEFT JOIN utilisateur c ON cmd.idClient = c.idUtilisateur
+            FROM Commande cmd 
+            LEFT JOIN Restaurant r ON cmd.idRestaurant = r.idRestaurant
+            LEFT JOIN Utilisateur c ON cmd.idClient = c.idUtilisateur
             WHERE cmd.idLivreur = :idLivreur AND cmd.idStatut=1"
         );
         $requete->execute(['idLivreur'=>$idLivreur]);
@@ -221,9 +221,9 @@ class commandeDAO implements DAO{
     static public function voirCommandesResto(PDO $pdo, int $idRestaurateur):array{
         $requete = $pdo->prepare(
             "SELECT cmd.* , r.nom AS nomRestaurant, c.codepostal as adresseClient, c.username AS nomClient
-            FROM restaurant r 
-            JOIN commande cmd ON cmd.idRestaurant = r.idRestaurant
-            JOIN utilisateur c ON cmd.idClient = c.idUtilisateur
+            FROM Restaurant r 
+            JOIN Commande cmd ON cmd.idRestaurant = r.idRestaurant
+            JOIN Utilisateur c ON cmd.idClient = c.idUtilisateur
             WHERE r.idProprietaire = :idRestaurateur AND cmd.idStatut=1"
         );
         $requete->execute(['idRestaurateur'=>$idRestaurateur]);
@@ -231,21 +231,21 @@ class commandeDAO implements DAO{
     }
     static public function annulerCommandeLivreur( PDO $pdo,int $idCmd){
         $requete = $pdo->prepare(
-            "UPDATE commande SET idLivreur = NULL WHERE idCommande = :idCommande"
+            "UPDATE Commande SET idLivreur = NULL WHERE idCommande = :idCommande"
         );
         $requete->execute(['idCommande'=>$idCmd]);
         return $requete->execute();
     }
     static public function terminerCommandeResto(PDO $pdo, int $idCmd):bool{
         $requete = $pdo->prepare(
-            "UPDATE commande SET idStatut = 3 WHERE idCommande = :idCommande"
+            "UPDATE Commande SET idStatut = 3 WHERE idCommande = :idCommande"
         );
         $requete->execute(['idCommande'=>$idCmd]);
         return $requete->execute();
     }
     static public function annulerMaCommande(PDO $pdo, int $idCmd):bool{
         $requete = $pdo->prepare(
-            "DELETE FROM commande WHERE idCommande = :idCommande"
+            "DELETE FROM Commande WHERE idCommande = :idCommande"
         );
         $requete->execute(['idCommande'=>$idCmd]);
         return $requete->execute();

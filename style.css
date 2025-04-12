@@ -220,7 +220,7 @@ footer{
     padding: 20px;
     border-left: 2px solid #141414; /* Séparation visuelle */
     border-bottom: 2px solid #141414; /* Séparation visuelle */
-    border-radius:5px;
+    border-radius:10px;
     position: fixed;
     top: 0;
     right: 0;
@@ -257,7 +257,7 @@ footer{
 }
 
 .commander-panier{
-    background-color: rgb(175, 173, 173);
+    background-color: var(--monOrange);
     color: white;
     font-size: 12px;
     font-weight: bold;
@@ -267,11 +267,11 @@ footer{
     cursor: pointer;
     display: inline-block;
     text-align: center;
+    margin:0px 10px;
     transition: background-color 0.3s, transform 0.2s;
 }
 .commander-panier:hover {
     transform: scale(1.05);
-    background-color: var(--monOrange);
 }
 /* Cacher le panier en le déplaçant hors écran */
 .panier.hidden {
@@ -617,6 +617,26 @@ h1 {
 }
 
 .deletePanier{
-    border-radius: 40px;
-    padding:15px;
+    border-radius: 45px;
+    padding:0px 18px;
+    height:40px;
+    border:none;
+    font-weight: bolder;
+}
+.deletePanier:hover{
+    transform: scale(1.05);
+    font-size: 15px;
+}
+.unItemListe{
+    display: flex;
+    justify-content: space-between;
+    margin:20px 0px;
+    border-bottom: 1px solid rgba(152, 151, 151, 0.489);
+}
+.closePanier{
+    background-color: transparent;
+    border:none;
+}
+.closePanier:hover{
+    font-size: 18px;
 }

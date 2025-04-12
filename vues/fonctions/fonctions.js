@@ -1,15 +1,15 @@
-let totalPrix =0;  // doit la mettre dans localstorage, sinon se reset a zero a chaque refresh
 
 console.log("Fichier fonctions.js chargé !");
 
-    document.getElementById("toggle-panier").addEventListener("click", function(){
+    document.getElementById("toggle-panier").addEventListener("click", togglePanier);
+   
+    function togglePanier(){
         let panier = getPanier();
         let panierHTML = document.querySelector(".panier");
         afficherPanier();
         panierHTML.classList.toggle("hidden");
-        this.textContent = panierHTML.classList.contains("hidden") ? "Panier" : "Fermer panier";
 
-    }) ;
+    }
 
 
 const PANIER_KEY = "panier";
@@ -36,7 +36,7 @@ function ajouterAuPanier(id, nom, prix,idRestaurant) {
     } else {
         panier.push({ id, nom, prix, idRestaurant,quantite: 1 });
     }
-    totalPrix+=prix;
+    
     savePanier(panier);
     afficherPanier();
 }
@@ -48,19 +48,36 @@ function afficherPanier() {
     
 
     
-    let contenu = "";
+    let contenu = `<button class="closePanier" onclick=""><i class="fa-solid fa-xmark"></i></button>`; 
+    let totalPrix =0; 
+    
     
     panier.forEach(item => {
-        contenu += `<li>${item.nom} - ${item.prix}$ (x${item.quantite}) 
-            <button class="deletePanier" onclick="supprimerDuPanier(${item.id})"><i class="fa-solid fa-xmark"></i></button></li>`;
+        totalPrix +=parseInt(item.quantite)*parseFloat(item.prix);
+        contenu += `<div class="unItemListe">
+            <div><p>${item.nom} (x${item.quantite}) - ${item.prix}$</p>
+            </div>
+            <button class="deletePanier" onclick="soustraireItem(${item.id})">-</button></li></div>`;
     });
 
-    panierHTML.innerHTML = contenu + `<h2>Total: ${totalPrix}$</h2><br><a class="commander-panier">Commander</a>`
+    panierHTML.innerHTML = contenu + `<h2>Total: ${totalPrix}$</h2><br><a class="commander-panier">Commander</a><a class="commander-panier vider">Vider le panier</a>`
+    
     let boutonCommander = document.querySelector(".commander-panier");
+    let boutonVider = document.querySelector(".vider");
+    let boutonClose = document.querySelector(".closePanier");
+
+    if (boutonVider) {
+        boutonVider.addEventListener("click", viderPanier);
+    } else {
+        console.error("Le bouton .commander-panier n'a pas été trouvé.");
+    }
     if (boutonCommander) {
         boutonCommander.addEventListener("click", commanderPanier);
     } else {
         console.error("Le bouton .commander-panier n'a pas été trouvé.");
+    }
+    if (boutonClose){
+        boutonClose.addEventListener("click",togglePanier);
     }
 }
 
@@ -68,10 +85,7 @@ function afficherPanier() {
 function supprimerDuPanier(id) {
     let panier = getPanier();
 
-    itemASupprimer = panier.find(item => item.id === id);
-    if (itemASupprimer) {
-        totalPrix -= itemASupprimer.quantite * itemASupprimer.prix; // Corrige la soustraction
-    }
+    
     panier = panier.filter(item => item.id !== id);
    
     savePanier(panier);
@@ -199,4 +213,21 @@ function ajouterItemsACommande(idCommande) {
         })
         .catch(error => console.error("Erreur:", error));
     });
+}
+     
+function soustraireItem(id){
+    let panier = getPanier();
+
+    let itemASupprimer = panier.find(item => item.id === id);
+   
+    if(itemASupprimer.quantite>1){
+        itemASupprimer.quantite--;
+        savePanier(panier);
+    }
+    else{
+        supprimerDuPanier(id);
+        return;
+    }
+    
+    afficherPanier();
 }
