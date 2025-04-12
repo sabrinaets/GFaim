@@ -172,7 +172,7 @@ function afficherMenuResto(array $tableauItem, unRestaurant $resto):void{
     echo '<div id="menu">';
     foreach ($tableauItem as $unItem){
         echo '<div class="menu-item">';
-        echo '<img src="images/imageBurger.jpg" alt="burger" width ="250px" height="250px">';
+        echo '<img src="'.htmlspecialchars($unItem->getImage()). '" alt="Image de l item" width ="250px" height="250px">';
         echo '<div class="item-info">';
         echo '<h3>'. htmlspecialchars($unItem->getNom()).'</h3>';
         echo '<p>'. htmlspecialchars($unItem->getDescription()).'</p>';

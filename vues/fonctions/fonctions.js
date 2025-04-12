@@ -12,16 +12,18 @@ console.log("Fichier fonctions.js chargé !");
     }
 
 
-const PANIER_KEY = "panier";
+
 
 
 function getPanier() {
-    return JSON.parse(localStorage.getItem(PANIER_KEY)) || [];
+    let id = idUtilisateur; 
+    return JSON.parse(localStorage.getItem("panier_" + id)) || [];
 }
 
 
 function savePanier(panier) {
-    localStorage.setItem(PANIER_KEY, JSON.stringify(panier));
+    let id = idUtilisateur;
+    localStorage.setItem("panier_" + id, JSON.stringify(panier));
 }
 
 

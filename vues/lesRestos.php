@@ -66,5 +66,6 @@
         <p>@2025 tous droits reservés GFaim</p>
     </footer>
     <script src="vues/fonctions/fonctions.js"></script>
+
 </body>
 </html>

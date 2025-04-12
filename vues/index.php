@@ -91,5 +91,9 @@
          console.log("id utilisateur de index:" +idUtilisateur);
          sessionStorage.setItem('idUtilisateur',idUtilisateur);
          </script>
+         <script>
+            let idUtilisateur = <?php echo json_encode($_SESSION['idUtilisateur']); ?>;
+        </script>
+
 </body>
 </html>
