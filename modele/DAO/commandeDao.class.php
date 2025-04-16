@@ -250,7 +250,10 @@ class commandeDAO implements DAO{
         $requete->execute(['idCommande'=>$idCmd]);
         return $requete->execute();
     }
-    static public function itemPlusPopulaire(PDO $pdo,int $idRestaurant):string{
+    static public function itemPlusPopulaire(PDO $pdo,?int $idRestaurant):string{
+        if ($idRestaurant==null){
+            return 0;
+        }
         $requete = $pdo->prepare(
             "SELECT MAX(nom) FROM item WHERE idItem IN 
             (SELECT idItem FROM commandeItem cI
@@ -261,6 +264,7 @@ class commandeDAO implements DAO{
         return (string)$requete->fetchColumn();
     }
     static public function commandesParResto(PDO $pdo, int $idRestaurant):int{
+
         $requete=$pdo->prepare(
             "SELECT COUNT(idCommande) FROM Commande WHERE idRestaurant= :idRestaurant"
         );

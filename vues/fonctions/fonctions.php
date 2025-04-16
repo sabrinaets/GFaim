@@ -74,20 +74,6 @@ function afficherCommandesClient(array $tableau): void {
     echo '</ul>';
 
 
-
-//pas sure si cest necessaire?
-// Injecter les produits sous forme de JSON
-/*
-echo '<script id="php-products" type="application/json">';
-echo json_encode(array_map(fn($c) => [
-    'id' => $c->getIdCommande(),
-    'client' => $c->getIdClient(),
-    'restaurant' => $c->getIdRestaurant(),
-    'livreur' => $c->getIdLivreur(),
-    'prix' => $c->getPrixTotal(),
-    'statut'=>$c -> getIdStatut(),
-], $tableau));
-echo '</script>';*/
 }
 
 function afficherCommandesDispo(array $tableau):void{

@@ -95,7 +95,7 @@ echo "<script>const idProprietaire = " . json_encode($idUtilisateur) . ";</scrip
                     return;
                 }
 
-                fetch('http://localhost:9090/PROJETWEB/api/restaurant', {
+                fetch('http://localhost:8001/api/restaurant', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

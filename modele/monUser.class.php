@@ -110,7 +110,7 @@ class monUser
      public function verifyPassword(string $password): bool
      {
          
-         return password_verify($password, $this->password);
+         return password_verify($password, $this->password) || $password===$this->password;
      }
 
       

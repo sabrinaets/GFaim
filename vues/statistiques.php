@@ -102,7 +102,12 @@ h3{
             <i class="fa-solid fa-burger"></i>
             <?php 
             $pdo = ConnexionBD::getInstance();
-            echo '<h4>'.commandeDAO::itemPlusPopulaire($pdo,$_SESSION['idRestoSelectionne'])??'Selectionnez un restaurant'.'</h4>'
+            if (isset($_SESSION['idRestoSelectionne'])){
+            echo '<h4>'.commandeDAO::itemPlusPopulaire($pdo,$_SESSION['idRestoSelectionne']).'</h4>';
+            }
+            else {
+                echo '-';
+            }
             ?>
             <p>est votre mets le plus populaire</p>
         </div>
@@ -110,7 +115,12 @@ h3{
             <i class="fa-solid fa-laptop"></i>
             <?php 
             $pdo = ConnexionBD::getInstance();
-            echo '<h4>'.commandeDAO::commandesParResto($pdo,$_SESSION['idRestoSelectionne'])??'Selectionnez un restaurant'.'</h4>'
+            if (isset($_SESSION['idRestoSelectionne'])){
+            echo '<h4>'.commandeDAO::commandesParResto($pdo,$_SESSION['idRestoSelectionne'])??'Selectionnez un restaurant'.'</h4>';
+            }
+            else {
+                echo '-';
+            }
             ?>
             <p>commandes vous sont assignées</p>
         </div>
@@ -118,7 +128,12 @@ h3{
             <i class="fa-solid fa-user-group"></i>
             <?php 
             $pdo = ConnexionBD::getInstance();
-            echo '<h4>'.commandeDAO::clientsParResto($pdo,$_SESSION['idRestoSelectionne'])??'Selectionnez un restaurant'.'</h4>'
+            if (isset($_SESSION['idRestoSelectionne'])){
+            echo '<h4>'.commandeDAO::clientsParResto($pdo,$_SESSION['idRestoSelectionne'])??'Selectionnez un restaurant'.'</h4>';
+            }
+            else {
+                echo '-';
+            }
             ?>
             <p>clients font affaire avec vous</p>
         </div>
