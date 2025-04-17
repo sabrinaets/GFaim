@@ -68,7 +68,7 @@ public class LivreurCommandeALivrerActivity extends AppCompatActivity implements
         }
 
         if (v == seDeconnecter) {
-            startActivity(new Intent(this, AccueilActivity.class));
+            startActivity(new Intent(this, MainActivity.class));
         }
 
         if (v == btnRetour) {

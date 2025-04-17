@@ -2,6 +2,16 @@ plugins {
     alias(libs.plugins.android.application)
 }
 
+dependencies {
+    implementation(libs.jackson.databind)
+    implementation(libs.okhttp)
+    implementation (libs.glide)
+    annotationProcessor (libs.compiler)
+}
+
+
+
+
 android {
     namespace = "com.aj.gfaim"
     compileSdk = 35
