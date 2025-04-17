@@ -52,13 +52,13 @@ public class MainActivityThreadJSON extends Thread {
 
     private int getLastUserId(OkHttpClient client) throws IOException {
         Request request = new Request.Builder()
-                .url(BASE_URL + "?_sort=id&_order=desc&_limit=1")
+                .url(BASE_URL)
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
             String jsonData = response.body().string();
             Utilisateur[] users = new ObjectMapper().readValue(jsonData, Utilisateur[].class);
-            return users.length > 0 ? Integer.parseInt(users[0].getId()) : 0;
+            return users.length;
         }
     }
 
