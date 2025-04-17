@@ -76,7 +76,7 @@ public class LivreurCommandeDispoActivity extends AppCompatActivity implements V
         }
 
         if (v == seDeconnecter) {
-            Intent intent = new Intent(this, AccueilActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
 
