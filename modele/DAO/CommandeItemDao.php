@@ -54,7 +54,7 @@ class CommandeItemDao implements DAO{
         }
 
         $liste = [];
-        $requete = $connexion->prepare("SELECT * FROM commandeitem");
+        $requete = $connexion->prepare("SELECT * FROM CommandeItem");
         $requete->execute();
 
         while (($enr = $requete->fetch()) !== false) {
@@ -86,8 +86,8 @@ class CommandeItemDao implements DAO{
 
         $liste = [];
         $requete = $connexion->prepare(
-            "SELECT cmdi.*,i.nom AS nomItem FROM commandeitem cmdi
-            JOIN item i ON cmdi.idItem = i.idItem
+            "SELECT cmdi.*,i.nom AS nomItem FROM CommandeItem cmdi
+            JOIN Item i ON cmdi.idItem = i.idItem
             WHERE cmdi.idCommande = :idCommande");
         $requete->bindParam(':idCommande', $idCommande, PDO::PARAM_INT);
         $requete->execute();
@@ -128,7 +128,7 @@ class CommandeItemDao implements DAO{
     
         // Requête préparée
         $requete = $connexion->prepare(
-            "INSERT INTO commandeitem (idCommande, idItem, quantite) 
+            "INSERT INTO CommandeItem (idCommande, idItem, quantite) 
              VALUES (:idCommande, :idItem, :quantite)"
         );
 
@@ -166,7 +166,7 @@ class CommandeItemDao implements DAO{
 
         // Requête préparée
         $requete = $connexion->prepare(
-            "UPDATE commandeitem 
+            "UPDATE CommandeItem 
              SET idCommande = :idCommande, idItem = :idItem, quantite = :quantite 
              WHERE idCommandeItem = :idCommandeItem"
         );
@@ -193,7 +193,7 @@ class CommandeItemDao implements DAO{
         }
 
         $requete = $connexion->prepare(
-            "DELETE FROM commandeitem WHERE idCommandeItem = :idCommandeItem"
+            "DELETE FROM CommandeItem WHERE idCommandeItem = :idCommandeItem"
         );
         $requete->bindParam(':idItem', $commandeItem->getIdCommandeItem(), PDO::PARAM_INT);
 

@@ -15,14 +15,22 @@ console.log("Fichier fonctions.js chargé !");
 
 
 
-function getPanier() {
-    let id = idUtilisateur; 
+function getPanier() { 
+    let id = sessionStorage.getItem("idUtilisateur");
+    if (!id) {
+        console.error("Utilisateur non connecté — impossible de récupérer le panier.");
+        return [];
+    }
     return JSON.parse(localStorage.getItem("panier_" + id)) || [];
 }
 
 
 function savePanier(panier) {
-    let id = idUtilisateur;
+    let id = sessionStorage.getItem("idUtilisateur");
+    if (!id) {
+        console.error("Utilisateur non connecté — impossible de sauvegarder le panier.");
+        return;
+    }
     localStorage.setItem("panier_" + id, JSON.stringify(panier));
 }
 
@@ -96,8 +104,13 @@ function supprimerDuPanier(id) {
 
 
 function viderPanier() {
-    localStorage.removeItem(PANIER_KEY);
-    totalPrix=0;
+    let id = sessionStorage.getItem("idUtilisateur");
+    if (!id) {
+        console.error("Utilisateur non connecté — impossible de vider le panier.");
+        return;
+    }
+
+    localStorage.removeItem("panier_" + id);
     afficherPanier();
 }
 
@@ -156,7 +169,7 @@ function commanderPanier(id) {
 
     //Faire POST pour la commande vide
     console.log("Commande envoyée:", commande);
-    fetch("http://localhost:9090/PROJETWEB/api/commande", { 
+    fetch("http://localhost:8001/api/commande", { 
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -197,7 +210,7 @@ function ajouterItemsACommande(idCommande) {
 
         console.log("CommandeItem envoyée:", commandeItem);
        
-        fetch("http://localhost:9090/PROJETWEB/api/commandeItem", { 
+        fetch("http://localhost:8001/api/commandeItem", { 
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

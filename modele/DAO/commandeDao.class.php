@@ -48,7 +48,7 @@ class commandeDAO implements DAO{
 
         $commandes = [];
         $requete = $connexion->prepare(
-            "SELECT * FROM commande"
+            "SELECT * FROM Commande"
         );
         $requete->execute();
 
@@ -250,13 +250,13 @@ class commandeDAO implements DAO{
         $requete->execute(['idCommande'=>$idCmd]);
         return $requete->execute();
     }
-    static public function itemPlusPopulaire(PDO $pdo,?int $idRestaurant):string{
+    static public function itemPlusPopulaire(PDO $pdo,int $idRestaurant):string{
         if ($idRestaurant==null){
             return 0;
         }
         $requete = $pdo->prepare(
-            "SELECT MAX(nom) FROM item WHERE idItem IN 
-            (SELECT idItem FROM commandeItem cI
+            "SELECT MAX(nom) FROM Item WHERE idItem IN 
+            (SELECT idItem FROM CommandeItem cI
             JOIN Commande c ON c.idCommande = cI.idCommande
             WHERE c.idRestaurant = :idRestaurant)"
         );
