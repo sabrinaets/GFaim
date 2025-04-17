@@ -1,6 +1,8 @@
 <?php
 
 include_once(__DIR__ . "/DAO.interface.php");
+include_once(__DIR__ . '/../commande.class.php');
+
 use Modele\Commande;
 
 class commandeDAO implements DAO{
@@ -14,7 +16,7 @@ class commandeDAO implements DAO{
 
         $commande = null;
         $requete = $connexion->prepare(
-            "SELECT * FROM commande WHERE idCommande = :id"
+            "SELECT * FROM Commande WHERE idCommande = :id"
         );
         $requete->bindParam(':id',$id,PDO::PARAM_INT);
         $requete->execute();
