@@ -25,11 +25,12 @@ $apiKey = $_ENV['GOOGLE_MAPS_API_KEY'];
     <style>
         #map{
             width:80%;
-            height:80%;
+            height:70%;
         }
         .carre{
             display:flex;
             justify-content: center;
+            height:700px;
         }
     </style>
 </head>
@@ -52,15 +53,17 @@ $apiKey = $_ENV['GOOGLE_MAPS_API_KEY'];
     }
     else{
         $client = UserDAO::findById($commande->getIdClient());
+        $restaurant = RestaurantDao::findById($commande->getIdRestaurant());
         echo '<h2>'.htmlspecialchars($client->getUserName()).' - '
         .htmlspecialchars($client->getCodePostal()). ' - '.
-        htmlspecialchars($client->getPhone()).'</h2>';
-        $restaurant = RestaurantDao::findById($commande->getIdRestaurant());
+        htmlspecialchars($client->getPhone()).'</h2> <br>';
+       
     }
     ?>
-
+   
     <div id="map"></div>
-
+    <div id="infos-trajet" style="margin-top: 1px solid black ; font-weight: bold;"></div>
+   
     </section>
 
     <script>
@@ -187,6 +190,34 @@ $apiKey = $_ENV['GOOGLE_MAPS_API_KEY'];
             (response,status)=>{
                 if (status === "OK"){
                     directionsRenderer.setDirections(response);
+
+
+                    //Afficher les infos de distance et duree estimee
+                    const distanceService = new google.maps.DistanceMatrixService();
+                    distanceService.getDistanceMatrix(
+                        {
+                            origins:[posLivreur],
+                            destinations: [posResto, posClient],
+                            travelMode:google.maps.TravelMode.DRIVING,
+                            unitSystem:google.maps.UnitSystem.METRIC,
+                        },
+                        (distanceResponse,distanceStatus)=>{
+                            if (distanceStatus ==="OK"){
+                                const toResto = distanceResponse.rows[0].elements[0];
+                                const toClient = distanceResponse.rows[0].elements[1];
+
+                                const totalDistance = toResto.distance.value + toClient.distance.value;
+                                const totalDuration = toResto.duration.value + toClient.duration.value;
+
+                                const infosDiv = document.getElementById("infos-trajet");
+                                infosDiv.innerHTML = `Trajet total : ${(totalDistance / 1000).toFixed(2)} km, Durée estimée : ${(totalDuration / 60).toFixed(1)} min`;
+
+                            }
+                            else{
+                                console.error("Erreur distance matrix:",+distanceStatus);
+                            }
+                        }
+                    )
                 }
                 else{
                     alert("Impossible de tracer l'itinéraire"+status);
