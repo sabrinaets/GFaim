@@ -111,6 +111,7 @@ function afficherCommandesALivrer(array $tableau):void{
             echo '<li style="margin-right:20px">' . htmlspecialchars((string) $item['nomItem']) . ' (x' . htmlspecialchars((string) $item['quantite']) . ')</li>'; 
         }
         echo '</ul>';
+        echo '<a class="boutonAnnuler" style="margin-right:5px;" href="?action=itineraireCommande&id='.htmlspecialchars((string) $uneCommande['idCommande']).'">Itinéraire</a>';
         echo '<a class="boutonAnnuler" href="?action=annulerCommandeLivreur&id='.htmlspecialchars((string) $uneCommande['idCommande']).'">Annuler</a>';
         echo '</li>';
 
@@ -164,10 +165,10 @@ function afficherMenuResto(array $tableauItem, unRestaurant $resto):void{
         echo '<p>'. htmlspecialchars($unItem->getDescription()).'</p>';
         echo '<p>Prix: '. htmlspecialchars($unItem->getPrix()).'</p>';
         echo '<a onclick="ajouterAuPanier('
-        . htmlspecialchars((string) $unItem->getIdItem()) 
-        . ', \'' . addslashes(htmlspecialchars((string) $unItem->getNom())) . '\', ' 
-        . htmlspecialchars((string) $unItem->getPrix()) . ', ' 
-        . htmlspecialchars((string) $unItem->getIdRestaurant())
+        . htmlspecialchars(json_encode($unItem->getIdItem())) . ', '
+        . htmlspecialchars(json_encode($unItem->getNom())) . ', '
+        . htmlspecialchars(json_encode($unItem->getPrix())) . ', '
+        . htmlspecialchars(json_encode($unItem->getIdRestaurant()))
         . ')" href="#">Ajouter au panier</a>';
    
         echo '</div>';
