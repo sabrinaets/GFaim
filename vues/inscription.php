@@ -29,6 +29,7 @@
                   <option value="Client">
                   <option value="Livreur">
                   <option value="Restaurateur">
+                  <option value="admin">
                   </datalist>
 
                   

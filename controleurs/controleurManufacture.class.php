@@ -26,7 +26,7 @@ include_once("controleurs/controleurAnnulerCommandeLivreur.php");
 include_once("controleurs/controleurTerminerCommande.php");
 include_once("controleurs/controleurAnnulerCommande.php");
 include_once("controleurs/controleurItineraireCommande.php");
-include_once("controleurs/controleurVoirLesRestosAdmin.php");
+include_once("controleurs/controleurVoirMesRestosAdmin.php");
 
 class ManufactureControleur
 {

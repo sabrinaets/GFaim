@@ -33,7 +33,8 @@ class SeInscrire extends Controleur
         // Vérifiez si le formulaire de création de compte est soumis
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["userName"])) {
             // Déterminer le rôle en fonction des permissions
-            if (isset($_POST['role'])) {
+            if (isset($_SESSION['utilisateurConnecte'])) {
+                if($_SESSION['utilisateurConnecte']->getRole()->getIdRole() == 1){
                 // Si l'utilisateur est admin, utiliser le rôle fourni dans le formulaire
                 switch($_POST['role']){
                     case "Livreur":
@@ -48,11 +49,13 @@ class SeInscrire extends Controleur
                     case "admin":    
                         $idRole=1;
                         break;
+                    }
                 }
                 $role = new monRole($idRole, $_POST['role']);
-            } else {
+            }
+             else {
                 // Sinon, attribuer le rôle "Client" par défaut
-                $role = new monRole(3, "Client");
+                $role = new monRole(2, "Client");
             }
 
             // Création de l'utilisateur
