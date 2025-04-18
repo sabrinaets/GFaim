@@ -69,7 +69,7 @@ function afficherPanier() {
 
     contenu += `<h2>Total: ${totalPrix.toFixed(2)}$</h2>
         <div id="paypal-button-container"></div>
-        <br><a class="commander-panier vider">Vider le panierssss</a>`;
+        <br><a class="commander-panier vider">Vider le panier</a>`;
 
     panierHTML.innerHTML = contenu;
 
@@ -84,52 +84,60 @@ function afficherPanier() {
         boutonClose.addEventListener("click", togglePanier);
     }
 
-    // PayPal bouton (charge le SDK s'il n'est pas encore présent)
-    if (!document.querySelector("script[src*='paypal.com/sdk/js']")) {
-        const script = document.createElement("script");
-        script.src = "https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=EUR";
-        script.onload = () => renderPaypalButton(panier, totalPrix);
-        document.head.appendChild(script);
-    } else {
+    loadPaypalSdk().then(() => {
         renderPaypalButton(panier, totalPrix);
-    }
+    }).catch(() => {
+        console.error("Erreur lors du chargement du SDK PayPal");
+    });
 }
-function renderPaypalButton(panier, total) {
+function loadPaypalSdk() {
+    return new Promise((resolve, reject) => {
+        if (typeof paypal !== "undefined") {
+            return resolve(); // Déjà chargé
+        }
+
+        const existingScript = document.querySelector("script[src*='paypal.com/sdk/js']");
+        if (existingScript) {
+            existingScript.addEventListener("load", resolve);
+            return;
+        }
+
+        const script = document.createElement("script");
+        script.src = "https://www.paypal.com/sdk/js?client-id=AaueH_EDRloIbSiw261KmBqc4D2xk6tTslaNnpHWnxwnXZy6LY52OZz-s5kBLoGvADAhsPReqKaRCFz_&currency=EUR";
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+    });
+}
+function renderPaypalButton(panier, totalPrix) {
+    if (!panier.length || totalPrix <= 0) {
+        console.warn("Panier vide, bouton PayPal non affiché.");
+        const container = document.getElementById("paypal-button-container");
+        if (container) container.innerHTML = ''; // Vider le bouton si déjà affiché
+        return;
+    }
+
     paypal.Buttons({
-        createOrder: function(data, actions) {
+        createOrder: function (data, actions) {
             return actions.order.create({
                 purchase_units: [{
                     amount: {
-                        value: total.toFixed(2)
+                        value: totalPrix.toFixed(2), // Important : string avec 2 décimales
+                        currency_code: "EUR"
                     }
                 }]
             });
         },
-        onApprove: function(data, actions) {
-            return actions.order.capture().then(function(details) {
-                // Paiement réussi → on envoie au serveur
-                fetch("valider_commande.php", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        panier: panier,
-                        total: total,
-                        paymentDetails: details
-                    })
-                }).then(res => res.json())
-                  .then(response => {
-                      if (response.status === 'success') {
-                          alert("Paiement confirmé ! Votre commande est enregistrée.");
-                          localStorage.removeItem("panier");
-                          togglePanier(); // refermer panier si besoin
-                          window.location.href = "confirmation.php"; // ou autre
-                      } else {
-                          alert("Erreur lors de l'enregistrement de la commande.");
-                      }
-                  });
+        onApprove: function (data, actions) {
+            return actions.order.capture().then(function (details) {
+                alert("Paiement approuvé ! Merci " + details.payer.name.given_name);
+                // ➕ ici tu peux appeler une fonction pour envoyer la commande en PHP
+                commanderPanier();
+                // et vider le panier ensuite
             });
+        },
+        onError: function (err) {
+            console.error("Erreur PayPal:", err);
         }
     }).render('#paypal-button-container');
 }
