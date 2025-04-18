@@ -19,10 +19,10 @@ function afficherMenu($controleur)
             $utilisateurConnecte = $_SESSION['utilisateurConnecte'];
             $nom = htmlspecialchars($utilisateurConnecte->getUserName());
             $menu .= "<span style='color:white'>" . $nom . " connecté </span>";
+            $menu .= "<span style='color:white'>  Mon id: " .htmlspecialchars($utilisateurConnecte->getId()). "</span>";
             if(htmlspecialchars($utilisateurConnecte->getRole()->getRoleName()) === "Admin"){
-                $menu .= "<a href='?action=gestionApi'>Gestion de l'API</a>";
+                $menu .= "<a href='?action=voirLesRestosAdmin'>Gérer les restaurants</a>";
                 $menu .= "<a href='?action=creerCompte'>Créer compte</a>";
-                
             }
             else if(htmlspecialchars($utilisateurConnecte->getRole()->getRoleName()) === "Client"){
                 $menu .= "<a id='toggle-panier'>Panier</a>"; //icone panier

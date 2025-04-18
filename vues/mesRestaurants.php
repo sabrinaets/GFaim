@@ -18,7 +18,9 @@
     </header>
     <main class="contenu">
         <h1>Voici vos Restaurants</h1>
+        <?php if($controleur->isAdmin()):?>
         <a class="boutonAjouter"href="?action=ajouterResto">Nouveau Restaurant</a>
+        <?php endif; ?>
         <?php
         if(empty($controleur->getMesRestos()))
         {

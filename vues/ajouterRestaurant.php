@@ -2,8 +2,6 @@
 if(!isset($_SESSION)) {
     session_start(); // Toujours démarrer la session
 }
-$idUtilisateur = isset($_SESSION['idUtilisateur']) ? $_SESSION['idUtilisateur'] : null;
-echo "<script>const idProprietaire = " . json_encode($idUtilisateur) . ";</script>";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,6 +26,14 @@ echo "<script>const idProprietaire = " . json_encode($idUtilisateur) . ";</scrip
             <h2>Nouveau Restaurant</h2>
             <form id="ajouterResto" action="post">
                 <input type="hidden" id="editRestoId" />
+                <input
+                  type="text"
+                  id="ajouteridProprietaire"
+                  name="idProprietaire"
+                  class="form-control my-2"
+                  placeholder="id du propriétaire"
+                  required
+                />
                 <input
                   type="text"
                   id="ajouterNom"
@@ -73,10 +79,12 @@ echo "<script>const idProprietaire = " . json_encode($idUtilisateur) . ";</scrip
         if (form) {
             form.addEventListener('submit', function (event) {
                 event.preventDefault(); // Empêche la soumission classique du formulaire
+                const idProprietaire = form.querySelector('[name="idProprietaire"]').value.trim();
                 const name = form.querySelector('[name="name"]').value.trim();
                 const adresse = form.querySelector('[name="adresse"]').value.trim();
                 const phone = form.querySelector('[name="phone"]').value.trim();
                 const description = form.querySelector('[name="description"]').value.trim();
+                
 
                 if (!name || !adresse || !phone || !description) {
                     alert("Veuillez remplir tous les champs !");

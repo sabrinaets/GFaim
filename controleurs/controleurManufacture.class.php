@@ -25,6 +25,8 @@ include_once("controleurs/controleurLocaliserClient.php");
 include_once("controleurs/controleurAnnulerCommandeLivreur.php");
 include_once("controleurs/controleurTerminerCommande.php");
 include_once("controleurs/controleurAnnulerCommande.php");
+include_once("controleurs/controleurVoirMesRestosAdmin.php");
+
 
 class ManufactureControleur
 {
@@ -95,6 +97,12 @@ class ManufactureControleur
 		}
 		elseif($action == "voirStats"){
 			$controleur = new voirStats();
+		}
+		elseif($action == "localiser"){
+			$controleur = new localiserClient();
+		}
+		elseif($action == "voirLesRestosAdmin"){
+			$controleur = new voirLesRestosAdmin();
 		}
 		elseif($action == "localiser"){
 			$controleur = new localiserClient();
