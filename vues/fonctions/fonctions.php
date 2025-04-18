@@ -19,7 +19,6 @@ function afficherMenu($controleur)
             $utilisateurConnecte = $_SESSION['utilisateurConnecte'];
             $nom = htmlspecialchars($utilisateurConnecte->getUserName());
             $menu .= "<span style='color:white'>" . $nom . " connecté </span>";
-            $menu .= "<span style='color:white'>  Mon id: " .htmlspecialchars($utilisateurConnecte->getId()). "</span>";
             if(htmlspecialchars($utilisateurConnecte->getRole()->getRoleName()) === "Admin"){
                 $menu .= "<a href='?action=voirLesRestosAdmin'>Gérer les restaurants</a>";
                 $menu .= "<a href='?action=creerCompte'>Créer compte</a>";
@@ -33,6 +32,7 @@ function afficherMenu($controleur)
                 $menu .= "<a href='?action=voirCommandeALivrerLivreur'>Commandes à livrer</a>";
             }
             else if(htmlspecialchars($utilisateurConnecte->getRole()->getRoleName()) === "Restaurant"){
+                $menu .= "<span style='color:white'>  Mon id: " .htmlspecialchars($utilisateurConnecte->getId()). "</span>";
                 $menu .= "<a href='?action=voirStats'>Statistiques</a>";
                 $menu .= "<a href='?action=voirCommandesResto'>Voir mes commandes</a>"; 
                 $menu .= "<a href='?action=voirMesRestos'>Voir mes restaurants</a>"; 
