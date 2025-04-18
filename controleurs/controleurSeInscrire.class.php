@@ -5,6 +5,7 @@ include_once("modele/DAO/UserDAO.class.php");
 include_once("modele/monRole.class.php");
 include_once("modele/monUser.class.php");
 
+
 class SeInscrire extends Controleur
 {
     // ******************* Attributs
@@ -34,7 +35,7 @@ class SeInscrire extends Controleur
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["userName"])) {
             // Déterminer le rôle en fonction des permissions
             if (isset($_SESSION['utilisateurConnecte'])) {
-                if($_SESSION['utilisateurConnecte']->getRole()->getIdRole() == 1){
+                if($_SESSION['utilisateurConnecte']->getRole()->getId() == 1){
                 // Si l'utilisateur est admin, utiliser le rôle fourni dans le formulaire
                 switch($_POST['role']){
                     case "Livreur":
