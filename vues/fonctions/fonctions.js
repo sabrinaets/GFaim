@@ -55,42 +55,84 @@ function ajouterAuPanier(id, nom, prix,idRestaurant) {
 function afficherPanier() {
     let panier = getPanier();
     let panierHTML = document.querySelector(".panier");
-    
 
-    
     let contenu = `<button class="closePanier" onclick=""><i class="fa-solid fa-xmark"></i></button>`; 
-    let totalPrix =0; 
-    
-    
+    let totalPrix = 0; 
+
     panier.forEach(item => {
-        totalPrix +=parseInt(item.quantite)*parseFloat(item.prix);
+        totalPrix += parseInt(item.quantite) * parseFloat(item.prix);
         contenu += `<div class="unItemListe">
-            <div><p>${item.nom} (x${item.quantite}) - ${item.prix}$</p>
-            </div>
-            <button class="deletePanier" onclick="soustraireItem(${item.id})">-</button></li></div>`;
+            <div><p>${item.nom} (x${item.quantite}) - ${item.prix}$</p></div>
+            <button class="deletePanier" onclick="soustraireItem(${item.id})">-</button>
+        </div>`;
     });
 
-    panierHTML.innerHTML = contenu + `<h2>Total: ${totalPrix}$</h2><br><a class="commander-panier">Commander</a><a class="commander-panier vider">Vider le panier</a>`
-    
-    let boutonCommander = document.querySelector(".commander-panier");
-    let boutonVider = document.querySelector(".vider");
-    let boutonClose = document.querySelector(".closePanier");
+    contenu += `<h2>Total: ${totalPrix.toFixed(2)}$</h2>
+        <div id="paypal-button-container"></div>
+        <br><a class="commander-panier vider">Vider le panierssss</a>`;
+
+    panierHTML.innerHTML = contenu;
+
+    // Boutons
+    const boutonVider = document.querySelector(".vider");
+    const boutonClose = document.querySelector(".closePanier");
 
     if (boutonVider) {
         boutonVider.addEventListener("click", viderPanier);
-    } else {
-        console.error("Le bouton .commander-panier n'a pas été trouvé.");
     }
-    if (boutonCommander) {
-        boutonCommander.addEventListener("click", commanderPanier);
-    } else {
-        console.error("Le bouton .commander-panier n'a pas été trouvé.");
+    if (boutonClose) {
+        boutonClose.addEventListener("click", togglePanier);
     }
-    if (boutonClose){
-        boutonClose.addEventListener("click",togglePanier);
+
+    // PayPal bouton (charge le SDK s'il n'est pas encore présent)
+    if (!document.querySelector("script[src*='paypal.com/sdk/js']")) {
+        const script = document.createElement("script");
+        script.src = "https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=EUR";
+        script.onload = () => renderPaypalButton(panier, totalPrix);
+        document.head.appendChild(script);
+    } else {
+        renderPaypalButton(panier, totalPrix);
     }
 }
-
+function renderPaypalButton(panier, total) {
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: total.toFixed(2)
+                    }
+                }]
+            });
+        },
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                // Paiement réussi → on envoie au serveur
+                fetch("valider_commande.php", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        panier: panier,
+                        total: total,
+                        paymentDetails: details
+                    })
+                }).then(res => res.json())
+                  .then(response => {
+                      if (response.status === 'success') {
+                          alert("Paiement confirmé ! Votre commande est enregistrée.");
+                          localStorage.removeItem("panier");
+                          togglePanier(); // refermer panier si besoin
+                          window.location.href = "confirmation.php"; // ou autre
+                      } else {
+                          alert("Erreur lors de l'enregistrement de la commande.");
+                      }
+                  });
+            });
+        }
+    }).render('#paypal-button-container');
+}
 
 function supprimerDuPanier(id) {
     let panier = getPanier();
