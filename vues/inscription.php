@@ -23,14 +23,17 @@
                 
                 <input name="userName"type="name" required placeholder="Nom d'utilisateur" maxlength=30>
                 
-                
-                <input list="roles" name="role"placeholder="Rôle" required>
+
+                <?php if (isset($_SESSION['utilisateurConnecte'])): ?>
+                <input list="roles" name="role" placeholder="Rôle" required>
                 <datalist id="roles">
-                  <option value="Client">
-                  <option value="Livreur">
-                  <option value="Restaurateur">
-                  <option value="admin">
-                  </datalist>
+                    <option value="Client">
+                    <option value="Livreur">
+                    <option value="Restaurateur">
+                    <option value="admin">
+                </datalist>
+                <?php endif; ?>
+
 
                   
                 <input minlength=6 maxlength=6 name="codepostal"type="codepostal" required placeholder="Code postal (ex. ABC123)">
