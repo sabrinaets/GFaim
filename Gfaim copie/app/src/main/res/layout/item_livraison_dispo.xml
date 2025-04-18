@@ -26,7 +26,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/adresse_livraison"
+            android:id="@+id/textViewAdresse"
             android:layout_width="87dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -37,7 +37,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/commande_livraison"
+            android:id="@+id/textViewProduits"
             android:layout_width="83dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -49,7 +49,7 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/buttonAccepte"
+            android:id="@+id/buttonAction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20px"

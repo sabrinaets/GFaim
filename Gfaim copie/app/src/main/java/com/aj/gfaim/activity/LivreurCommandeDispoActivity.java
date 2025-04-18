@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,17 +16,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aj.gfaim.R;
-import com.aj.gfaim.adapteur.LivraisonDispoAdapter;
+import com.aj.gfaim.adapteur.LivraisonAdapter;
 import com.aj.gfaim.modele.ItemLivraisonDispo;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LivreurCommandeDispoActivity extends AppCompatActivity implements View.OnClickListener {
+public class LivreurCommandeDispoActivity extends AppCompatActivity implements View.OnClickListener, LivraisonAdapter.OnLivraisonClickListener {
     private TextView commandesDispo, commandesALiver, seDeconnecter;
     private Button btnRetour;
     private RecyclerView recyclerView;
-    private LivraisonDispoAdapter livraisonDispoAdapter;
+    private LivraisonAdapter livraisonAdapter;
     private List<ItemLivraisonDispo> itemLivraisonDispoList;
 
     @Override
@@ -40,15 +41,13 @@ public class LivreurCommandeDispoActivity extends AppCompatActivity implements V
         });
 
         commandesDispo = findViewById(R.id.textViewCommandesDispo);
-        commandesDispo.setOnClickListener(this);
-
         commandesALiver = findViewById(R.id.textViewCommandesALivrer);
-        commandesALiver.setOnClickListener(this);
-
         seDeconnecter = findViewById(R.id.seDeconnecter6);
-        seDeconnecter.setOnClickListener(this);
-
         btnRetour = findViewById(R.id.buttonRetour6);
+
+        commandesDispo.setOnClickListener(this);
+        commandesALiver.setOnClickListener(this);
+        seDeconnecter.setOnClickListener(this);
         btnRetour.setOnClickListener(this);
 
         recyclerView = findViewById(R.id.listItemALivrer);
@@ -59,29 +58,30 @@ public class LivreurCommandeDispoActivity extends AppCompatActivity implements V
         itemLivraisonDispoList.add(new ItemLivraisonDispo("Restaurant 2", "Adresse 2", "Produit 2"));
         itemLivraisonDispoList.add(new ItemLivraisonDispo("Restaurant 3", "Adresse 3", "Produit 3"));
 
-        livraisonDispoAdapter = new LivraisonDispoAdapter(itemLivraisonDispoList);
-        recyclerView.setAdapter(livraisonDispoAdapter);
+        livraisonAdapter = new LivraisonAdapter(itemLivraisonDispoList, false, position -> {
+            ItemLivraisonDispo item = itemLivraisonDispoList.get(position);
+            Toast.makeText(getApplicationContext(), "Commande acceptée: " + item.getNomRestaurant(), Toast.LENGTH_SHORT).show();
+        });
+
+        recyclerView.setAdapter(livraisonAdapter);
     }
 
     @Override
     public void onClick(View v) {
         if (v == commandesDispo) {
-            Intent intent = new Intent(this, LivreurCommandeDispoActivity.class);
-            startActivity(intent);
-        }
-
-        if (v == commandesALiver) {
-            Intent intent = new Intent(this, LivreurCommandeALivrerActivity.class);
-            startActivity(intent);
-        }
-
-        if (v == seDeconnecter) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        }
-
-        if (v == btnRetour) {
+            Toast.makeText(this, "Vous êtes déjà sur les commandes disponibles", Toast.LENGTH_SHORT).show();
+        } else if (v == commandesALiver) {
+            startActivity(new Intent(this, LivreurCommandeALivrerActivity.class));
+        } else if (v == seDeconnecter) {
+            startActivity(new Intent(this, MainActivity.class));
+        } else if (v == btnRetour) {
             finish();
         }
+    }
+
+    @Override
+    public void onButtonClick(int position) {
+        ItemLivraisonDispo item = itemLivraisonDispoList.get(position);
+        Toast.makeText(this, "Commande acceptée: " + item.getNomRestaurant(), Toast.LENGTH_SHORT).show();
     }
 }
