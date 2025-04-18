@@ -1,6 +1,7 @@
 <?php
 // Inclusion des classes nécessaires pour la gestion des produits
 include_once("../modele/DAO/itemDao.class.php");
+include_once("../modele/unItem.class.php");
 
 
 // DÉFINIR LES EN-TÊTES HTTP REQUIS POUR LES RÉPONSES JSON
@@ -127,7 +128,7 @@ class RestControllerItem {
         $lastItem = end($allItems);
         $newId = $lastItem->getIdItem() + 1;*/
 
-        $item = new Item(
+        $item = new unItem(
             null, 
             $data['idRestaurant'],
             $data['nom'],

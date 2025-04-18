@@ -86,7 +86,7 @@ if(!isset($_SESSION)) {
                 const description = form.querySelector('[name="description"]').value.trim();
                 
 
-                if (!name || !adresse || !phone || !description) {
+                if (!idProprietaire|| !name || !adresse || !phone || !description) {
                     alert("Veuillez remplir tous les champs !");
                     return;
                 }

@@ -21,6 +21,11 @@
         <?php if($controleur->isAdmin()):?>
         <a class="boutonAjouter"href="?action=ajouterResto">Nouveau Restaurant</a>
         <?php endif; ?>
+        <?php if(!$controleur->isAdmin()):?>
+            <h2>Pour ouvrir un Nouveau restaurant</h2>
+            <a class="boutonAjouter"href="mailto:GFaim@gmail.com?subject=Demande%20d'ouverture%20de%20restaurant">Nous contacter</a>
+        <?php endif; ?>
+
         <?php
         if(empty($controleur->getMesRestos()))
         {

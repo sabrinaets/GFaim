@@ -1,6 +1,7 @@
 <?php
 // Inclusion des classes nécessaires pour la gestion des produits
 include_once("../modele/DAO/RestaurantDao.class.php");
+include_once("../modele/unRestaurant.class.php");
 // DÉFINIR LES EN-TÊTES HTTP REQUIS POUR LES RÉPONSES JSON
 header("Access-Control-Allow-Origin: *"); // pour autoriser les requêtes externes.
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS"); //pour spécifier les méthodes HTTP acceptées.
@@ -127,7 +128,7 @@ class RestControllerRestaurant {
         $lastrestaurant = end($allrestaurants);
         $newId = $lastrestaurant->getIdRestaurant() + 1;*/
 
-        $restaurant = new restaurant(
+        $restaurant = new unRestaurant(
             null,
             $data['idProprietaire'],
             $data['nom'],

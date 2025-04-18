@@ -120,7 +120,7 @@ echo "<script>const restaurantId = " . json_encode($idResto) . ";</script>";
                     }
 
                     // Envoyer une requête DELETE à l'API
-                    fetch(`http://localhost:9090/PROJETWEB/api/item/${itemId}`, {
+                    fetch(`http://localhost:8001/api/item/${itemId}`, {
                         method: "DELETE",
                         headers: {
                             "Content-Type": "application/json"

@@ -61,6 +61,7 @@
                     êtes entre de bonnes mains. On s'occupe des clients et de la livraison, vous
                     n'avez qu'à en récolter les profits!
                 </p>
+                <a href="mailto:GFaim@gmail.com?subject=Demande%20de%20compte%20restaurateur">Nous contacter</a>
             </div>
             </div>
             <div class="roles">
@@ -71,6 +72,7 @@
                     Être votre propre patron et travailler selon vos disponibilités vous intéresse?
                     Ne cherchez pas plus loin, joignez-vous à notre équipe!
                     </p>
+                    <a href="mailto:GFaim@gmail.com?subject=Demande%20de%20compte%20livreur">Nous contacter</a>
                 </div>
             </div>
         </div>

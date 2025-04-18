@@ -98,7 +98,7 @@ if (form) {
             return;
         }
 
-        fetch(`http://localhost:9090/PROJETWEB/api/item/${idItem}`, {
+        fetch(`http://localhost:8001/api/item/${idItem}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
