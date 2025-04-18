@@ -122,7 +122,7 @@ function renderPaypalButton(panier, totalPrix) {
             return actions.order.create({
                 purchase_units: [{
                     amount: {
-                        value: totalPrix.toFixed(2), // Important : string avec 2 décimales
+                        value: totalPrix.toFixed(2), 
                         currency_code: "EUR"
                     }
                 }]
@@ -131,9 +131,9 @@ function renderPaypalButton(panier, totalPrix) {
         onApprove: function (data, actions) {
             return actions.order.capture().then(function (details) {
                 alert("Paiement approuvé ! Merci " + details.payer.name.given_name);
-                // ➕ ici tu peux appeler une fonction pour envoyer la commande en PHP
+                console.log("Détails de la transaction:", details);
                 commanderPanier();
-                // et vider le panier ensuite
+
             });
         },
         onError: function (err) {
