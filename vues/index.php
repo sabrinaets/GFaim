@@ -11,22 +11,21 @@
     
     <style>
     .carre img{
-    margin-right:50px;
-    background-image: linear-gradient(black,gray);
-    border-radius: 40px;
- 
-
-
-    width: 420px; 
-    max-width: 500px;
-    min-width: 300px;
-    height: 510px;
-
-    min-height: 510px;
-    max-height:510;
+        margin-right:50px;
+        background-image: linear-gradient(black,gray);
+        border-radius: 40px;
+        width: 420px; 
+        max-width: 500px;
+        min-width: 300px;
+        height: 510px;
+        min-height: 510px;
+        max-height:510;
     
-}
-</style>
+        }
+    .commander-panier{
+        text-decoration: none;
+    }    
+    </style>
 </head>
 </head>
 <body>
@@ -61,7 +60,7 @@
                     êtes entre de bonnes mains. On s'occupe des clients et de la livraison, vous
                     n'avez qu'à en récolter les profits!
                 </p>
-                <a href="mailto:GFaim@gmail.com?subject=Demande%20de%20compte%20restaurateur">Nous contacter</a>
+                <a class="commander-panier" href="mailto:GFaim@gmail.com?subject=Demande%20de%20compte%20restaurateur">Nous contacter</a>
             </div>
             </div>
             <div class="roles">
@@ -72,7 +71,7 @@
                     Être votre propre patron et travailler selon vos disponibilités vous intéresse?
                     Ne cherchez pas plus loin, joignez-vous à notre équipe!
                     </p>
-                    <a href="mailto:GFaim@gmail.com?subject=Demande%20de%20compte%20livreur">Nous contacter</a>
+                    <a class="commander-panier" href="mailto:GFaim@gmail.com?subject=Demande%20de%20compte%20livreur">Nous contacter</a>
                 </div>
             </div>
         </div>

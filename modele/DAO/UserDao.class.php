@@ -272,7 +272,7 @@ class UserDAO implements DAO {
         $requete->bindParam(':idLivreur',$idLivreur);
         $requete->execute();
 
-        $result=$requete->fetchAll();
+        $result=$requete->fetch(PDO::FETCH_ASSOC);
         return $result;
 
     }

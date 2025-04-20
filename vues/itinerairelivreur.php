@@ -74,7 +74,7 @@ $apiKey = $_ENV['GOOGLE_MAPS_API_KEY'];
         script.async = true;
         script.defer = true;
         
-        // Ajoute le script à la page
+        // Ajoute le script a la page
         document.head.appendChild(script);
 
 
