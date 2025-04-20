@@ -62,6 +62,11 @@
     <footer>
         <p>@2025 tous droits reservés GFaim</p>
     </footer>
+    <script src="vues/fonctions/livreur.js"></script>
+    <script>
+         const idLivreur = <?php echo $_SESSION['idUtilisateur']; ?>;
+         envoyerPositionLivreur(idLivreur);
+    </script>
 </body>
 </body>
 </html>

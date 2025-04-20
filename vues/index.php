@@ -95,7 +95,14 @@
          </script>
          <script>
             let idUtilisateur = <?php echo json_encode($_SESSION['idUtilisateur']); ?>;
-        </script>
+    </script>
+    <script src="vues/fonctions/livreur.js"></script>
+    <script>
+        const idLivreur = <?php echo $_SESSION['idUtilisateur']; ?>;
+        if (idLivreur !== NULL){
+            envoyerPositionLivreur(idLivreur);
+        }
+    </script>
 
 </body>
 </html>

@@ -67,6 +67,7 @@
             
         </ul>
         -->
+        <div class="panier hidden"></div>
     </main>
     <footer>
         <p>@2025 tous droits reservés GFaim</p>

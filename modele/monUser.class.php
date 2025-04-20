@@ -8,6 +8,8 @@ class monUser
     private ?string $phone;
     private ?string $codepostal;
     private monRole $role;
+    private ?float $latitude;
+    private ?float $longitude;
 
        // Constructor
        public function __construct(
@@ -18,7 +20,8 @@ class monUser
         ?string $phone,
         string $email,
         string $password,
-  
+        ?float $latitude,
+        ?float $longitude,
         
     ) {
         $this->id = $id;
@@ -28,6 +31,8 @@ class monUser
         $this->phone = $phone;
         $this->codepostal=$codepostal;
         $this->role = $role;
+        $this->latitude = $latitude;
+        $this->longitude=$longitude;
     }
 
     // Getters and Setters for $id
@@ -130,6 +135,47 @@ class monUser
             $this->phone ?? "No phone",
             $this->role->getRoleName()
         );
+    }
+
+
+    /**
+     * Get the value of latitude
+     */ 
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
+
+    /**
+     * Set the value of latitude
+     *
+     * @return  self
+     */ 
+    public function setLatitude($latitude)
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of longitude
+     */ 
+    public function getLongitude()
+    {
+        return $this->longitude;
+    }
+
+    /**
+     * Set the value of longitude
+     *
+     * @return  self
+     */ 
+    public function setLongitude($longitude)
+    {
+        $this->longitude = $longitude;
+
+        return $this;
     }
 }
 ?>

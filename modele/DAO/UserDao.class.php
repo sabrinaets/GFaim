@@ -38,7 +38,8 @@ class UserDAO implements DAO {
                 $enr['phone'],
                 $enr['email'],
                 $enr['password'],
-
+                null,
+                null,
                 
             );
         }
@@ -77,6 +78,8 @@ class UserDAO implements DAO {
                 $enr['phone'],
                 $enr['email'],
                 $enr['password'],
+                null,
+                null,
             );
         }
 
@@ -226,7 +229,9 @@ class UserDAO implements DAO {
                 $enr['codepostal'],
                 $enr['phone'],
                 $enr['email'],
-                $enr['password']
+                $enr['password'],
+                null,
+                null
             );
         }
     
@@ -254,5 +259,21 @@ class UserDAO implements DAO {
     public static function findByDescription(string $filter): array{
         $tableau = [];
         return $tableau;  
+    }
+    public static function getPositionLivreur(int $idLivreur){
+        try {
+            $connexion = ConnexionBD::getInstance();
+        } catch (Exception $e) {
+            throw new Exception("Impossible d'obtenir la connexion à la BD");
+        }
+        $requete= $connexion->prepare(
+            "SELECT latitude,longitude FROM Utilisateur WHERE idUtilisateur=:idLivreur"
+        );
+        $requete->bindParam(':idLivreur',$idLivreur);
+        $requete->execute();
+
+        $result=$requete->fetchAll();
+        return $result;
+
     }
 }

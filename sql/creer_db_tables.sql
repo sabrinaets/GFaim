@@ -27,7 +27,10 @@ CREATE TABLE Utilisateur (
     phone VARCHAR(15) NOT NULL,
     codepostal VARCHAR(10) NOT NULL,
     roleId INT NOT NULL,
-    FOREIGN KEY (roleId) REFERENCES Role(idRole) ON DELETE RESTRICT
+    latitude DECIMAL(10,8),
+    longitude DECIMAL(11,8),
+    FOREIGN KEY (roleId) REFERENCES Role(idRole) ON DELETE RESTRICT,
+    
 );
 
 

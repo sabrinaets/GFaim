@@ -62,7 +62,7 @@ function afficherPanier() {
     panier.forEach(item => {
         totalPrix += parseInt(item.quantite) * parseFloat(item.prix);
         contenu += `<div class="unItemListe">
-            <div><p>${item.nom} (x${item.quantite}) - ${item.prix}$</p></div>
+            <div><p>${item.nom} (x${item.quantite}) - ${(parseFloat(item.prix)).toFixed(2)}$</p></div>
             <button class="deletePanier" onclick="soustraireItem(${item.id})">-</button>
         </div>`;
     });

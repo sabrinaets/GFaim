@@ -24,7 +24,8 @@ function afficherMenu($controleur)
                 $menu .= "<a href='?action=creerCompte'>Créer compte</a>";
             }
             else if(htmlspecialchars($utilisateurConnecte->getRole()->getRoleName()) === "Client"){
-                $menu .= "<a id='toggle-panier'>Panier</a>"; //icone panier
+                $menu .= "<a href='?action=voirRestos'>Commander</a>"; 
+                $menu .= "<a id='toggle-panier'>Panier</a>";
                 $menu .= "<a href='?action=voirCommandesClient'>Voir mes commandes</a>";
             }
             else if(htmlspecialchars($utilisateurConnecte->getRole()->getRoleName()) === "Livreur"){
@@ -163,7 +164,7 @@ function afficherMenuResto(array $tableauItem, unRestaurant $resto):void{
         echo '<div class="item-info">';
         echo '<h3>'. htmlspecialchars($unItem->getNom()).'</h3>';
         echo '<p>'. htmlspecialchars($unItem->getDescription()).'</p>';
-        echo '<p>Prix: '. htmlspecialchars($unItem->getPrix()).'</p>';
+        echo '<p>'. htmlspecialchars(number_format($unItem->getPrix(),2)).'$</p>';
         echo '<a onclick="ajouterAuPanier('
         . htmlspecialchars(json_encode($unItem->getIdItem())) . ', '
         . htmlspecialchars(json_encode($unItem->getNom())) . ', '
@@ -197,7 +198,7 @@ function afficherMonMenu(array $tableauItem):void{
         echo '<li class="article">';
         echo '<span class="nomArticle">'. htmlspecialchars($unItem->getNom()).'</span><br>';
         echo '<span class="description">'. htmlspecialchars($unItem->getDescription()).'</span><br>';
-        echo '<span class="prix">Prix: '. htmlspecialchars($unItem->getPrix()).'</span><br>';
+        echo '<span class="prix">Prix: '. htmlspecialchars(number_format($unItem->getPrix(), 2)).'</span><br>';
         echo '<a class="boutonModifier" href="?action=editArticle&id='.htmlspecialchars((string) $unItem->getIdItem()).'&idResto='.htmlspecialchars((string) $unItem->getIdRestaurant()).'">Modifier</a>';
         echo '<button class="boutonSupprimer" data-id="'.htmlspecialchars((string) $unItem->getIdItem()).'">Supprimer</button>';
     }
