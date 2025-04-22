@@ -68,6 +68,8 @@ class SeInscrire extends Controleur
                 $_POST['phone'],
                 $_POST['email'],
                 $_POST['password'],
+                null,
+                null,
 
             );
 

@@ -257,10 +257,14 @@ class commandeDAO implements DAO{
             return 0;
         }
         $requete = $pdo->prepare(
-            "SELECT MAX(nom) FROM Item WHERE idItem IN 
-            (SELECT idItem FROM CommandeItem cI
-            JOIN Commande c ON c.idCommande = cI.idCommande
-            WHERE c.idRestaurant = :idRestaurant)"
+            "SELECT i.nom
+            FROM Item i
+            JOIN CommandeItem ci ON i.idItem = ci.idItem
+            JOIN Commande c ON c.idCommande = ci.idCommande
+            WHERE c.idRestaurant = :idRestaurant
+            GROUP BY i.idItem
+            ORDER BY SUM(ci.quantite) DESC
+            LIMIT 1"
         );
         $requete->execute(['idRestaurant'=>$idRestaurant]);
         return (string)$requete->fetchColumn();

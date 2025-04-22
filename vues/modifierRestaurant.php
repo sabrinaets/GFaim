@@ -111,13 +111,13 @@ if (form) {
             return response.json();
         })
         .then(data => {
-            alert('Restaurant Modifier avec succès !');
+            alert('Restaurant modifié avec succès !');
             console.log('Succès:', data);
             form.reset();
         })
         .catch(error => {
             console.error('Erreur:', error);
-            alert("Erreur lors de la modification du restaurant. Veuillez réessayer.");
+            alert("Erreur lors de la modification du restaurant. Veuillez ré-essayer.");
         });
     });
 } else {
