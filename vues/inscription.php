@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription - GFaim</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .inscrireWarning{
+            font-size: 13px;
+            color:red;
+            text-align: justify;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -16,6 +23,7 @@
         </nav>
     </header>
     <section class="inscription" style="background-image: linear-gradient(rgba(0, 0, 0, 0.566),rgba(0, 0, 0, 0.333)), url('images/imageLivreur.jpg');">
+        
         <div class="formInscription">
             <h2>Inscription</h2>
             <form id="inscrire"method="post" action="?action=creerCompte">
@@ -45,9 +53,11 @@
                 
                 
                 
-                <input name="password"type="password" required placeholder="Choisissez votre mot de passe">
+                <input name="password"type="password" required placeholder="Mot de passe">
+                <p class="inscrireWarning">Vous serez automatiquement enregistré comme client. Si vous souhaitez devenir livreur ou restaurateur avec nous, simplement nous écrire au GFaim@gmail.com. Un administrateur pourra alors valider votre demande.</p>
                 <input  style="font-size:17px; padding:7px; margin-top:15px; border:none; width:40%; border-radius:20px" type="submit" value="M'inscrire">
             </form>
+            
         </div>
     </section>
     <footer>

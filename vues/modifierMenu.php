@@ -12,6 +12,15 @@ echo "<script>const restaurantId = " . json_encode($idResto) . ";</script>";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion - GFaim</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .boutonModifier{
+            padding:none;
+            text-decoration: none;
+        }
+        .boutonSupprimer{
+            height:60px;
+        }
+    </style>
 </head>
 <body>
     <header>
