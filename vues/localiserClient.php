@@ -175,6 +175,7 @@ $apiKey = $_ENV['GOOGLE_MAPS_API_KEY'];
 }
 
     function distanceLivreur(){
+        setInterval(()=>{
         const distanceService = new google.maps.DistanceMatrixService();
         distanceService.getDistanceMatrix(
             {
@@ -199,6 +200,7 @@ $apiKey = $_ENV['GOOGLE_MAPS_API_KEY'];
                 console.error("Erreur distance matrix: ",+distanceStatus);
             }
         })
+    },10000)
     }
     </script>
 </body>
