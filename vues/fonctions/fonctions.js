@@ -103,7 +103,7 @@ function loadPaypalSdk() {
         }
 
         const script = document.createElement("script");
-        script.src = "https://www.paypal.com/sdk/js?client-id=AaueH_EDRloIbSiw261KmBqc4D2xk6tTslaNnpHWnxwnXZy6LY52OZz-s5kBLoGvADAhsPReqKaRCFz_&currency=EUR";
+        script.src = "https://www.paypal.com/sdk/js?client-id=AaueH_EDRloIbSiw261KmBqc4D2xk6tTslaNnpHWnxwnXZy6LY52OZz-s5kBLoGvADAhsPReqKaRCFz_&currency=CAD&locale=fr_CA";
         script.onload = resolve;
         script.onerror = reject;
         document.head.appendChild(script);
@@ -123,7 +123,7 @@ function renderPaypalButton(panier, totalPrix) {
                 purchase_units: [{
                     amount: {
                         value: totalPrix.toFixed(2), 
-                        currency_code: "EUR"
+                        currency_code: "CAD"
                     }
                 }]
             });

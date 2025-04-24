@@ -88,7 +88,7 @@ echo "<script>const restaurantId = " . json_encode($idResto) . ";</script>";
                 <button class="boutonSupprimer">Supprimer</button>
             </li>
         </ul>--->
-        <div class="formAjouterPromotion">
+        <!---<div class="formAjouterPromotion">
             <h2>Ajouter une promotion</h2>
             <form id="ajouterPromotion" action="post">
                 <input type="hidden" id="editProductId" />
@@ -107,7 +107,7 @@ echo "<script>const restaurantId = " . json_encode($idResto) . ";</script>";
                   step="0.01"
                   required
                 />
-                <input  style="font-size:17px; padding:7px; margin-top:15px; border:none; width:40%; border-radius:20px" type="submit" value="Ajouter">
+                <input  style="font-size:17px; padding:7px; margin-top:15px; border:none; width:40%; border-radius:20px" type="submit" value="Ajouter">--->
                 
                 <script>
         document.addEventListener("DOMContentLoaded", function () {
