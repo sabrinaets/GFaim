@@ -158,6 +158,11 @@ $apiKey = $_ENV['GOOGLE_MAPS_API_KEY'];
                             }
                         });
 
+                       
+                        setInterval(updateLivreurPosition, 10000);
+
+                        updateLivreurPosition();
+
                         distanceLivreur();
                     }
                     else{
@@ -173,9 +178,42 @@ $apiKey = $_ENV['GOOGLE_MAPS_API_KEY'];
 
    
 }
+let livreurMarker;
+
+function updateLivreurPosition() {
+    fetch(`../api/get_position_livreur.php?idLivreur=<?php echo $idLivreur; ?>`)
+        .then(response => response.json())
+        .then(data => {
+            const nouvellePosition = {
+                lat: parseFloat(data.latitude),
+                lng: parseFloat(data.longitude)
+            };
+
+            if (livreurMarker) {
+                console.log("Coordonnées mises à jour du livreur :", data);
+                livreurMarker.setPosition(nouvellePosition);
+            } else {
+                livreurMarker = new google.maps.Marker({
+                    map: map,
+                    position: nouvellePosition,
+                    title: "Votre livreur.",
+                    icon: {
+                        url: "https://images.icon-icons.com/1863/PNG/512/person-pin-circle_118813.png",
+                        scaledSize: new google.maps.Size(35, 50)
+                    }
+                });
+            }
+
+            posLivreur = nouvellePosition;
+            distanceLivreur();
+        })
+        .catch(error => {
+            console.error("Erreur mise à jour position livreur :", error);
+        });
+}
 
     function distanceLivreur(){
-        setInterval(()=>{
+        
         const distanceService = new google.maps.DistanceMatrixService();
         distanceService.getDistanceMatrix(
             {
@@ -200,7 +238,7 @@ $apiKey = $_ENV['GOOGLE_MAPS_API_KEY'];
                 console.error("Erreur distance matrix: ",+distanceStatus);
             }
         })
-    },10000)
+    
     }
     </script>
 </body>
