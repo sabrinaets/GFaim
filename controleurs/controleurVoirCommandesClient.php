@@ -1,6 +1,6 @@
 <?php
 session_start();
-	//erreur quand jinclut CommandeDAO, je vais essayer de regler
+	
 	include_once("controleurs/controleur_classe_abstraite.php");
 	include_once("modele/DAO/commandeDao.class.php");
 

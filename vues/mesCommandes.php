@@ -41,32 +41,6 @@
 
 
         ?>
-        <!--
-            <ul class="liste-commandes-client">
-            <li class="commande">
-                <span class="restaurant">🍕 Pizzeria Bella<br><span class="adresse">12 rue de Paris - Jean Dupont</span></span><br>
-                <span class="nom-livreur">Jeremy Yameogo</span><br>
-                <span class="commande-details">1x Margherita, 1x Coca</span><br>
-                <a href="?action=localiser"class="bouttonscommandes">Localiser</a>
-                <a class="bouttonscommandes" style="margin-left: 10px;background-color: rgb(190, 11, 11);">Annuler</a>
-            </li>
-            <li class="commande">
-                <span class="restaurant">🍕 Pizzeria Bella<br><span class="adresse">12 rue de Paris - Jean Dupont</span></span><br>
-                <span class="nom-livreur">Jeremy Yameogo</span><br>
-                <span class="commande-details">1x Margherita, 1x Coca</span><br>
-                <a href="?action=localiser"class="bouttonscommandes">Localiser</a>
-                <a class="bouttonscommandes" style="margin-left: 10px;background-color: rgb(190, 11, 11);">Annuler</a>
-            </li>
-            <li class="commande">
-                <span class="restaurant">🍕 Pizzeria Bella<br><span class="adresse">12 rue de Paris - Jean Dupont</span></span><br>
-                <span class="nom-livreur">Jeremy Yameogo</span><br>
-                <span class="commande-details">1x Margherita, 1x Coca</span><br>
-                <a href="?action=localiser" class="bouttonscommandes">Localiser</a>
-                <a class="bouttonscommandes" style="margin-left: 10px;background-color: rgb(190, 11, 11);">Annuler</a>
-            </li>
-            
-        </ul>
-        -->
         <div class="panier hidden"></div>
     </main>
     <footer>

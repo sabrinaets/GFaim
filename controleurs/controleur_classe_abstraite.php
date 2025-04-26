@@ -34,19 +34,16 @@ abstract class Controleur
 			}
 		}
 
-		return false; // Retourne false par défaut
+		return false; 
 	}
 
 
 	abstract public function executerAction();
 
-	// ****************** Méthode privée
+	
 	private function determinerActeur(): void
 	{
-		//creation d'une session ou recuperation de la session existante
-		//session_start();
-		//Si la session de l'utilisateur existe, le type d'utilisateur
-		// devient, utilisateur, il est connecté
+		
 		if (isset($_SESSION['utilisateurConnecte'])) {
 			$this->acteur = "utilisateur";
 		}

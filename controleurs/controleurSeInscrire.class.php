@@ -8,26 +8,22 @@ include_once("modele/monUser.class.php");
 
 class SeInscrire extends Controleur
 {
-    // ******************* Attributs
+    
     private $tabProduits;
 
-    // ******************* Constructeur vide
+    
     public function __construct()
     {
         parent::__construct();
         $this->tabProduits = array();
     }
 
-    // ******************* Accesseurs
     public function getTabProduits(): array
     {
         return $this->tabProduits;
     }
 
-    // Méthode pour vérifier si l'utilisateur est admin
-  
-
-    // ******************* Méthode executerAction
+    
     public function executerAction(): string
     {
         $idRole=2;

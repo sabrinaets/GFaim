@@ -29,44 +29,9 @@
                 if(empty($controleur->getLesItems())) {
                     echo "<h1>Aucun Produits trouvé</h1>";
                 } else {
-                    afficherMenuResto($controleur->getLesItems(), $controleur->getResto()); // Affiche la liste des restaurants
+                    afficherMenuResto($controleur->getLesItems(), $controleur->getResto()); 
                 }
             ?>
-            <!---<div class="menuResto">
-                <h1 id="resto-nom">Restaurant l'escondite</h1>
-                <br>
-                <h2> - Menu - </h2>
-                <div id="menu">
-                    <div class="menu-item">
-                        <img src="images/imageBurger.jpg" alt="burger" width ="250px" height="250px">
-                        <div class="item-info">
-                        <h3>Item 1</h3>
-                        <p>Description de l'item 1</p>
-                        <p>Prix: 10$</p>
-                        <a>Ajouter au panier</a>
-                        </div>
-                    </div>
-                    <div class="menu-item">
-                        <img src="images/imageBurger.jpg" alt="burger" width ="250px" height="250px">
-                        <div class="item-info">
-                        <h3>Item 1</h3>
-                        <p>Description de l'item 1</p>
-                        <p>Prix: 10$</p>
-                        <a>Ajouter au panier</a>
-                        </div>
-                    </div>
-                    <div class="menu-item">
-                        <img src="images/imageBurger.jpg" alt="burger" width ="250px" height="250px">
-                        <div class="item-info">
-                        <h3>Item 1</h3>
-                        <p>Description de l'item 1</p>
-                        <p>Prix: 10$</p>
-                        <a>Ajouter au panier</a>
-                        </div>
-                    </div>
-                </div>
-            
-        </div>--->
     </div>
 
     </main>

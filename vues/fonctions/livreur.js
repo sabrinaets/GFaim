@@ -22,7 +22,7 @@ function envoyerPositionLivreur(idLivreur){
             })
             .then(response=>response.text())
             .then(data=>{
-                console.log("position envoyee:",data);
+                console.log("Position envoyée:",data);
             })
             .catch(error =>{
                 console.error("Erreur lors de l'envoi de la position: ",error);

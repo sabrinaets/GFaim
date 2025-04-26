@@ -1,6 +1,6 @@
 <?php
 if(!isset($_SESSION)) {
-    session_start(); // Toujours démarrer la session
+    session_start(); 
 }
 ?>
 <!DOCTYPE html>
@@ -78,7 +78,7 @@ if(!isset($_SESSION)) {
 
         if (form) {
             form.addEventListener('submit', function (event) {
-                event.preventDefault(); // Empêche la soumission classique du formulaire
+                event.preventDefault(); 
                 const idProprietaire = form.querySelector('[name="idProprietaire"]').value.trim();
                 const name = form.querySelector('[name="name"]').value.trim();
                 const adresse = form.querySelector('[name="adresse"]').value.trim();

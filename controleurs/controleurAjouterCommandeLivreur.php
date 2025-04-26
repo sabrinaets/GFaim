@@ -19,7 +19,7 @@
 			if (isset($_GET['action']) && $_GET['action'] === 'ajouterCommandeLivreur' && isset($_GET['id'])) {
 				$idCommande = intval($_GET['id']); 
 
-				commandeDAO::updateCommandeAcceptee($pdo,$idCommande,$idLivreur); // on update la commande.
+				commandeDAO::updateCommandeAcceptee($pdo,$idCommande,$idLivreur); 
 
 				
 			

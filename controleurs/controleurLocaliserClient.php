@@ -4,9 +4,9 @@
 
     class localiserClient extends Controleur  {
             
-        // ******************* Constructeur vide
+        
         public function __construct() {
-            //appel du constructeur parent
+            
             parent::__construct();
         }
         

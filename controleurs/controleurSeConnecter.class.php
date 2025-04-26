@@ -5,23 +5,21 @@ include_once("modele/monRole.class.php");
 
 class SeConnecter extends Controleur
 {
-    // ******************* Attributs
+    
     private $tabProduits;
 
-    // ******************* Constructeur vide
     public function __construct()
     {
         parent::__construct();
         $this->tabProduits = array();
     }
 
-    // ******************* Accesseurs
     public function getTabProduits(): array
     {
         return $this->tabProduits;
     }
 
-    // ******************* Méthode exécuter action
+  
     public function executerAction(): string
     {
         // Vérifier si l'utilisateur est déjà connecté

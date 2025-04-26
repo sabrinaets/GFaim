@@ -93,7 +93,7 @@ function afficherPanier() {
 function loadPaypalSdk() {
     return new Promise((resolve, reject) => {
         if (typeof paypal !== "undefined") {
-            return resolve(); // Déjà chargé
+            return resolve(); 
         }
 
         const existingScript = document.querySelector("script[src*='paypal.com/sdk/js']");

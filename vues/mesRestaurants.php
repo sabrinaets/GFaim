@@ -32,22 +32,14 @@
             echo "<h1>Aucun restaurant trouvé</h1>";
         }
         else{
-            afficherMesRestaurants($controleur->getMesRestos()); // Affiche la liste des restaurants
+            afficherMesRestaurants($controleur->getMesRestos());
         }
         ?>
-        <!---<ul class="liste-commandes">
-            <li class="article">
-                <a href="?action=voirMonMenu" style="font-size: 24px; font-weight: bold; color: #D2691E; text-transform: uppercase; height: 40px; line-height: 50px; margin-top: 10px;">
-                Trois Amigos</a><br>
-                <span class="description" style ="margin-top: 20px;">Un restaurant servant les meilleurs plats mexicain au monde du fameux tacos au queso fondido</span><br>
-                <a class="boutonModifier" href="?action=modifierResto">Modifier Restaurant</a>
-                <button class="boutonSupprimer">Supprimer</button>
-            </li>
-        </ul>--->
+        
 
         <script>
         document.addEventListener("DOMContentLoaded", function () {
-            // Sélectionner tous les boutons de suppression
+          
             const boutonsSupprimer = document.querySelectorAll(".boutonSupprimer");
 
             boutonsSupprimer.forEach(bouton => {
@@ -59,12 +51,11 @@
                         return;
                     }
 
-                    // Demander confirmation avant de supprimer
+                    
                     if (!confirm("Voulez-vous vraiment supprimer ce restaurant ?")) {
                         return;
                     }
 
-                    // Envoyer une requête DELETE à l'API
                     fetch(`http://localhost:8001/api/restaurant/${restaurantId}`, {
                         method: "DELETE",
                         headers: {
@@ -81,12 +72,12 @@
                         alert("Restaurant supprimé avec succès !");
                         console.log("Succès:", data);
 
-                        // Supprimer l'élément du DOM
+                        
                         this.closest("li.article").remove();
                     })
                     .catch(error => {
                         console.error("Erreur:", error);
-                        location.reload(); // Recharger la page en cas d'erreur
+                        location.reload();
                     });
                 });
             });

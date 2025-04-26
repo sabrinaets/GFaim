@@ -4,9 +4,9 @@
 	class voirCommandesResto extends Controleur  {
 		
 		private $tabCommandesResto;
-		// ******************* Constructeur vide
+		
 		public function __construct() {
-			//appel du constructeur parent
+		
 			parent::__construct();
 			$this->tabCommandesResto = array();
 		}

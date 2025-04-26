@@ -1,8 +1,8 @@
 <?php
 if(!isset($_SESSION)) {
-    session_start(); // Toujours démarrer la session
+    session_start();
 }
-$idResto = isset($_GET['id']) ? $_GET['id'] : null; // Récupérer l'ID du restaurant à modifier<
+$idResto = isset($_GET['id']) ? $_GET['id'] : null; 
 echo "<script>const restaurantId = " . json_encode($idResto) . ";</script>";
 ?>
 <!DOCTYPE html>
@@ -72,7 +72,7 @@ echo "<script>const restaurantId = " . json_encode($idResto) . ";</script>";
 
         if (form) {
             form.addEventListener('submit', function (event) {
-                event.preventDefault(); // Empêche la soumission classique du formulaire
+                event.preventDefault();
                 const nom = form.querySelector('[name="nom"]').value.trim();
                 const prix = form.querySelector('[name="prix"]').value.trim();
                 const image = form.querySelector('[name="image"]').value.trim();
