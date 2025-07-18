@@ -14,6 +14,8 @@ For security and quality assurance, new restaurants must be added by an administ
 
 :heavy_check_mark:Database: phpMyAdmin (MySQL) and Oracle
 
+:heavy_check_mark:Mobile app prototype: Java
+
 :heavy_check_mark:Containerization: Docker
 
 
